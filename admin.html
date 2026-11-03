@@ -1,0 +1,2040 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>JP Cotton — Store Manager &amp; Admin Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="admin.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <img src="assets/logo.png" alt="JP Cotton Admin" style="height: 42px; margin-bottom: 10px;">
+      <h2>JP Cotton</h2>
+      <div style="font-size: 11px; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px;">Store Management Portal</div>
+      <button onclick="openStoreGuideModal()" style="margin-top: 14px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 6px; background: #fef3c7; color: #92400e; border: 1px solid #fde68a; padding: 7px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer;">
+        📖 Store Owner Guide &amp; Help
+      </button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <!-- Admin Menu -->
+      <div class="nav-group">
+        <button class="nav-group-toggle" onclick="toggleNavGroup(this)">
+          <span style="display:flex; align-items:center; gap:8px;"><span class="icon">💼</span> Admin</span>
+          <span class="chevron" style="transition: transform 0.2s;">▼</span>
+        </button>
+        <div class="nav-group-items">
+          <a href="#" class="nav-link active" onclick="showSection('dashboard', this)"><span class="icon">📊</span>
+            Dashboard</a>
+          <a href="#" class="nav-link" onclick="showSection('products', this)"><span class="icon">👕</span> Products</a>
+          <a href="#" class="nav-link" onclick="showSection('inventory', this)"><span class="icon">📦</span> Live Stock
+            &amp; Inventory</a>
+          <a href="#" class="nav-link" onclick="showSection('orders', this)"><span class="icon">🛍️</span> Orders</a>
+          <a href="#" class="nav-link" onclick="showSection('categories', this)"><span class="icon">📁</span>
+            Categories</a>
+          <a href="#" class="nav-link" onclick="showSection('customers', this)"><span class="icon">👥</span>
+            Customers</a>
+          <a href="#" class="nav-link" onclick="showSection('reviews', this)"><span class="icon">⭐</span> Reviews</a>
+          <a href="#" class="nav-link" onclick="showSection('marketing', this)"><span class="icon">📈</span>
+            Marketing</a>
+          <a href="#" class="nav-link" onclick="showSection('returns', this)"><span class="icon">↩️</span> Returns</a>
+          <a href="#" class="nav-link" onclick="showSection('content', this)"><span class="icon">📝</span> Content</a>
+          <a href="#" class="nav-link" onclick="showSection('curated-edits', this)"><span class="icon">🎨</span> Curated Edits</a>
+          <a href="#" class="nav-link" onclick="showSection('hero-slides', this)"><span class="icon">🖼️</span> Hero
+            Slides</a>
+          <a href="#" class="nav-link" onclick="showSection('settings', this)"><span class="icon">⚙️</span> Settings</a>
+        </div>
+      </div>
+
+      <!-- Customer Menu -->
+      <div class="nav-group">
+        <button class="nav-group-toggle" onclick="toggleNavGroup(this)">
+          <span style="display:flex; align-items:center; gap:8px;"><span class="icon">👤</span> Customer View</span>
+          <span class="chevron" style="transition: transform 0.2s;">▼</span>
+        </button>
+        <div class="nav-group-items">
+          <a href="index.html" target="_blank" class="nav-link"><span class="icon">🏠</span> Homepage</a>
+          <a href="shop.html" target="_blank" class="nav-link"><span class="icon">🛍️</span> Shop All</a>
+          <a href="cart.html" target="_blank" class="nav-link"><span class="icon">🛒</span> Cart</a>
+          <a href="checkout.html" target="_blank" class="nav-link"><span class="icon">💳</span> Checkout</a>
+        </div>
+      </div>
+    </nav>
+
+    <div style="margin-top: auto; padding: 20px; font-size: 11px; color: rgba(255,255,255,0.5);">
+      Logged in as Super Admin<br>
+      <a href="index.html"
+        style="color: white; text-decoration: underline; margin-top: 10px; display: inline-block;">Back to Store</a>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <!-- Dashboard Section (Live Sales & Stock Intelligence) -->
+    <section id="section-dashboard" class="content-section">
+      <!-- Live Status & Action Header Banner -->
+      <div class="live-banner">
+        <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+          <div class="live-indicator">
+            <span class="live-dot"></span> LIVE SALES ACTIVE
+          </div>
+          <span style="font-size: 13px; color: rgba(255,255,255,0.75);">Real-time checkout stream and warehouse
+            inventory monitoring</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+          <button class="btn-primary" onclick="loadDashboard(); showAdminToast('Live stream synced with database', 'success');"
+            style="background: #27AE60; border: none; font-size: 12px; font-weight: 700; padding: 10px 18px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(39,174,96,0.3);">
+            <span>🔄 Live Sync Stream</span>
+          </button>
+          <button class="btn-primary" onclick="showSection('inventory')"
+            style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); color: white; font-size: 12px; padding: 10px 18px; border-radius: 6px; cursor: pointer;">
+            📦 Manage Live Stock
+          </button>
+          <select id="dashboard-time-filter" onchange="updateDashboardCharts()"
+            style="padding: 8px 14px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2); font-size: 12px; background: rgba(255,255,255,0.1); color: white; cursor: pointer; outline: none;">
+            <option value="7" style="color: black;">Last 7 Days</option>
+            <option value="30" selected style="color: black;">Last 30 Days</option>
+            <option value="all" style="color: black;">All Time</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Store Manager Daily Quick-Actions (Non-Tech Friendly) -->
+      <div class="store-manager-quick-bar" style="background: white; border: 1px solid var(--border); border-radius: 10px; padding: 18px 24px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 10px;">
+          <div>
+            <h3 style="font-size: 16px; font-weight: 700; color: var(--ink); margin: 0; display: flex; align-items: center; gap: 8px;">
+              <span>✨ Daily Store Operations</span>
+              <span style="font-size: 11px; background: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 12px; font-weight: 600;">Easy Mode</span>
+            </h3>
+            <p style="font-size: 12px; color: #64748b; margin: 3px 0 0 0;">Essential one-click shortcuts for store owners and staff</p>
+          </div>
+          <button class="btn-guide-trigger" onclick="openStoreGuideModal()" style="display: flex; align-items: center; gap: 6px; background: #fef3c7; color: #92400e; border: 1px solid #fde68a; padding: 8px 14px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.2s;">
+            <span>📖 Open Store Owner Guide &amp; Manual</span>
+          </button>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px;">
+          <button onclick="showSection('orders')" class="quick-action-card" style="text-align: left; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; cursor: pointer; transition: all 0.2s;">
+            <div style="font-size: 20px; margin-bottom: 6px;">📦</div>
+            <div style="font-weight: 700; font-size: 13px; color: var(--ink);">Process Orders</div>
+            <div style="font-size: 11px; color: #64748b; margin-top: 2px;">View phone numbers &amp; mark shipped</div>
+          </button>
+          <button onclick="document.getElementById('add-product-modal').style.display='flex'" class="quick-action-card" style="text-align: left; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; cursor: pointer; transition: all 0.2s;">
+            <div style="font-size: 20px; margin-bottom: 6px;">👗</div>
+            <div style="font-weight: 700; font-size: 13px; color: var(--ink);">+ Add New Garment</div>
+            <div style="font-size: 11px; color: #64748b; margin-top: 2px;">Upload picture, set price &amp; category</div>
+          </button>
+          <button onclick="showSection('inventory')" class="quick-action-card" style="text-align: left; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; cursor: pointer; transition: all 0.2s;">
+            <div style="font-size: 20px; margin-bottom: 6px;">🔢</div>
+            <div style="font-weight: 700; font-size: 13px; color: var(--ink);">Adjust Stock (+/-)</div>
+            <div style="font-size: 11px; color: #64748b; margin-top: 2px;">Update quantities when items sell</div>
+          </button>
+          <button onclick="showSection('hero-slides')" class="quick-action-card" style="text-align: left; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; cursor: pointer; transition: all 0.2s;">
+            <div style="font-size: 20px; margin-bottom: 6px;">🖼️</div>
+            <div style="font-weight: 700; font-size: 13px; color: var(--ink);">Change Banners</div>
+            <div style="font-size: 11px; color: #64748b; margin-top: 2px;">Swap homepage hero slides &amp; photos</div>
+          </button>
+          <button onclick="document.getElementById('add-discount-modal').style.display='flex'" class="quick-action-card" style="text-align: left; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; cursor: pointer; transition: all 0.2s;">
+            <div style="font-size: 20px; margin-bottom: 6px;">🏷️</div>
+            <div style="font-weight: 700; font-size: 13px; color: var(--ink);">Create Discount</div>
+            <div style="font-size: 11px; color: #64748b; margin-top: 2px;">Make promo codes for sales &amp; festivals</div>
+          </button>
+        </div>
+      </div>
+
+      <!-- 5-Metric Live Pulse Grid -->
+      <div class="kpi-grid-5">
+        <div class="kpi-card">
+          <div class="kpi-title">Today's Live Sales</div>
+          <div class="kpi-val" id="stat-live-today-rev" style="color: #27AE60;">₹0.00</div>
+          <div class="kpi-sub"><span style="color:#27AE60; font-weight:bold;">● Live</span> <span
+              id="stat-live-today-orders">0 orders today</span></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Total Revenue</div>
+          <div class="kpi-val" id="stat-rev">₹0.00</div>
+          <div class="kpi-sub"><span id="stat-orders">0</span> orders &bull; <span id="stat-cust">0</span> patrons</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Warehouse Stock</div>
+          <div class="kpi-val" id="stat-total-stock-units">0</div>
+          <div class="kpi-sub">Total units across catalog</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Stock Valuation</div>
+          <div class="kpi-val" id="stat-stock-valuation" style="color: #3874FF;">₹0.00</div>
+          <div class="kpi-sub">Total inventory asset value</div>
+        </div>
+        <div class="kpi-card" style="border-left: 3px solid #E74C3C;">
+          <div class="kpi-title" style="color: #E74C3C;">Low Stock Alerts</div>
+          <div class="kpi-val" id="stat-low-stock-count" style="color: #E74C3C;">0</div>
+          <div class="kpi-sub" id="stat-out-stock-sub" style="color: #C0392B;">0 out of stock</div>
+        </div>
+      </div>
+
+      <!-- Real-Time Activity & Low Stock Panels -->
+      <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 24px; margin-bottom: 24px;">
+        <!-- Left: Live Sales Activity Stream -->
+        <div class="card" style="margin-bottom: 0;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
+            <div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <h3 style="margin: 0;">Live Sales Stream</h3>
+                <span class="live-indicator" style="padding: 2px 7px; font-size: 10px;">
+                  <span class="live-dot" style="width: 6px; height: 6px;"></span> LIVE
+                </span>
+              </div>
+              <p style="color: #666; font-size: 12px; margin: 3px 0 0 0;">Incoming transactions updating in real time</p>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <button type="button" id="btn-toggle-chime" onclick="toggleOrderChime()" style="background: none; border: 1px solid var(--border); font-size: 11px; font-weight: 600; padding: 4px 9px; border-radius: 4px; cursor: pointer; color: #15803d; transition: all 0.2s;" title="Toggle audio chime on new orders">
+                🔔 Sound: ON
+              </button>
+              <button type="button" onclick="loadInventorySummary(); showAdminToast('Live Sales Stream synced', 'info');" style="background: none; border: 1px solid var(--border); font-size: 11px; font-weight: 600; padding: 4px 9px; border-radius: 4px; cursor: pointer; color: var(--ink);" title="Manual refresh">
+                🔄 Sync
+              </button>
+              <button type="button" onclick="showSection('orders')" style="background: var(--ink); color: white; border: none; font-size: 11px; font-weight: 600; padding: 5px 12px; border-radius: 4px; cursor: pointer;">
+                View All Orders &rarr;
+              </button>
+            </div>
+          </div>
+          <div class="live-order-list" id="live-sales-stream">
+            <div style="text-align: center; color: #888; padding: 30px;">Loading live activity stream...</div>
+          </div>
+        </div>
+
+        <!-- Right: Low Stock Action Center -->
+        <div class="card" style="margin-bottom: 0;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <div>
+              <h3 style="color: #C0392B;">Stock Action Center</h3>
+              <p style="color: #666; font-size: 13px; margin: 0;">Items below threshold (&le; 10 units)</p>
+            </div>
+            <button class="btn-restock-quick" onclick="quickRestockAllLow()">
+              <span>+ Restock All Low</span>
+            </button>
+          </div>
+          <div id="low-stock-cards-container" style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="text-align: center; color: #888; padding: 30px;">Checking stock levels...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts Grid -->
+      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px; margin-bottom: 24px;">
+        <div class="card" style="margin-bottom: 0;">
+          <h3>Revenue &amp; Sales</h3>
+          <div style="position: relative; height: 280px; width: 100%;">
+            <canvas id="revenueChart"></canvas>
+          </div>
+        </div>
+        <div class="card" style="margin-bottom: 0;">
+          <h3>Orders by Status</h3>
+          <div style="position: relative; height: 280px; width: 100%;">
+            <canvas id="statusChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Orders Table -->
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+          <div>
+            <h3>Recent Orders</h3>
+            <p style="color: #666; font-size: 13px; margin: 0;">Latest customer purchases and fulfillment status</p>
+          </div>
+          <button class="btn-primary"
+            style="background: white; color: var(--ink); border: 1px solid var(--border); font-size: 12px; padding: 6px 14px;"
+            onclick="showSection('orders')">View All Orders &rarr;</button>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Customer</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="recent-orders-body">
+            <tr>
+              <td colspan="5" style="text-align: center; color: #888;">Loading...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Live Stock & Inventory Section -->
+    <section id="section-inventory" class="content-section" style="display: none;">
+      <header class="topbar">
+        <div>
+          <h1>Live Stock &amp; Inventory Management</h1>
+          <p style="color: #64748b; font-size: 14px; margin-top: 4px;">Real-time warehouse tracking, 1-click batch stock adjustments, size breakdowns, and export.</p>
+        </div>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <button class="btn-primary" style="background: #27AE60; border: none; font-size: 13px; display: inline-flex; align-items: center; gap: 6px;"
+            onclick="quickRestockAllLow()">
+            <span>⚡ Restock All Low (+25)</span>
+          </button>
+          <button class="btn-primary" style="background: white; color: var(--ink); border: 1px solid var(--border); font-size: 13px; display: inline-flex; align-items: center; gap: 6px;"
+            onclick="exportInventoryCSV()">
+            <span>📥 Export CSV</span>
+          </button>
+          <button class="btn-primary" style="background: white; color: var(--ink); border: 1px solid var(--border); font-size: 13px; display: inline-flex; align-items: center; gap: 6px;"
+            onclick="window.print()">
+            <span>🖨️ Print Sheet</span>
+          </button>
+          <button class="btn-primary" onclick="showSection('products')">Go to Catalog &rarr;</button>
+        </div>
+      </header>
+
+      <!-- Inventory Top KPI Cards -->
+      <div class="kpi-grid-5" style="margin-bottom: 20px;">
+        <div class="kpi-card">
+          <div class="kpi-title">Active Catalog SKUs</div>
+          <div class="kpi-val" id="inv-stat-skus">0</div>
+          <div class="kpi-sub">Garment designs</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Total Units In Stock</div>
+          <div class="kpi-val" id="inv-stat-units" style="color: #27AE60;">0</div>
+          <div class="kpi-sub">Total physical units</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Inventory Asset Value</div>
+          <div class="kpi-val" id="inv-stat-val" style="color: #3874FF;">₹0.00</div>
+          <div class="kpi-sub">Valuation on hand</div>
+        </div>
+        <div class="kpi-card" style="border-left: 3px solid #E67E22;">
+          <div class="kpi-title" style="color: #D97706;">Low Stock Alert (&le;10)</div>
+          <div class="kpi-val" id="inv-stat-low" style="color: #D97706;">0</div>
+          <div class="kpi-sub" style="color: #B45309;">Requires restocking</div>
+        </div>
+        <div class="kpi-card" style="border-left: 3px solid #E74C3C;">
+          <div class="kpi-title" style="color: #DC2626;">Out of Stock (0)</div>
+          <div class="kpi-val" id="inv-stat-out" style="color: #DC2626;">0</div>
+          <div class="kpi-sub" style="color: #B91C1C;">Depleted items</div>
+        </div>
+      </div>
+
+      <!-- Warehouse Health Progress Banner -->
+      <div class="card" style="margin-bottom: 20px; padding: 18px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+          <div style="font-size: 13px; font-weight: 700; color: #1e293b; display: flex; align-items: center; gap: 8px;">
+            <span>Warehouse Stock Health Status</span>
+            <span id="inv-health-badge" style="font-size: 11px; padding: 2px 8px; border-radius: 12px; background: #DCFCE7; color: #15803D; font-weight: 600;">Optimal</span>
+          </div>
+          <div id="inv-health-summary-text" style="font-size: 12px; color: #64748B;">
+            Calculating stock health...
+          </div>
+        </div>
+        <div class="stock-health-bar-track">
+          <div id="health-bar-healthy" class="health-segment healthy" style="width: 100%;" title="Optimal Stock (>20 units)"></div>
+          <div id="health-bar-low" class="health-segment low" style="width: 0%;" title="Low Stock (1-10 units)"></div>
+          <div id="health-bar-out" class="health-segment out" style="width: 0%;" title="Out of Stock (0 units)"></div>
+        </div>
+        <div style="display: flex; gap: 20px; margin-top: 10px; font-size: 11px; color: #64748B; flex-wrap: wrap;">
+          <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 50%; background: #10B981; display: inline-block;"></span> Optimal (&gt;20 units)</span>
+          <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 50%; background: #F59E0B; display: inline-block;"></span> Low Stock (1-10 units)</span>
+          <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 50%; background: #EF4444; display: inline-block;"></span> Out of Stock (0 units)</span>
+        </div>
+      </div>
+
+      <!-- Inventory Control Center -->
+      <div class="card" style="padding: 24px;">
+        <!-- Top Toolbar: Search, Department, Sort, View Toggle -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; flex-wrap: wrap; gap: 14px;">
+          <!-- Left: Search Box -->
+          <div style="position: relative; flex: 1; min-width: 240px; max-width: 380px;">
+            <input type="text" id="inventory-search" onkeyup="filterInventorySearch()"
+              placeholder="🔍 Search name, SKU, color, fabric, sizes..."
+              style="width: 100%; padding: 10px 14px 10px 36px; border-radius: 8px; border: 1px solid var(--border); font-family: var(--font-body); font-size: 13px; outline: none; transition: border-color 0.2s;">
+            <svg style="position: absolute; left: 12px; top: 12px; width: 16px; height: 16px; color: #94A3B8;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </div>
+
+          <!-- Middle: Department Filter & Sort Dropdown -->
+          <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+            <select id="inv-dept-filter" onchange="filterInventoryDepartment(this.value)"
+              style="padding: 9px 14px; border-radius: 8px; border: 1px solid var(--border); font-size: 13px; background: white; color: var(--ink); font-weight: 500; outline: none; cursor: pointer;">
+              <option value="all">All Departments (All)</option>
+              <option value="Women">Women's Collection</option>
+              <option value="Men">Men's Collection</option>
+              <option value="Kids">Kids Collection</option>
+            </select>
+
+            <select id="inv-sort-select" onchange="sortInventoryProducts(this.value)"
+              style="padding: 9px 14px; border-radius: 8px; border: 1px solid var(--border); font-size: 13px; background: white; color: var(--ink); font-weight: 500; outline: none; cursor: pointer;">
+              <option value="stock-asc">⚠️ Lowest Stock First (Urgent)</option>
+              <option value="stock-desc">📦 Highest Stock First</option>
+              <option value="val-desc">💰 Highest Valuation First</option>
+              <option value="price-desc">🏷️ Price: High to Low</option>
+              <option value="price-asc">🏷️ Price: Low to High</option>
+              <option value="name-asc">🔤 Product Name (A-Z)</option>
+              <option value="id-desc">🕒 Recently Added</option>
+            </select>
+
+            <!-- View Switcher -->
+            <div class="inv-view-toggle">
+              <button class="btn-view-toggle active" id="btn-view-table" onclick="setInventoryViewMode('table')" title="Spreadsheet Table View">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 3h18v18H3z"></path>
+                  <path d="M3 9h18M3 15h18M9 3v18M15 3v18"></path>
+                </svg>
+                <span>Table</span>
+              </button>
+              <button class="btn-view-toggle" id="btn-view-grid" onclick="setInventoryViewMode('grid')" title="Visual Cards Grid View">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="14" width="7" height="7"></rect>
+                  <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+                <span>Cards</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Second Row: Status Filter Pills with dynamic counts -->
+        <div style="display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; align-items: center;">
+          <span style="font-size: 12px; font-weight: 600; color: #64748B; margin-right: 4px;">Stock Filter:</span>
+          <button class="inv-filter-btn active" onclick="filterInventoryByStatus('all', this)">
+            All Stock (<span id="inv-count-all">0</span>)
+          </button>
+          <button class="inv-filter-btn" onclick="filterInventoryByStatus('low', this)">
+            ⚠️ Low Stock Warnings (&le;10) (<span id="inv-count-low">0</span>)
+          </button>
+          <button class="inv-filter-btn" onclick="filterInventoryByStatus('out', this)">
+            🔴 Out of Stock (0) (<span id="inv-count-out">0</span>)
+          </button>
+          <button class="inv-filter-btn" onclick="filterInventoryByStatus('healthy', this)">
+            🟢 Optimal Stock (&gt;20) (<span id="inv-count-healthy">0</span>)
+          </button>
+        </div>
+
+        <!-- Sticky Floating Bulk Action Bar -->
+        <div id="inv-bulk-toolbar" class="inv-bulk-bar" style="display: none;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <input type="checkbox" id="bulk-select-all-floating" onchange="toggleSelectAllInventory(this.checked)" style="transform: scale(1.1); cursor: pointer;">
+            <span style="font-weight: 700; font-size: 13px; color: #FFFFFF;" id="inv-selected-count">0 items selected</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <span style="font-size: 11px; color: rgba(255,255,255,0.7); margin-right: 4px;">Quick Restock:</span>
+            <button class="btn-bulk-action" onclick="applyBulkStock('delta', 5)">+5 Units</button>
+            <button class="btn-bulk-action" onclick="applyBulkStock('delta', 10)">+10 Units</button>
+            <button class="btn-bulk-action" onclick="applyBulkStock('delta', 25)">+25 Units</button>
+            <button class="btn-bulk-action" onclick="applyBulkStock('delta', 50)">+50 Units</button>
+            <button class="btn-bulk-action" onclick="promptBulkCustomStock()" style="background: rgba(255,255,255,0.25);">✏️ Set Stock...</button>
+            <button class="btn-bulk-action" onclick="applyBulkStock('set', 0)" style="background: #DC2626; color: white;">Mark Depleted (0)</button>
+            <button class="btn-bulk-cancel" onclick="clearInventorySelection()">Clear</button>
+          </div>
+        </div>
+
+        <!-- TABLE VIEW CONTAINER -->
+        <div id="inv-table-view-wrap" style="overflow-x: auto;">
+          <table class="data-table inv-custom-table">
+            <thead>
+              <tr>
+                <th style="width: 38px; text-align: center;">
+                  <input type="checkbox" id="inv-header-checkbox" onchange="toggleSelectAllInventory(this.checked)" title="Select all items">
+                </th>
+                <th style="width: 50px;">Image</th>
+                <th style="min-width: 220px;">Product &amp; SKU</th>
+                <th style="min-width: 140px;">Department</th>
+                <th style="min-width: 130px;">Available Sizes</th>
+                <th style="min-width: 90px;">Price</th>
+                <th style="min-width: 140px;">Stock Level</th>
+                <th style="min-width: 130px; text-align: center;">Adjust Stock</th>
+                <th style="min-width: 160px;">1-Click Quick Add</th>
+                <th style="min-width: 100px;">Asset Value</th>
+                <th style="min-width: 80px; text-align: right;">Action</th>
+              </tr>
+            </thead>
+            <tbody id="inventory-table-body">
+              <tr>
+                <td colspan="11" style="text-align: center; color: #888; padding: 40px;">Loading live inventory...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- VISUAL GRID VIEW CONTAINER -->
+        <div id="inv-grid-view-wrap" style="display: none; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; margin-top: 10px;">
+          <!-- Dynamically populated -->
+        </div>
+
+        <!-- Empty State (when filter matches nothing) -->
+        <div id="inv-empty-state" style="display: none; text-align: center; padding: 60px 20px; color: #64748B;">
+          <div style="font-size: 32px; margin-bottom: 8px;">📦</div>
+          <h3 style="font-size: 16px; color: var(--ink); margin-bottom: 4px;">No inventory items found</h3>
+          <p style="font-size: 13px;">No garments match the current search or filter criteria. Try resetting filters.</p>
+          <button class="btn-secondary" style="margin-top: 12px; font-size: 12px;" onclick="resetInventoryFilters()">Reset All Filters</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <!-- Products Section -->
+    <section id="section-products" class="content-section" style="display: none;">
+      <header class="topbar">
+        <div>
+          <h1>Product Catalog Management</h1>
+          <p style="color: #64748b; font-size: 14px; margin-top: 4px;">Manage clothing catalog, multi-angle photos, descriptions, and sizes.</p>
+        </div>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <input type="file" id="import-products-file" accept=".csv" style="display: none;"
+            onchange="handleImportProducts(event)">
+          <button class="btn-primary" style="background: white; color: var(--ink); border: 1px solid var(--border);"
+            onclick="document.getElementById('import-products-file').click()">Import CSV</button>
+          <button class="btn-primary" style="background: white; color: var(--ink); border: 1px solid var(--border);"
+            onclick="exportProductsCSV()">Export CSV</button>
+          <button class="btn-primary" onclick="document.getElementById('add-product-modal').style.display='flex'">+ Add New Garment</button>
+        </div>
+      </header>
+
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 14px;">
+          <div>
+            <h3>Garment Styles (<span id="products-count-badge">0</span> styles)</h3>
+            <p style="color: #666; font-size: 13px; margin: 0;">Live inventory products displayed in storefront.</p>
+          </div>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <input type="text" id="product-search" onkeyup="filterProductsCatalog()" placeholder="🔍 Search name, SKU, sizes..."
+              style="padding: 9px 14px; border-radius: 6px; border: 1px solid var(--border); font-size: 13px; width: 250px; outline: none;">
+            <select id="product-category-filter" onchange="filterProductsCatalog()"
+              style="padding: 9px 14px; border-radius: 6px; border: 1px solid var(--border); font-size: 13px; outline: none; background: white; cursor: pointer;">
+              <option value="all">All Departments (All)</option>
+              <option value="Women's Pure Cotton">Women's Pure Cotton</option>
+              <option value="Women's Breezy Cottons">Women's Breezy Cottons</option>
+              <option value="Men's Cotton Essentials">Men's Cotton Essentials</option>
+              <option value="Kids">Kids Collection</option>
+            </select>
+          </div>
+        </div>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th style="width: 50px;">Image</th>
+              <th>Product Details</th>
+              <th>Category</th>
+              <th>Available Sizes</th>
+              <th>Price</th>
+              <th>Stock Status</th>
+              <th>Added On</th>
+              <th style="text-align: right;">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="product-table-body">
+            <tr>
+              <td colspan="8" style="text-align: center; padding: 40px; color: #888;">Loading products...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Orders Section -->
+    <section id="section-orders" class="content-section" style="display: none;">
+      <header class="topbar">
+        <div>
+          <h1>Order Management &amp; Fulfillment</h1>
+          <p style="color: #64748b; font-size: 14px; margin-top: 4px;">Monitor customer transactions, customer phones, and dispatch status.</p>
+        </div>
+        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+          <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: #16a34a; background: #f0fdf4; border: 1px solid #bbf7d0; padding: 6px 12px; border-radius: 20px;">
+            <span style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e; display: inline-block;"></span> Live Real-Time Stream
+          </span>
+          <button class="btn-secondary" style="font-size: 13px; padding: 8px 14px; background: #fff1f2; color: #be123c; border: 1px solid #fecdd3;" onclick="clearDemoOrders()">
+            <span>🧹 Clear Demo Orders</span>
+          </button>
+          <button class="btn-primary" style="background: white; color: var(--ink); border: 1px solid var(--border);" onclick="exportOrdersCSV()">
+            <span>📥 Export Orders CSV</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; flex-wrap: wrap; gap: 14px;">
+          <div>
+            <h3>All Orders (<span id="orders-total-count">0</span> total)</h3>
+            <p style="color: #666; font-size: 13px; margin: 0;">Fulfill customer purchases and manage delivery status.</p>
+          </div>
+          <div>
+            <input type="text" id="order-search" onkeyup="filterOrdersList()" placeholder="🔍 Search customer, phone, city, order #..."
+              style="padding: 9px 14px; border-radius: 6px; border: 1px solid var(--border); font-size: 13px; width: 280px; outline: none;">
+          </div>
+        </div>
+
+        <!-- Order Status Tabs -->
+        <div style="display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap;">
+          <button class="order-filter-btn active" onclick="filterOrdersByStatus('all', this)">All Orders (<span id="cnt-orders-all">0</span>)</button>
+          <button class="order-filter-btn" onclick="filterOrdersByStatus('Pending', this)">⏳ Pending (<span id="cnt-orders-pending">0</span>)</button>
+          <button class="order-filter-btn" onclick="filterOrdersByStatus('Processing', this)">⚙️ Processing (<span id="cnt-orders-proc">0</span>)</button>
+          <button class="order-filter-btn" onclick="filterOrdersByStatus('Shipped', this)">🚚 Shipped (<span id="cnt-orders-ship">0</span>)</button>
+          <button class="order-filter-btn" onclick="filterOrdersByStatus('Delivered', this)">✅ Delivered (<span id="cnt-orders-del">0</span>)</button>
+          <button class="order-filter-btn" onclick="filterOrdersByStatus('Cancelled', this)">❌ Cancelled (<span id="cnt-orders-canc">0</span>)</button>
+        </div>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Customer</th>
+              <th>Shipping Address &amp; Contact</th>
+              <th>Purchased Garments</th>
+              <th>Total Amount</th>
+              <th>Fulfillment Status</th>
+              <th>Order Date</th>
+              <th style="text-align: right;">Action</th>
+            </tr>
+          </thead>
+          <tbody id="order-table-body">
+            <tr>
+              <td colspan="8" style="text-align: center; padding: 40px; color: #888;">Loading orders...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Order Details Section -->
+    <section id="section-order-details" class="content-section" style="display: none;">
+      <header class="topbar">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <button class="btn-primary" style="background: white; color: var(--ink); border: 1px solid var(--border);"
+            onclick="showSection(previousSectionBeforeOrderDetails || 'dashboard')">&larr; Back</button>
+          <h1 id="details-order-title">Order #---</h1>
+        </div>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <button class="btn-primary" style="background: white; color: var(--ink); border: 1px solid var(--border); display: flex; align-items: center; gap: 6px;" onclick="printOrderInvoice()">
+            <span>🖨️ Print Slip / Invoice</span>
+          </button>
+          <button class="btn-primary" style="background: #2563EB; color: white; border: none; display: flex; align-items: center; gap: 6px;" onclick="openOrderTrackingPublic()">
+            <span>📍 Live Customer Tracker &rarr;</span>
+          </button>
+        </div>
+      </header>
+
+      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+        <!-- Left Column -->
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          <!-- Products Card -->
+          <div class="card">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody id="details-products-body">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Shipping / Billing Grid -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+            <div class="card">
+              <h3>Customer Info</h3>
+              <p id="details-customer-name" style="margin-top: 12px; font-weight: bold;">---</p>
+              <p id="details-customer-email" style="color: var(--indigo-d); margin-top: 8px;">---</p>
+              <p id="details-customer-phone" style="color: #15803d; margin-top: 6px; font-size: 13px; font-weight: 600;">---</p>
+            </div>
+            <div class="card">
+              <h3>Shipping Address</h3>
+              <p id="details-customer-address" style="margin-top: 12px; line-height: 1.5; color: #555;">---</p>
+              <p id="details-customer-city-pincode" style="color: #64748b; font-size: 13px; margin-top: 4px;">---</p>
+              <div id="details-payment-method" style="margin-top: 8px;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          <!-- Summary Card -->
+          <div class="card">
+            <h3>Summary</h3>
+            <div style="display: flex; justify-content: space-between; margin-top: 20px; font-size: 15px;">
+              <span style="color: #666;">Items subtotal:</span>
+              <span id="details-subtotal" style="font-weight: 600;">₹0</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-top: 12px; font-size: 15px;">
+              <span style="color: #666;">Shipping Cost:</span>
+              <span style="font-weight: 600;">₹0</span>
+            </div>
+            <div style="border-top: 1px dashed var(--border); margin: 16px 0;"></div>
+            <div style="display: flex; justify-content: space-between; font-size: 18px; font-weight: bold;">
+              <span>Total:</span>
+              <span id="details-total">₹0</span>
+            </div>
+          </div>
+
+          <!-- Status Card -->
+          <div class="card">
+            <h3>Order Status &amp; Fulfillment</h3>
+            <p style="color: #666; font-size: 13px; margin: 8px 0 16px;">Update the fulfillment status of this order.
+            </p>
+            <select id="details-status-select"
+              style="width: 100%; padding: 12px; border-radius: 6px; border: 1px solid var(--border); font-family: var(--font-body); font-size: 14px; margin-bottom: 16px; outline: none;">
+              <option value="Pending">Pending</option>
+              <option value="Processing">Processing</option>
+              <option value="Shipped">Shipped</option>
+              <option value="Delivered">Delivered</option>
+              <option value="Cancelled">Cancelled</option>
+            </select>
+            <button class="btn-primary" style="width: 100%; margin-bottom: 12px;" onclick="updateOrderStatus()">Update Status</button>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; border-top: 1px solid var(--border); padding-top: 12px;">
+              <button onclick="quickUpdateStatus('Shipped')" style="background: #f3e8ff; color: #6b21a8; border: 1px solid #d8b4fe; padding: 7px; border-radius: 4px; font-size: 11px; font-weight: 700; cursor: pointer;">🚚 Mark Shipped</button>
+              <button onclick="quickUpdateStatus('Delivered')" style="background: #dcfce7; color: #15803d; border: 1px solid #86efac; padding: 7px; border-radius: 4px; font-size: 11px; font-weight: 700; cursor: pointer;">✅ Mark Delivered</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Customers Section -->
+    <section id="section-customers" class="content-section" style="display: none;">
+      <header class="topbar">
+        <h1>Customer Management</h1>
+        <div style="display: flex; gap: 12px;">
+          <input type="file" id="import-customers-file" accept=".csv" style="display: none;"
+            onchange="handleImportCustomers(event)">
+          <button class="btn-primary" style="background: white; color: var(--ink); border: 1px solid var(--border);"
+            onclick="document.getElementById('import-customers-file').click()">Import CSV</button>
+          <button class="btn-primary" style="background: white; color: var(--ink); border: 1px solid var(--border);"
+            onclick="exportCustomersCSV()">Export CSV</button>
+          <button class="btn-primary" onclick="document.getElementById('add-customer-modal').style.display='flex'">+ Add Customer</button>
+        </div>
+      </header>
+
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <div>
+            <h3>Registered Users</h3>
+            <p style="color: #666; font-size: 14px; margin: 0;">View all customers who have created an account.</p>
+          </div>
+          <div>
+            <input type="text" id="customer-search" onkeyup="filterCustomers()" placeholder="Search Name or Email..."
+              style="padding: 10px 16px; border-radius: 6px; border: 1px solid var(--border); font-family: var(--font-body); font-size: 14px; width: 300px; outline: none;">
+          </div>
+        </div>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th style="width: 40px; text-align: center;"><input type="checkbox" id="selectAllCustomers"
+                  onclick="toggleAllCustomers(this)"></th>
+              <th>ID</th>
+              <th>Full Name</th>
+              <th>Email Address</th>
+              <th>Phone Number</th>
+              <th>Date Registered</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="customer-table-body">
+            <tr>
+              <td colspan="5" style="text-align: center; padding: 40px; color: #888;">Loading customers...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Customer Details Section -->
+    <section id="section-customer-details" class="content-section" style="display: none;">
+      <header class="topbar">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <button class="btn-primary" style="background: white; color: var(--ink); border: 1px solid var(--border);"
+            onclick="showSection('customers')">&larr; Back</button>
+          <h1 id="customer-profile-title">Customer Details</h1>
+        </div>
+      </header>
+
+      <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 24px;">
+        <!-- Left Column: Profile -->
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          <div class="card" style="text-align: center;">
+            <div
+              style="width: 80px; height: 80px; background: #e3e6ed; border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-size: 32px; color: #888;">
+              <span id="customer-profile-initial">?</span>
+            </div>
+            <h2 id="customer-profile-name" style="margin-bottom: 4px;">---</h2>
+            <p style="color: #666; font-size: 13px; margin-bottom: 24px;">Joined <span
+                id="customer-profile-joined">---</span></p>
+
+            <div style="text-align: left; font-size: 14px;">
+              <p style="margin-bottom: 12px;"><strong
+                  style="color: #444; width: 60px; display: inline-block;">Email</strong> <span
+                  id="customer-profile-email" style="color: var(--indigo-d);">---</span></p>
+              <p><strong style="color: #444; width: 60px; display: inline-block;">Phone</strong> <span
+                  id="customer-profile-phone">---</span></p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Default Address</h3>
+            <p id="customer-profile-address" style="margin-top: 12px; line-height: 1.5; color: #555; font-size: 14px;">
+              No address on file.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right Column: Orders -->
+        <div class="card">
+          <h3>Order History</h3>
+          <p style="color: #666; font-size: 13px; margin: 4px 0 20px;">All purchases made by this customer.</p>
+
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Date</th>
+                <th>Items</th>
+                <th>Total</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="customer-orders-body">
+              <tr>
+                <td colspan="5" style="text-align: center; padding: 40px; color: #888;">Loading orders...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Categories Section -->
+    <section id="section-categories" class="content-section" style="display: none;">
+      <header class="topbar">
+        <div>
+          <h1>Category Management</h1>
+          <p style="color: #64748b; font-size: 14px; margin: 4px 0 0;">Manage store collections, hierarchy, and assigned
+            banners across JP Cotton</p>
+        </div>
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <a href="shop.html" target="_blank" class="btn-secondary"
+            style="display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; text-decoration: none; font-size: 13px; font-weight: 600;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+            <span>View Shop All Page</span>
+          </a>
+          <button class="btn-primary" onclick="document.getElementById('add-category-modal').style.display='flex'"
+            style="display: inline-flex; align-items: center; gap: 6px;">
+            <span>+ Add New Category</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Category Quick Metrics -->
+      <div
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; margin-bottom: 24px;">
+        <div class="card" style="padding: 20px; display: flex; align-items: center; gap: 16px;">
+          <div
+            style="width: 48px; height: 48px; border-radius: 12px; background: rgba(180, 83, 9, 0.1); color: #b45309; display: flex; align-items: center; justify-content: center; font-size: 22px;">
+            📁</div>
+          <div>
+            <div style="font-size: 24px; font-weight: 700; color: #1e293b;" id="cat-stat-total">0</div>
+            <div
+              style="font-size: 12px; color: #64748b; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">
+              Total Categories</div>
+          </div>
+        </div>
+        <div class="card" style="padding: 20px; display: flex; align-items: center; gap: 16px;">
+          <div
+            style="width: 48px; height: 48px; border-radius: 12px; background: rgba(21, 128, 61, 0.1); color: #15803d; display: flex; align-items: center; justify-content: center; font-size: 22px;">
+            🏷️</div>
+          <div>
+            <div style="font-size: 24px; font-weight: 700; color: #1e293b;" id="cat-stat-main">0</div>
+            <div
+              style="font-size: 12px; color: #64748b; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">
+              Main Collections</div>
+          </div>
+        </div>
+        <div class="card" style="padding: 20px; display: flex; align-items: center; gap: 16px;">
+          <div
+            style="width: 48px; height: 48px; border-radius: 12px; background: rgba(59, 130, 246, 0.1); color: #2563eb; display: flex; align-items: center; justify-content: center; font-size: 22px;">
+            🌿</div>
+          <div>
+            <div style="font-size: 24px; font-weight: 700; color: #1e293b;" id="cat-stat-sub">0</div>
+            <div
+              style="font-size: 12px; color: #64748b; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">
+              Subcategories</div>
+          </div>
+        </div>
+        <div class="card" style="padding: 20px; display: flex; align-items: center; gap: 16px;">
+          <div
+            style="width: 48px; height: 48px; border-radius: 12px; background: rgba(168, 85, 247, 0.1); color: #9333ea; display: flex; align-items: center; justify-content: center; font-size: 22px;">
+            👗</div>
+          <div>
+            <div style="font-size: 24px; font-weight: 700; color: #1e293b;" id="cat-stat-products">0</div>
+            <div
+              style="font-size: 12px; color: #64748b; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">
+              Linked Products</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div
+          style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 16px;">
+          <div>
+            <h3 style="margin: 0; font-size: 18px; color: #1e293b;">Store Categories &amp; Collections</h3>
+            <p style="color: #64748b; font-size: 13px; margin: 4px 0 0;">Click "Edit" on any category to change its
+              title, assigned landing URL, parent hierarchy, or banner photo.</p>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <input type="text" id="category-search" onkeyup="filterCategoriesSearch()"
+              placeholder="Search category, parent, or URL..."
+              style="padding: 10px 16px; border-radius: 8px; border: 1px solid var(--border); font-family: var(--font-body); font-size: 14px; width: 280px; outline: none;">
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; align-items: center;">
+          <button type="button" class="cat-filter-btn active" data-group="all"
+            onclick="filterCategoriesByGroup('all', this)">
+            <span
+              style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: currentColor;"></span>
+            <span>All Categories</span>
+          </button>
+          <button type="button" class="cat-filter-btn" data-group="main"
+            onclick="filterCategoriesByGroup('main', this)">
+            <span
+              style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: currentColor;"></span>
+            <span>Main Collections</span>
+          </button>
+          <button type="button" class="cat-filter-btn" data-group="men" onclick="filterCategoriesByGroup('men', this)">
+            <span
+              style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: currentColor;"></span>
+            <span>Men's Essentials</span>
+          </button>
+          <button type="button" class="cat-filter-btn" data-group="women"
+            onclick="filterCategoriesByGroup('women', this)">
+            <span
+              style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: currentColor;"></span>
+            <span>Women's Collections</span>
+          </button>
+          <button type="button" class="cat-filter-btn" data-group="heritage"
+            onclick="filterCategoriesByGroup('heritage', this)">
+            <span
+              style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: currentColor;"></span>
+            <span>Artisan &amp; Heritage</span>
+          </button>
+        </div>
+
+        <div style="overflow-x: auto;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Banner</th>
+                <th>Category Details</th>
+                <th>Assigned URL</th>
+                <th>Products</th>
+                <th>Created</th>
+                <th style="text-align: right;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="category-table-body">
+              <tr>
+                <td colspan="6" style="text-align: center; padding: 40px; color: #888;">Loading categories...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="section-reviews" class="content-section" style="display: none;">
+      <header class="topbar">
+        <h1>Reviews & Ratings</h1>
+      </header>
+
+      <div class="card">
+        <h3>Customer Feedback</h3>
+        <p style="color: #666; font-size: 14px; margin-bottom: 20px;">Moderate reviews left by customers on your
+          products.</p>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Customer</th>
+              <th>Product ID</th>
+              <th>Rating</th>
+              <th>Comment</th>
+              <th>Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="review-table-body">
+            <tr>
+              <td colspan="7" style="text-align: center; padding: 40px; color: #888;">Loading reviews...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Marketing Section -->
+    <section id="section-marketing" class="content-section" style="display: none;">
+      <header class="topbar">
+        <h1>Marketing & Discounts</h1>
+        <button class="btn-primary" onclick="document.getElementById('add-discount-modal').style.display='flex'">+
+          Create Discount Code</button>
+      </header>
+
+      <!-- Festive & Sitewide Diwali Offer Banner Card -->
+      <div class="card" style="border-left: 4px solid #b45309; background: #fffdfa; margin-bottom: 24px;">
+        <div
+          style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+          <div>
+            <h3 style="display: flex; align-items: center; gap: 8px; color: #b45309;">
+              <span>🪔</span> Festive & Sitewide Announcement Offer Banner
+            </h3>
+            <p style="color: #666; font-size: 13px; margin-top: 4px;">Display a glowing announcement bar at the top of
+              all pages (Home, Products, Checkout) with your offer and coupon code.</p>
+          </div>
+          <label
+            style="display: flex; align-items: center; gap: 8px; cursor: pointer; background: #fef3c7; padding: 6px 14px; border-radius: 20px; border: 1px solid #fde68a; font-weight: 600; font-size: 13px; color: #92400e;">
+            <input type="checkbox" id="festive-banner-toggle" onchange="toggleFestiveBanner(this.checked)"
+              style="width: 16px; height: 16px; cursor: pointer;">
+            Enable Festive Offer Banner
+          </label>
+        </div>
+
+        <form id="festive-banner-form" onsubmit="saveFestiveBannerSettings(event)">
+          <div class="f-row">
+            <div class="f-group" style="flex: 2;">
+              <label>Announcement Banner Message</label>
+              <input type="text" id="festive-banner-text"
+                placeholder="e.g. 🪔 Diwali Dhamaka Sale: Flat 20% OFF Sitewide! Use Code: DIWALI20 · Free Express Shipping 🪔"
+                oninput="updateFestivePreview()" required>
+            </div>
+            <div class="f-group" style="flex: 1;">
+              <label>Promo Code to Auto-Copy</label>
+              <input type="text" id="festive-banner-code" placeholder="e.g. DIWALI20" style="text-transform: uppercase;"
+                oninput="updateFestivePreview()">
+            </div>
+          </div>
+
+          <!-- Quick Presets -->
+          <div style="margin-bottom: 16px;">
+            <span style="font-size: 12px; color: #888; font-weight: 600; margin-right: 8px;">Quick Presets:</span>
+            <div style="display: inline-flex; gap: 8px; flex-wrap: wrap;">
+              <button type="button" class="btn-secondary" style="font-size: 11px; padding: 4px 10px;"
+                onclick="applyFestivePreset('diwali')">🪔 Diwali Special 20% OFF</button>
+              <button type="button" class="btn-secondary" style="font-size: 11px; padding: 4px 10px;"
+                onclick="applyFestivePreset('festive')">🎉 Grand Festive 25% OFF</button>
+              <button type="button" class="btn-secondary" style="font-size: 11px; padding: 4px 10px;"
+                onclick="applyFestivePreset('clearance')">🛍️ End of Season Flat 40% OFF</button>
+            </div>
+          </div>
+
+          <!-- Live Preview Box -->
+          <div style="margin-bottom: 20px;">
+            <span
+              style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 6px;">Live
+              Customer View Preview:</span>
+            <div id="festive-banner-preview"
+              style="background: linear-gradient(90deg, #781d1d, #b45309, #781d1d); color: white; padding: 10px 18px; border-radius: 6px; font-size: 13px; font-weight: 600; text-align: center; display: flex; align-items: center; justify-content: center; gap: 12px; box-shadow: 0 4px 12px rgba(180,83,9,0.25);">
+              <span id="festive-preview-text">🪔 Diwali Dhamaka Sale: Flat 20% OFF Sitewide!</span>
+              <span
+                style="background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4); padding: 2px 8px; border-radius: 4px; font-size: 11px;">Code:
+                <strong id="festive-preview-code">DIWALI20</strong> 📋</span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <button type="submit" class="btn-primary" style="background: #b45309; border-color: #b45309;"
+              id="save-festive-btn">Save Festive Banner Settings</button>
+            <span id="festive-save-msg" style="font-size: 13px; font-weight: 600; color: #15803d; display: none;">Saved
+              successfully! Live on storefront.</span>
+          </div>
+        </form>
+      </div>
+
+      <div class="card">
+        <h3>Active Promotions</h3>
+        <p style="color: #666; font-size: 14px; margin-bottom: 20px;">Manage promo codes that customers can apply at
+          checkout.</p>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Promo Code</th>
+              <th>Discount Value</th>
+              <th>Date Created</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="discount-table-body">
+            <tr>
+              <td colspan="4" style="text-align: center; padding: 40px; color: #888;">Loading discounts...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Returns Section -->
+    <section id="section-returns" class="content-section" style="display: none;">
+      <header class="topbar">
+        <h1>Returns & Refunds</h1>
+      </header>
+
+      <div class="card">
+        <h3>Return Requests</h3>
+        <p style="color: #666; font-size: 14px; margin-bottom: 20px;">Process customer returns and approve refunds.</p>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Req ID</th>
+              <th>Order ID</th>
+              <th>Reason for Return</th>
+              <th>Date Submitted</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="return-table-body">
+            <tr>
+              <td colspan="6" style="text-align: center; padding: 40px; color: #888;">Loading return requests...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Content (CMS) Section -->
+    <section id="section-content" class="content-section" style="display: none;">
+      <header class="topbar">
+        <h1>Content Management (CMS)</h1>
+      </header>
+
+      <div class="card" style="max-width: 800px;">
+        <h3>Homepage Hero Section</h3>
+        <p style="color: #666; font-size: 14px; margin-bottom: 20px;">Update the main text shown when customers first
+          visit your site.</p>
+
+        <form id="cms-form">
+          <div class="f-group" style="margin-bottom: 20px;">
+            <label style="display: block; font-weight: 500; margin-bottom: 8px;">Main Headline</label>
+            <input type="text" id="cms-hero-title"
+              style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 4px;" required>
+          </div>
+          <div class="f-group" style="margin-bottom: 20px;">
+            <label style="display: block; font-weight: 500; margin-bottom: 8px;">Sub-Headline</label>
+            <textarea id="cms-hero-subtitle" rows="3"
+              style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 4px; resize: vertical;"
+              required></textarea>
+          </div>
+          <div class="f-group" style="margin-bottom: 20px;">
+            <label style="display: block; font-weight: 500; margin-bottom: 8px;">Button Text</label>
+            <input type="text" id="cms-hero-button"
+              style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 4px;" required>
+          </div>
+          <button type="submit" class="btn-primary">Save Content Updates</button>
+          <span id="cms-msg" style="margin-left: 16px; font-weight: 500; color: #27ae60; display: none;">Saved
+            successfully!</span>
+        </form>
+      </div>
+    
+      
+
+    </section>
+
+    
+    <!-- Curated Edits Section -->
+    <section id="section-curated-edits" class="content-section" style="display: none;">
+      <header class="topbar">
+        <h1>The Curated Edits (Homepage Showcase)</h1>
+      </header>
+      <!-- The Curated Edits Showcase Editor -->
+      <div class="card" style="max-width: 1050px; margin-top: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
+          <div>
+            <h3 style="margin: 0; font-size: 18px; color: var(--ink);">🎨 The Curated Edits (Homepage Showcase)</h3>
+            <p style="color: #64748b; font-size: 13px; margin: 4px 0 0 0;">Easily change pictures, titles, and descriptions for the 3 main showcase cards on your homepage.</p>
+          </div>
+          <span style="font-size: 12px; background: #e0f2fe; color: #0284c7; padding: 4px 10px; border-radius: 12px; font-weight: 600;">Live Homepage Section</span>
+        </div>
+
+        <form id="curated-edits-form" enctype="multipart/form-data">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 24px;">
+            
+            <!-- Card 1: Women's Collection -->
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; display: flex; flex-direction: column;">
+              <div style="font-weight: 700; font-size: 14px; color: var(--ink); margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between;">
+                <span>🥻 Card 1: Women</span>
+                <span style="font-size: 11px; background: #fce7f3; color: #be185d; padding: 2px 8px; border-radius: 10px;">Women's Drapes</span>
+              </div>
+              <div style="width: 100%; height: 180px; border-radius: 6px; overflow: hidden; background: #e2e8f0; margin-bottom: 12px; position: relative;">
+                <img id="preview-curated-women" src="assets/womens_traditional.jpg" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/womens_traditional.jpg'">
+              </div>
+              <label style="display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 4px;">Upload New Picture</label>
+              <input type="file" id="input-curated-women" name="curated_women_file" accept="image/*" style="font-size: 12px; margin-bottom: 12px; width: 100%;">
+              
+              <label style="display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 4px;">Card Title</label>
+              <input type="text" id="input-curated-women-title" name="curated_women_title" style="width: 100%; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 13px; margin-bottom: 10px;">
+
+              <label style="display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 4px;">Card Description</label>
+              <textarea id="input-curated-women-desc" name="curated_women_desc" rows="2" style="width: 100%; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 12px; resize: vertical;"></textarea>
+            </div>
+
+            <!-- Card 2: Men's Essentials -->
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; display: flex; flex-direction: column;">
+              <div style="font-weight: 700; font-size: 14px; color: var(--ink); margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between;">
+                <span>👔 Card 2: Men</span>
+                <span style="font-size: 11px; background: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 10px;">Men's Essentials</span>
+              </div>
+              <div style="width: 100%; height: 180px; border-radius: 6px; overflow: hidden; background: #e2e8f0; margin-bottom: 12px; position: relative;">
+                <img id="preview-curated-men" src="assets/mens-cotton-shirt.jpg" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/mens-cotton-shirt.jpg'">
+              </div>
+              <label style="display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 4px;">Upload New Picture</label>
+              <input type="file" id="input-curated-men" name="curated_men_file" accept="image/*" style="font-size: 12px; margin-bottom: 12px; width: 100%;">
+              
+              <label style="display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 4px;">Card Title</label>
+              <input type="text" id="input-curated-men-title" name="curated_men_title" style="width: 100%; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 13px; margin-bottom: 10px;">
+
+              <label style="display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 4px;">Card Description</label>
+              <textarea id="input-curated-men-desc" name="curated_men_desc" rows="2" style="width: 100%; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 12px; resize: vertical;"></textarea>
+            </div>
+
+            <!-- Card 3: Kids' Festive -->
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; display: flex; flex-direction: column;">
+              <div style="font-weight: 700; font-size: 14px; color: var(--ink); margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between;">
+                <span>🧒 Card 3: Kids</span>
+                <span style="font-size: 11px; background: #fef3c7; color: #92400e; padding: 2px 8px; border-radius: 10px;">Kids' Festive</span>
+              </div>
+              <div style="width: 100%; height: 180px; border-radius: 6px; overflow: hidden; background: #e2e8f0; margin-bottom: 12px; position: relative;">
+                <img id="preview-curated-kids" src="assets/womens-cotton-dress.jpg" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/womens-cotton-dress.jpg'">
+              </div>
+              <label style="display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 4px;">Upload New Picture</label>
+              <input type="file" id="input-curated-kids" name="curated_kids_file" accept="image/*" style="font-size: 12px; margin-bottom: 12px; width: 100%;">
+              
+              <label style="display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 4px;">Card Title</label>
+              <input type="text" id="input-curated-kids-title" name="curated_kids_title" style="width: 100%; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 13px; margin-bottom: 10px;">
+
+              <label style="display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 4px;">Card Description</label>
+              <textarea id="input-curated-kids-desc" name="curated_kids_desc" rows="2" style="width: 100%; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 12px; resize: vertical;"></textarea>
+            </div>
+
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+            <button type="submit" class="btn-primary" style="padding: 12px 24px; font-size: 14px; font-weight: 700; cursor: pointer;">💾 Save Curated Edits Changes</button>
+            <span id="curated-msg" style="font-size: 13px; font-weight: 600; color: #16a34a; display: none;">✅ Pictures &amp; Text updated successfully!</span>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Hero Slides Section -->
+    <section id="section-hero-slides" class="content-section" style="display: none;">
+      <header class="topbar">
+        <h1>Hero Slides Management</h1>
+        <button class="btn-primary" onclick="document.getElementById('add-hero-slide-modal').style.display='flex'">+ Add
+          New Slide</button>
+      </header>
+
+      <div class="card">
+        <h3>Current Hero Slides</h3>
+        <p style="color: #666; font-size: 14px; margin-bottom: 20px;">Manage the background images shown in the home
+          page hero carousel.</p>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Added On</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="hero-slide-table-body">
+            <tr>
+              <td colspan="3" style="text-align: center; padding: 40px; color: #888;">Loading slides...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Settings Section -->
+    <section id="section-settings" class="content-section" style="display: none;">
+      <header class="topbar">
+        <h1>Global Settings</h1>
+      </header>
+
+      <div class="card" style="max-width: 800px;">
+        <h3>Store Configuration</h3>
+        <p style="color: #666; font-size: 14px; margin-bottom: 20px;">Manage global variables for your e-commerce
+          platform.</p>
+
+        <form id="settings-form">
+          <div class="f-group" style="margin-bottom: 20px;">
+            <label style="display: block; font-weight: 500; margin-bottom: 8px;">Store Name</label>
+            <input type="text" id="set-store-name"
+              style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 4px;" required>
+          </div>
+          <div class="f-group" style="margin-bottom: 20px;">
+            <label style="display: block; font-weight: 500; margin-bottom: 8px;">Contact Email</label>
+            <input type="email" id="set-contact-email"
+              style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 4px;" required>
+          </div>
+          <div class="f-group" style="margin-bottom: 20px;">
+            <label style="display: block; font-weight: 500; margin-bottom: 8px;">Default Currency</label>
+            <input type="text" id="set-currency"
+              style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 4px;" required>
+          </div>
+          <button type="submit" class="btn-primary">Save Settings</button>
+          <span id="set-msg" style="margin-left: 16px; font-weight: 500; color: #27ae60; display: none;">Saved
+            successfully!</span>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Add Hero Slide Modal -->
+  <div id="add-hero-slide-modal" class="modal">
+    <div class="modal-content" style="max-width: 400px;">
+      <div class="modal-header">
+        <h2>Add Hero Slide</h2>
+        <span class="close-modal"
+          onclick="document.getElementById('add-hero-slide-modal').style.display='none'">&times;</span>
+      </div>
+      <form id="add-hero-slide-form">
+        <div class="f-group" style="margin-bottom: 20px;">
+          <label>Slide Image</label>
+          <input type="file" id="hs-image" accept="image/*" multiple required style="width: 100%; margin-top: 8px;">
+          <p style="font-size: 11px; color: #888; margin-top: 4px;">Recommended size: 1920x1080px (Landscape)</p>
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%;">Upload Slide</button>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- Add Product Modal -->
+  <div id="add-product-modal" class="modal">
+    <div class="modal-content" style="max-width: 820px; max-height: 90vh; overflow-y: auto;">
+      <div class="modal-header">
+        <div>
+          <h2>Add New Product</h2>
+          <p style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">Upload a front photo to automatically
+            generate 4 studio angles for your catalog.</p>
+        </div>
+        <span class="close-modal" onclick="closeAddProductModal()">&times;</span>
+      </div>
+      <form id="add-product-form">
+        <div class="f-row">
+          <div class="f-group">
+            <label>Product Name</label>
+            <input type="text" id="p-name" placeholder="e.g. Ivory Cotton Kurta" required>
+          </div>
+          <div class="f-group">
+            <label>Offer / Selling Price (₹)</label>
+            <input type="number" id="p-price" placeholder="e.g. 1999" step="0.01" required>
+          </div>
+          <div class="f-group">
+            <label>Original / MRP Price (₹) <span style="font-weight:400; color:#888;">(Optional)</span></label>
+            <input type="number" id="p-orig-price" placeholder="e.g. 2499" step="0.01">
+          </div>
+        </div>
+
+        <div class="f-row">
+          <div class="f-group">
+            <label>Festive Offer Tag / Badge <span style="font-weight:400; color:#888;">(Optional)</span></label>
+            <input type="text" id="p-offer-tag" placeholder="e.g. 🪔 Diwali Special 20% OFF, Limited Festive Deal">
+          </div>
+        </div>
+
+        <div class="f-row">
+          <div class="f-group">
+            <label>Category</label>
+            <select id="p-category" required onchange="filterSubcategories()">
+              <option value="" disabled selected>Loading categories...</option>
+            </select>
+          </div>
+          <div class="f-group">
+            <label>Subcategory (Optional)</label>
+            <select id="p-subcategory">
+              <option value="" selected>None</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Colors & Material Studio -->
+        <div class="f-group" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+            <div>
+              <label style="font-weight: 700; color: var(--ink); margin: 0; display: flex; align-items: center; gap: 6px;">
+                <span>🎨 Color Flexibility</span>
+              </label>
+              <p style="font-size: 12px; color: #64748b; margin: 2px 0 0;">Single color garments are auto-selected on store. Multi-color creates interactive chips.</p>
+            </div>
+            <div style="display: flex; gap: 14px; font-size: 12px;">
+              <label style="display: flex; align-items: center; gap: 5px; cursor: pointer; font-weight: 600;">
+                <input type="radio" name="add-color-mode" value="single" checked onchange="toggleColorMode('add')"> Single Color (Default)
+              </label>
+              <label style="display: flex; align-items: center; gap: 5px; cursor: pointer; font-weight: 600;">
+                <input type="radio" name="add-color-mode" value="multi" onchange="toggleColorMode('add')"> Multiple Colors
+              </label>
+            </div>
+          </div>
+          <div class="f-row" style="margin: 0; gap: 14px;">
+            <div class="f-group" style="margin: 0;">
+              <input type="text" id="p-color" placeholder="e.g. Natural Indigo Navy" style="padding: 10px 12px; font-size: 13px; border: 1px solid #cbd5e1; border-radius: 6px; width: 100%;" oninput="updateColorPreview('add')">
+            </div>
+            <div class="f-group" style="margin: 0;">
+              <input type="text" id="p-material" placeholder="Material (e.g. 100% Pure Organic Cotton)" style="padding: 10px 12px; font-size: 13px; border: 1px solid #cbd5e1; border-radius: 6px; width: 100%;">
+            </div>
+          </div>
+          <div id="add-color-preview-bar" style="margin-top: 8px; font-size: 11px; color: #15803d; font-weight: 600;">
+            ✨ Customers will see: <strong>Color: Natural Indigo Navy</strong> (Auto-selected, zero customer friction)
+          </div>
+        </div>
+
+        <!-- Sizing & Fit Flexibility Studio -->
+        <div class="f-group" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+            <div>
+              <label style="font-weight: 700; color: var(--ink); margin: 0; display: flex; align-items: center; gap: 6px;">
+                <span>📏 Sizing &amp; Fitting Flexibility</span>
+                <span style="font-size: 11px; background: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 12px; font-weight: 600;">Adaptable</span>
+              </label>
+              <p style="font-size: 12px; color: #64748b; margin: 2px 0 0;">Choose Free Size for Sarees/Dupattas/Stoles, or select clothing sizes.</p>
+            </div>
+            <div class="size-mode-selector" style="display: flex; gap: 6px; flex-wrap: wrap;">
+              <button type="button" class="btn-size-preset" onclick="setSizePreset('add', 'free', this)" style="padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 4px; border: 1px solid #cbd5e1; background: white; cursor: pointer;">🥻 Free Size</button>
+              <button type="button" class="btn-size-preset active" onclick="setSizePreset('add', 'standard', this)" style="padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 4px; border: 1px solid #9C523A; background: #9C523A; color: white; cursor: pointer;">👗 Standard (XS-3XL)</button>
+              <button type="button" class="btn-size-preset" onclick="setSizePreset('add', 'numeric', this)" style="padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 4px; border: 1px solid #cbd5e1; background: white; cursor: pointer;">👔 Shirts (38-46)</button>
+              <button type="button" class="btn-size-preset" onclick="setSizePreset('add', 'kids', this)" style="padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 4px; border: 1px solid #cbd5e1; background: white; cursor: pointer;">🧒 Kids (2-12Y)</button>
+              <button type="button" class="btn-size-preset" onclick="setSizePreset('add', 'custom', this)" style="padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 4px; border: 1px solid #cbd5e1; background: white; cursor: pointer;">✍️ Custom</button>
+            </div>
+          </div>
+
+          <div id="add-size-chips-box" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px;">
+            <!-- Rendered by JS -->
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <input type="text" id="p-sizes" name="sizes" value="XS, S, M, L, XL" placeholder="e.g. XS, S, M, L, XL or Free Size" style="flex: 1; padding: 8px 12px; font-size: 13px; border: 1px solid #cbd5e1; border-radius: 6px;" oninput="syncSizeChipsFromInput('add')">
+            <span id="add-size-hint" style="font-size: 12px; color: #15803d; font-weight: 600;">✓ Active sizes for this garment</span>
+          </div>
+        </div>
+
+        <div class="f-group">
+          <label>Description (Optional)</label>
+          <textarea id="p-desc" rows="2" placeholder="Briefly describe the fabric and fit..."></textarea>
+        </div>
+
+        <!-- Multi-Angle Photography Studio & Auto-Generator -->
+        <div class="f-group angle-studio-box">
+          <div class="angle-studio-header">
+            <div class="angle-studio-title">
+              <span>📸 Product Photography & Angles</span>
+            </div>
+            <div class="angle-studio-badge">
+              <span>✨ Auto-Generates 4 Angles</span>
+            </div>
+          </div>
+
+          <!-- Hidden File Inputs -->
+          <input type="file" id="p-image" accept="image/*" multiple style="display: none;"
+            onchange="handleProductImageUpload(event)">
+          <input type="file" id="angle-replace-input" accept="image/*" style="display: none;"
+            onchange="handleAngleReplaceFile(event)">
+          <input type="file" id="angle-add-input" accept="image/*" style="display: none;"
+            onchange="handleAddAngleFile(event)">
+
+          <!-- Primary Upload Dropzone -->
+          <div id="angle-dropzone" class="angle-dropzone" onclick="document.getElementById('p-image').click()"
+            ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+            <div class="angle-dropzone-icon">📷</div>
+            <div class="angle-dropzone-title">Upload Front Face Photo</div>
+            <div class="angle-dropzone-sub">Upload 1 front photo to auto-generate 4 studio angles (Hero Front, Fabric
+              Detail, Fit Drape, Perspective), or select 3-4 photos.</div>
+            <button type="button" class="btn-secondary"
+              style="padding: 6px 16px; font-size: 12px; pointer-events: none;">Choose Image File</button>
+          </div>
+
+          <!-- Live Generating Bar -->
+          <div id="angle-generating-bar" class="angle-generating-bar" style="display: none;">
+            <span>⚡ Processing front photo & synthesizing 4 studio angles...</span>
+          </div>
+
+          <!-- Generated 4 Angles Preview Grid -->
+          <div id="angle-preview-grid" class="angle-preview-grid" style="display: none;"></div>
+
+          <!-- Action Footer -->
+          <div id="angle-studio-footer" class="angle-studio-footer" style="display: none;">
+            <div class="angle-studio-help">
+              <span>💡 Tip: Click <strong>Replace</strong> on any angle to upload a custom shot, or use <strong>AI
+                  View</strong> to synthesize back/side angles.</span>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button type="button" class="btn-secondary" style="font-size: 11px; padding: 6px 12px;"
+                onclick="document.getElementById('angle-add-input').click()">+ Add Angle</button>
+              <button type="button" class="angle-btn-sm angle-btn-ai" style="padding: 6px 12px; font-size: 11px;"
+                onclick="openAiAngleModal()">✨ AI Generate Angles</button>
+              <button type="button" class="btn-secondary" style="font-size: 11px; padding: 6px 12px;"
+                onclick="resetAngleStudio()">Reset</button>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary" style="width: 100%; margin-top: 16px;" id="submit-btn">Save to
+          Catalog</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- AI Angle Synthesis Modal -->
+  <div id="ai-angle-modal" class="modal" style="z-index: 1001;">
+    <div class="modal-content" style="max-width: 500px;">
+      <div class="modal-header">
+        <div>
+          <h2>✨ AI Angle Generator</h2>
+          <p style="font-size: 12px; color: var(--ink-muted); margin-top: 2px;">Synthesize alternative product views
+            (Back view, Side profile, 3D drape) from your front photo.</p>
+        </div>
+        <span class="close-modal"
+          onclick="document.getElementById('ai-angle-modal').style.display='none'">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="f-group">
+          <label>Target Angle View</label>
+          <select id="ai-target-angle">
+            <option value="back">Back View (Rear silhouette and back pattern)</option>
+            <option value="side">Side Profile (3/4 angle side drape)</option>
+            <option value="macro">Macro Texture (Extreme close-up fabric weave)</option>
+            <option value="model">Editorial Fashion Model Drape</option>
+          </select>
+        </div>
+        <div class="f-group">
+          <label>Custom Style / Prompt Instructions (Optional)</label>
+          <input type="text" id="ai-prompt-extra"
+            placeholder="e.g. Clean white studio background, high luxury fabric lighting">
+        </div>
+        <div class="f-group">
+          <label>Gemini / AI API Key (Optional)</label>
+          <input type="password" id="ai-api-key"
+            placeholder="Paste Gemini API key or leave blank for Smart Studio mode">
+          <span style="font-size: 11px; color: #64748b; margin-top: 4px; display: block;">If no API key is provided, the
+            Smart Studio neural filter will craft the angle locally.</span>
+        </div>
+        <div style="display: flex; gap: 8px; margin-top: 20px;">
+          <button type="button" class="btn-primary" style="flex: 1;" id="btn-run-ai-angle"
+            onclick="executeAiAngleGeneration()">Generate & Add Angle</button>
+          <button type="button" class="btn-secondary"
+            onclick="document.getElementById('ai-angle-modal').style.display='none'">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Product Modal -->
+  <div id="edit-product-modal" class="modal" style="z-index: 1100;">
+    <div class="modal-content" style="max-width: 820px; max-height: 90vh; overflow-y: auto;">
+      <div class="modal-header">
+        <div>
+          <h2>Edit Product</h2>
+          <p style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">Update product details, replace back
+            view with real photo, or regenerate studio angles.</p>
+        </div>
+        <span class="close-modal" onclick="closeEditProductModal()">&times;</span>
+      </div>
+      <form id="edit-product-form" onsubmit="handleEditProductSubmit(event)">
+        <input type="hidden" id="edit-p-id">
+        <div class="f-row">
+          <div class="f-group">
+            <label>Product Name</label>
+            <input type="text" id="edit-p-name" required>
+          </div>
+          <div class="f-group">
+            <label>Offer / Selling Price (₹)</label>
+            <input type="number" id="edit-p-price" step="0.01" required>
+          </div>
+          <div class="f-group">
+            <label>Original / MRP Price (₹) <span style="font-weight:400; color:#888;">(Optional)</span></label>
+            <input type="number" id="edit-p-orig-price" step="0.01" placeholder="e.g. 2499">
+          </div>
+        </div>
+
+        <div class="f-row">
+          <div class="f-group">
+            <label>Festive Offer Tag / Badge <span style="font-weight:400; color:#888;">(Optional)</span></label>
+            <input type="text" id="edit-p-offer-tag" placeholder="e.g. 🪔 Diwali Special 20% OFF, Limited Festive Deal">
+          </div>
+        </div>
+
+        <div class="f-row">
+          <div class="f-group">
+            <label>Category</label>
+            <select id="edit-p-category" required onchange="filterEditSubcategories()">
+              <option value="" disabled selected>Loading categories...</option>
+            </select>
+          </div>
+          <div class="f-group">
+            <label>Subcategory (Optional)</label>
+            <select id="edit-p-subcategory">
+              <option value="" selected>None</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Colors & Material Studio -->
+        <div class="f-group" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+            <div>
+              <label style="font-weight: 700; color: var(--ink); margin: 0; display: flex; align-items: center; gap: 6px;">
+                <span>🎨 Color Flexibility</span>
+              </label>
+              <p style="font-size: 12px; color: #64748b; margin: 2px 0 0;">Single color garments are auto-selected on store. Multi-color creates interactive chips.</p>
+            </div>
+            <div style="display: flex; gap: 14px; font-size: 12px;">
+              <label style="display: flex; align-items: center; gap: 5px; cursor: pointer; font-weight: 600;">
+                <input type="radio" name="edit-color-mode" value="single" checked onchange="toggleColorMode('edit')"> Single Color
+              </label>
+              <label style="display: flex; align-items: center; gap: 5px; cursor: pointer; font-weight: 600;">
+                <input type="radio" name="edit-color-mode" value="multi" onchange="toggleColorMode('edit')"> Multiple Colors
+              </label>
+            </div>
+          </div>
+          <div class="f-row" style="margin: 0; gap: 14px;">
+            <div class="f-group" style="margin: 0;">
+              <input type="text" id="edit-p-color" placeholder="e.g. Natural Indigo Navy" style="padding: 10px 12px; font-size: 13px; border: 1px solid #cbd5e1; border-radius: 6px; width: 100%;" oninput="updateColorPreview('edit')">
+            </div>
+            <div class="f-group" style="margin: 0;">
+              <input type="text" id="edit-p-material" placeholder="Material (e.g. 100% Pure Organic Cotton)" style="padding: 10px 12px; font-size: 13px; border: 1px solid #cbd5e1; border-radius: 6px; width: 100%;">
+            </div>
+          </div>
+          <div id="edit-color-preview-bar" style="margin-top: 8px; font-size: 11px; color: #15803d; font-weight: 600;">
+            ✨ Customers will see: <strong>Color: Natural Indigo Navy</strong> (Auto-selected, zero customer friction)
+          </div>
+        </div>
+
+        <!-- Sizing & Fit Flexibility Studio -->
+        <div class="f-group" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+            <div>
+              <label style="font-weight: 700; color: var(--ink); margin: 0; display: flex; align-items: center; gap: 6px;">
+                <span>📏 Sizing &amp; Fitting Flexibility</span>
+                <span style="font-size: 11px; background: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 12px; font-weight: 600;">Adaptable</span>
+              </label>
+              <p style="font-size: 12px; color: #64748b; margin: 2px 0 0;">Choose Free Size for Sarees/Dupattas/Stoles, or select clothing sizes.</p>
+            </div>
+            <div class="size-mode-selector" style="display: flex; gap: 6px; flex-wrap: wrap;">
+              <button type="button" class="btn-size-preset" onclick="setSizePreset('edit', 'free', this)" style="padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 4px; border: 1px solid #cbd5e1; background: white; cursor: pointer;">🥻 Free Size</button>
+              <button type="button" class="btn-size-preset active" onclick="setSizePreset('edit', 'standard', this)" style="padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 4px; border: 1px solid #9C523A; background: #9C523A; color: white; cursor: pointer;">👗 Standard (XS-3XL)</button>
+              <button type="button" class="btn-size-preset" onclick="setSizePreset('edit', 'numeric', this)" style="padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 4px; border: 1px solid #cbd5e1; background: white; cursor: pointer;">👔 Shirts (38-46)</button>
+              <button type="button" class="btn-size-preset" onclick="setSizePreset('edit', 'kids', this)" style="padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 4px; border: 1px solid #cbd5e1; background: white; cursor: pointer;">🧒 Kids (2-12Y)</button>
+              <button type="button" class="btn-size-preset" onclick="setSizePreset('edit', 'custom', this)" style="padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 4px; border: 1px solid #cbd5e1; background: white; cursor: pointer;">✍️ Custom</button>
+            </div>
+          </div>
+
+          <div id="edit-size-chips-box" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px;">
+            <!-- Rendered by JS -->
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <input type="text" id="edit-p-sizes" name="sizes" value="XS, S, M, L, XL" placeholder="e.g. XS, S, M, L, XL or Free Size" style="flex: 1; padding: 8px 12px; font-size: 13px; border: 1px solid #cbd5e1; border-radius: 6px;" oninput="syncSizeChipsFromInput('edit')">
+            <span id="edit-size-hint" style="font-size: 12px; color: #15803d; font-weight: 600;">✓ Active sizes for this garment</span>
+          </div>
+        </div>
+
+        <div class="f-group">
+          <label>Description (Optional)</label>
+          <textarea id="edit-p-desc" rows="2"></textarea>
+        </div>
+
+        <!-- Edit Angles Photography Studio -->
+        <div class="f-group angle-studio-box">
+          <div class="angle-studio-header">
+            <div class="angle-studio-title">
+              <span>📸 Product Gallery Angles (Front, Back, Detail, Styling)</span>
+            </div>
+            <span style="font-size: 11px; color: #4338ca; font-weight: 600;">Click "Replace with Real Back" to upload
+              authentic back photo</span>
+          </div>
+
+          <!-- Hidden File Inputs for Edit -->
+          <input type="file" id="edit-angle-replace-input" accept="image/*" style="display: none;"
+            onchange="handleEditAngleReplaceFile(event)">
+          <input type="file" id="edit-angle-add-input" accept="image/*" style="display: none;"
+            onchange="handleEditAddAngleFile(event)">
+          <input type="file" id="edit-regenerate-angles-input" accept="image/*" style="display: none;"
+            onchange="handleEditRegenerateAngles(event)">
+
+          <!-- Preview Grid for Edit -->
+          <div id="edit-angle-preview-grid" class="angle-preview-grid"></div>
+
+          <!-- Edit Footer -->
+          <div class="angle-studio-footer"
+            style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; align-items: center;">
+            <div class="angle-studio-help">
+              <span>💡 Easily swap out Angle 2 with your authentic back photo.</span>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button type="button" class="btn-secondary" style="font-size: 11px; padding: 6px 12px;"
+                onclick="document.getElementById('edit-regenerate-angles-input').click()">🔄 Regenerate 4
+                Angles</button>
+              <button type="button" class="btn-secondary" style="font-size: 11px; padding: 6px 12px;"
+                onclick="document.getElementById('edit-angle-add-input').click()">+ Add Angle</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 12px; margin-top: 20px;">
+          <button type="submit" class="btn-primary" style="flex: 1;" id="edit-submit-btn">Save Changes</button>
+          <button type="button" class="btn-secondary" style="padding: 10px 20px;"
+            onclick="closeEditProductModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add Category Modal -->
+  <div id="add-category-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Add New Category</h2>
+        <button class="close-btn"
+          onclick="document.getElementById('add-category-modal').style.display='none'">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="add-category-form">
+          <div class="f-group">
+            <label>Category Name (e.g. Kids Wear)</label>
+            <input type="text" id="c-name" required>
+          </div>
+          <div class="f-group">
+            <label>Link URL (e.g. kids-wear.html)</label>
+            <input type="text" id="c-link" placeholder="Enter page filename" required>
+          </div>
+          <div class="f-group">
+            <label>Parent Category (Optional)</label>
+            <select id="c-parent">
+              <option value="" selected>None (Main Category)</option>
+            </select>
+          </div>
+          <div class="f-group">
+            <label>Category Banner Image</label>
+            <input type="file" id="c-image" accept="image/*" multiple required>
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%; margin-top: 16px;">Create Category</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Category Modal -->
+  <div id="edit-category-modal" class="modal">
+    <div class="modal-content" style="max-width: 520px;">
+      <div class="modal-header">
+        <h2>Edit Store Category</h2>
+        <button class="close-btn" onclick="closeEditCategoryModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="edit-category-form" onsubmit="handleEditCategorySubmit(event)">
+          <input type="hidden" id="edit-c-id">
+
+          <div class="f-group">
+            <label>Category Name</label>
+            <input type="text" id="edit-c-name" required placeholder="e.g. Cuban-Collar Shirts">
+          </div>
+
+          <div class="f-group">
+            <label>Landing Page Link (URL)</label>
+            <input type="text" id="edit-c-link" required placeholder="e.g. mens-ethnic.html">
+          </div>
+
+          <div class="f-group">
+            <label>Parent Hierarchy (Collection Group)</label>
+            <select id="edit-c-parent">
+              <option value="">None (Top-Level Main Collection)</option>
+            </select>
+          </div>
+
+          <div class="f-group">
+            <label>Current Banner Image</label>
+            <div
+              style="display: flex; gap: 14px; align-items: center; background: #f8fafc; padding: 10px 14px; border-radius: 8px; border: 1px solid #e2e8f0; margin-bottom: 8px;">
+              <img id="edit-c-image-preview" src="assets/product_kurta_ivory.jpg" alt="Banner Preview"
+                style="width: 90px; height: 55px; object-fit: cover; border-radius: 6px; border: 1px solid #cbd5e1; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+              <div>
+                <div style="font-size: 13px; font-weight: 600; color: #1e293b;">Assigned Banner</div>
+                <div style="font-size: 12px; color: #64748b;">Leave file upload empty to keep this banner, or select a
+                  new image to replace it.</div>
+              </div>
+            </div>
+            <label style="font-size: 12px; color: #64748b; margin-top: 6px;">Replace Banner Image (Optional)</label>
+            <input type="file" id="edit-c-image" accept="image/*">
+          </div>
+
+          <div style="display: flex; gap: 10px; margin-top: 24px;">
+            <button type="submit" class="btn-primary" style="flex: 1;" id="edit-c-submit-btn">Save Category
+              Changes</button>
+            <button type="button" class="btn-secondary" onclick="closeEditCategoryModal()"
+              style="padding: 10px 18px;">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Discount Modal -->
+  <div id="add-discount-modal" class="modal">
+    <div class="modal-content" style="max-width: 400px;">
+      <div class="modal-header">
+        <h2>Create Discount Code</h2>
+        <button class="close-btn"
+          onclick="document.getElementById('add-discount-modal').style.display='none'">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="add-discount-form">
+          <div class="f-group">
+            <label>Promo Code (e.g., SUMMER20)</label>
+            <input type="text" id="d-code" style="text-transform: uppercase;" required>
+          </div>
+          <div class="f-group">
+            <label>Discount Percentage (%)</label>
+            <input type="number" id="d-percent" min="1" max="100" required>
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%; margin-top: 16px;">Create Promo Code</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Size-Wise Stock Manager (e.g. S: 20 pcs, L: 8 pcs) -->
+  <div id="size-stock-modal" class="modal" style="z-index: 1100; display: none;">
+    <div class="modal-content" style="max-width: 640px; border-radius: 12px; padding: 24px;">
+      <div class="modal-header" style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid var(--border); padding-bottom: 14px; margin-bottom: 18px;">
+        <div style="display: flex; gap: 12px; align-items: center;">
+          <img id="modal-size-stock-img" src="assets/placeholder.jpg" style="width: 48px; height: 48px; border-radius: 8px; object-fit: cover; border: 1px solid var(--border);" onerror="this.src='assets/product_kurta_ivory.jpg'">
+          <div>
+            <h2 id="modal-size-stock-title" style="font-size: 16px; margin: 0; color: var(--ink);">Garment Size Inventory Breakdown</h2>
+            <div id="modal-size-stock-sub" style="font-size: 12px; color: #64748B; margin-top: 2px;">Manage inventory per size (XS, S, M, L, XL...)</div>
+          </div>
+        </div>
+        <span class="close-modal" onclick="closeSizeStockModal()" style="font-size: 26px; cursor: pointer; color: #888;">&times;</span>
+      </div>
+
+      <!-- Quick Batch Helper Bar -->
+      <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 12px 16px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <div>
+          <span style="font-size: 11px; font-weight: 700; color: #475569; text-transform: uppercase;">Quick Batch Presets:</span>
+          <div style="display: flex; gap: 6px; margin-top: 4px;">
+            <button type="button" class="btn-preset-pill" onclick="quickApplyToAllSizes(5)">+5 All Sizes</button>
+            <button type="button" class="btn-preset-pill" onclick="quickApplyToAllSizes(10)">+10 All Sizes</button>
+            <button type="button" class="btn-preset-pill" onclick="quickApplyToAllSizes(20)">+20 All Sizes</button>
+            <button type="button" class="btn-preset-pill deplete" onclick="quickApplyToAllSizes(0, 'set')">Reset All to 0</button>
+          </div>
+        </div>
+        <div style="text-align: right;">
+          <div style="font-size: 11px; color: #64748B;">Total Garment Stock</div>
+          <div id="modal-size-stock-total" style="font-size: 20px; font-weight: 800; color: #27AE60;">0 units</div>
+        </div>
+      </div>
+
+      <!-- Size Rows Container -->
+      <div id="modal-size-rows-container" style="display: flex; flex-direction: column; gap: 10px; max-height: 50vh; overflow-y: auto; padding-right: 4px;">
+        <!-- Dynamically generated rows for each size -->
+      </div>
+
+      <!-- Footer -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px; border-top: 1px solid var(--border); padding-top: 16px;">
+        <span style="font-size: 12px; color: #16A34A; font-weight: 500;" id="modal-size-stock-status">✓ All adjustments save instantly to database</span>
+        <button type="button" class="btn-primary" onclick="closeSizeStockModal()">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Add New Customer -->
+  <div id="add-customer-modal" class="modal" style="display: none; z-index: 1100;">
+    <div class="modal-content" style="max-width: 480px; padding: 24px; border-radius: 12px;">
+      <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 16px;">
+        <h2 style="font-size: 18px; margin: 0; color: var(--ink);">+ Add New Customer Patron</h2>
+        <span class="close-modal" onclick="document.getElementById('add-customer-modal').style.display='none'" style="font-size: 24px; cursor: pointer; color: #888;">&times;</span>
+      </div>
+      <form id="add-customer-form" onsubmit="handleCreateCustomer(event)">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+          <div class="f-group">
+            <label style="font-size: 12px; font-weight: 600; color: #475569;">First Name *</label>
+            <input type="text" id="cust-first-name" required style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px;">
+          </div>
+          <div class="f-group">
+            <label style="font-size: 12px; font-weight: 600; color: #475569;">Last Name</label>
+            <input type="text" id="cust-last-name" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px;">
+          </div>
+        </div>
+        <div class="f-group" style="margin-bottom: 12px;">
+          <label style="font-size: 12px; font-weight: 600; color: #475569;">Email Address *</label>
+          <input type="email" id="cust-email" required style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px;">
+        </div>
+        <div class="f-group" style="margin-bottom: 16px;">
+          <label style="font-size: 12px; font-weight: 600; color: #475569;">Phone Number (10 digits)</label>
+          <input type="tel" id="cust-phone" placeholder="9823456789" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px;">
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid var(--border); padding-top: 14px;">
+          <button type="button" class="btn-secondary" onclick="document.getElementById('add-customer-modal').style.display='none'">Cancel</button>
+          <button type="submit" class="btn-primary">Save Customer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="admin.js?v=3.5"></script>
+
+  <!-- Vanta.js Header Background -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
+
+
+  <!-- Store Owner Quick Guide & Manual Modal (Non-Tech Friendly) -->
+  <div id="store-guide-modal" class="modal" style="z-index: 1200; display: none;">
+    <div class="modal-content" style="max-width: 860px; max-height: 90vh; overflow-y: auto; padding: 30px; border-radius: 12px;">
+      <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 16px; margin-bottom: 20px;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="font-size: 32px;">📖</div>
+          <div>
+            <h2 style="font-size: 20px; margin: 0; color: var(--indigo-d);">JP Cotton — Store Manager Guide</h2>
+            <div style="font-size: 12px; color: #64748b; margin-top: 2px;">Simple, plain-English instructions for everyday store operations. No technical knowledge required!</div>
+          </div>
+        </div>
+        <span class="close-modal" onclick="closeStoreGuideModal()" style="font-size: 28px; cursor: pointer; color: #888;">&times;</span>
+      </div>
+
+      <!-- Navigation Tabs inside Guide -->
+      <div style="display: flex; gap: 8px; margin-bottom: 24px; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px; overflow-x: auto;">
+        <button type="button" class="guide-tab-btn active" onclick="switchGuideTab('orders', this)" style="padding: 8px 16px; border-radius: 6px; border: none; font-size: 13px; font-weight: 700; cursor: pointer; background: #9C523A; color: white;">📦 1. Fulfill Orders</button>
+        <button type="button" class="guide-tab-btn" onclick="switchGuideTab('products', this)" style="padding: 8px 16px; border-radius: 6px; border: 1px solid #e2e8f0; font-size: 13px; font-weight: 600; cursor: pointer; background: white; color: #475569;">👗 2. Add / Edit Clothes</button>
+        <button type="button" class="guide-tab-btn" onclick="switchGuideTab('stock', this)" style="padding: 8px 16px; border-radius: 6px; border: 1px solid #e2e8f0; font-size: 13px; font-weight: 600; cursor: pointer; background: white; color: #475569;">🔢 3. Update Stock (+/-)</button>
+        <button type="button" class="guide-tab-btn" onclick="switchGuideTab('banners', this)" style="padding: 8px 16px; border-radius: 6px; border: 1px solid #e2e8f0; font-size: 13px; font-weight: 600; cursor: pointer; background: white; color: #475569;">🖼️ 4. Change Banners & Photos</button>
+        <button type="button" class="guide-tab-btn" onclick="switchGuideTab('discounts', this)" style="padding: 8px 16px; border-radius: 6px; border: 1px solid #e2e8f0; font-size: 13px; font-weight: 600; cursor: pointer; background: white; color: #475569;">🏷️ 5. Discount Codes</button>
+      </div>
+
+      <!-- TAB 1: ORDERS -->
+      <div id="guide-tab-orders" class="guide-content-panel">
+        <h3 style="font-size: 16px; color: var(--ink); margin-bottom: 12px;">How to Process and Ship a Customer Order</h3>
+        <div style="display: grid; gap: 14px;">
+          <div style="background: #f8fafc; border-left: 4px solid #3b82f6; padding: 14px 18px; border-radius: 0 8px 8px 0;">
+            <strong style="color: #1e3a8a;">Step 1: Check New Orders</strong>
+            <p style="font-size: 13px; color: #475569; margin: 4px 0 0;">Click <strong>Orders</strong> in the sidebar. Any new purchase will appear at the top marked as <span style="background:#fef3c7; color:#92400e; padding:1px 6px; border-radius:4px; font-size:11px; font-weight:700;">Pending</span>.</p>
+          </div>
+          <div style="background: #f8fafc; border-left: 4px solid #3b82f6; padding: 14px 18px; border-radius: 0 8px 8px 0;">
+            <strong style="color: #1e3a8a;">Step 2: View Customer Phone & Address</strong>
+            <p style="font-size: 13px; color: #475569; margin: 4px 0 0;">Click the blue <strong>"View"</strong> button next to the order. You will see the customer's full name, <strong>10-digit mobile number</strong>, pincode, and exact delivery address, plus whether they chose <strong>Cash on Delivery (COD)</strong> or online payment.</p>
+          </div>
+          <div style="background: #f8fafc; border-left: 4px solid #10b981; padding: 14px 18px; border-radius: 0 8px 8px 0;">
+            <strong style="color: #065f46;">Step 3: Update Order Status</strong>
+            <p style="font-size: 13px; color: #475569; margin: 4px 0 0;">
+              Use the status dropdown in the table:
+              <br>• <strong>Processing</strong>: You are currently packing the item.
+              <br>• <strong>Shipped</strong>: You have handed the parcel to the courier (Delhivery, Blue Dart, Speed Post, etc.).
+              <br>• <strong>Delivered</strong>: The customer received the parcel.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: PRODUCTS -->
+      <div id="guide-tab-products" class="guide-content-panel" style="display: none;">
+        <h3 style="font-size: 16px; color: var(--ink); margin-bottom: 12px;">How to Add a New Garment to Your Store</h3>
+        <div style="display: grid; gap: 14px;">
+          <div style="background: #f8fafc; border-left: 4px solid #9C523A; padding: 14px 18px; border-radius: 0 8px 8px 0;">
+            <strong style="color: #9C523A;">Step 1: Open the Product Form</strong>
+            <p style="font-size: 13px; color: #475569; margin: 4px 0 0;">Click <strong>Products</strong> in the sidebar, then click the <strong>"+ Add Product"</strong> button at the top right.</p>
+          </div>
+          <div style="background: #f8fafc; border-left: 4px solid #9C523A; padding: 14px 18px; border-radius: 0 8px 8px 0;">
+            <strong style="color: #9C523A;">Step 2: Enter Basic Details</strong>
+            <p style="font-size: 13px; color: #475569; margin: 4px 0 0;">
+              • <strong>Name</strong>: e.g. <em>Indigo Floral Hand-Block Kurta</em>
+              <br>• <strong>Category</strong>: Select <em>Women</em>, <em>Men</em>, or <em>Kids</em>.
+              <br>• <strong>Subcategory</strong>: e.g. <em>Co-Ord Sets</em>, <em>Kurtas</em>, or <em>Suit Sets</em>.
+              <br>• <strong>Selling Price (₹)</strong>: The amount the customer pays (GST inclusive).
+              <br>• <strong>Original MRP (₹)</strong>: If on sale, enter the higher price to show a discount strike-through.
+            </p>
+          </div>
+          <div style="background: #f8fafc; border-left: 4px solid #9C523A; padding: 14px 18px; border-radius: 0 8px 8px 0;">
+            <strong style="color: #9C523A;">Step 3: Upload Product Photos</strong>
+            <p style="font-size: 13px; color: #475569; margin: 4px 0 0;">Click <strong>Browse Photos</strong> and select one or more images from your phone or computer. The first photo becomes the main showcase image!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: STOCK -->
+      <div id="guide-tab-stock" class="guide-content-panel" style="display: none;">
+        <h3 style="font-size: 16px; color: var(--ink); margin-bottom: 12px;">How to Manage Stock When Items Sell</h3>
+        <div style="display: grid; gap: 14px;">
+          <div style="background: #f8fafc; border-left: 4px solid #eab308; padding: 14px 18px; border-radius: 0 8px 8px 0;">
+            <strong style="color: #854d0e;">1-Click Adjustment Buttons</strong>
+            <p style="font-size: 13px; color: #475569; margin: 4px 0 0;">Click <strong>Live Stock &amp; Inventory</strong> in the sidebar. Every garment has green and red <code>+</code> and <code>-</code> buttons. If you sell 1 piece in-store, just click <code>-</code> once!</p>
+          </div>
+          <div style="background: #f8fafc; border-left: 4px solid #eab308; padding: 14px 18px; border-radius: 0 8px 8px 0;">
+            <strong style="color: #854d0e;">Low Stock Warnings</strong>
+            <p style="font-size: 13px; color: #475569; margin: 4px 0 0;">Whenever any item drops to 10 pieces or fewer, it automatically flags orange under <strong>"Low Stock Alerts"</strong> so you know to reorder from your weavers.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: BANNERS -->
+      <div id="guide-tab-banners" class="guide-content-panel" style="display: none;">
+        <h3 style="font-size: 16px; color: var(--ink); margin-bottom: 12px;">How to Change Homepage Hero Slides & Story Photos</h3>
+        <div style="display: grid; gap: 14px;">
+          <div style="background: #f8fafc; border-left: 4px solid #8b5cf6; padding: 14px 18px; border-radius: 0 8px 8px 0;">
+            <strong style="color: #5b21b6;">Homepage Hero Slides</strong>
+            <p style="font-size: 13px; color: #475569; margin: 4px 0 0;">Click <strong>Hero Slides</strong> in the sidebar. Click <strong>+ Add New Slide</strong> to upload a landscape photograph (1920x1080px). Old slides can be deleted with the red Delete button.</p>
+          </div>
+          <div style="background: #f8fafc; border-left: 4px solid #8b5cf6; padding: 14px 18px; border-radius: 0 8px 8px 0;">
+            <strong style="color: #5b21b6;">Our Story Atelier Photography</strong>
+            <p style="font-size: 13px; color: #475569; margin: 4px 0 0;">To update the artisan block printing photos on <em>Our Story</em>, replace the files in <code>assets/</code> or upload them directly to your assistant!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 5: DISCOUNTS -->
+      <div id="guide-tab-discounts" class="guide-content-panel" style="display: none;">
+        <h3 style="font-size: 16px; color: var(--ink); margin-bottom: 12px;">How to Create Festival &amp; Promo Coupons</h3>
+        <div style="display: grid; gap: 14px;">
+          <div style="background: #f8fafc; border-left: 4px solid #ec4899; padding: 14px 18px; border-radius: 0 8px 8px 0;">
+            <strong style="color: #9d174d;">Creating a Promo Code</strong>
+            <p style="font-size: 13px; color: #475569; margin: 4px 0 0;">Click <strong>Marketing</strong> &rarr; <strong>+ Create Discount Code</strong>. Type a code (e.g. <code>DIWALI15</code>) and discount percentage (e.g. <code>15</code>). Customers can enter this during checkout for an instant discount!</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 28px; text-align: right; border-top: 1px solid var(--border); padding-top: 16px;">
+        <button type="button" class="btn-primary" onclick="closeStoreGuideModal()" style="padding: 10px 24px;">Got It, Close Guide</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Men's Collection &mdash; JP Cotton</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Trirong:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=6.0">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header id="main-header">
+    <div class="wrap">
+      <nav>
+        <div class="menu-toggle" onclick="document.getElementById('mobile-menu').classList.add('active'); document.getElementById('mobile-menu-overlay').classList.add('active');">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </div>
+        <div class="logo"><a href="index.html"><img src="assets/logo.png" alt="JP Cotton"></a></div>
+        <div class="search-bar">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" placeholder="Search for heritage pieces, pure cotton, sarees..." class="global-search">
+        </div>
+        <div class="icons">
+          <a href="favorites.html" title="Wishlist"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></a>
+          <a href="cart.html" title="Cart">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+            <span class="cart-badge" id="cart-badge">0</span>
+          </a>
+          <a href="login.html" id="auth-user-icon" title="Account"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+          <script>
+            (function() {
+              if (localStorage.getItem('petal_user')) {
+                const el = document.getElementById('auth-user-icon');
+                if (el) el.setAttribute('href', 'profile.html');
+              }
+            })();
+          </script>
+        </div>
+      </nav>
+      <div class="navlinks desktop-only">
+        <div class="nav-item">
+          <a href="shop.html">Shop All</a>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="womens-traditional.html">Women <span class="nav-arrow">▾</span></a>
+          <div class="dropdown">
+            <a href="womens-traditional.html?category=Co-Ord+Sets">Co-Ord Sets</a>
+            <a href="womens-traditional.html?category=Dresses+%26+Gowns">Dresses &amp; Gowns</a>
+            <a href="womens-traditional.html?category=Two-Piece+Suit+Sets">Two-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Three-Piece+Suit+Sets">Three-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Farsi+Salwar+Sets">Farsi Salwar Sets</a>
+            <a href="womens-traditional.html?category=Kurtas">Kurtas</a>
+            <a href="womens-traditional.html?category=Kurtis+%26+Tops">Kurtis &amp; Tops</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown active">
+          <a href="mens-ethnic.html" class="active">Men <span class="nav-arrow">▾</span></a>
+          <div class="dropdown">
+            <a href="mens-ethnic.html?category=Cotton+Shirts">Cotton Shirts</a>
+            <a href="mens-ethnic.html?category=Kurtas">Kurtas</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="kids.html">Kids <span class="nav-arrow">▾</span></a>
+          <div class="dropdown">
+            <a href="kids.html?category=Kurta+%26+Palazzo+Sets">Kurta &amp; Palazzo Sets</a>
+            <a href="kids.html?category=Lehenga+Choli">Lehenga Choli</a>
+            <a href="kids.html?category=Girls%27+Ethnic+Suits">Girls' Ethnic Suits</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="our-cotton.html">Our Story</a>
+        </div>
+        <div class="nav-item">
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Premium Mobile Slide-Out Menu -->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay" onclick="document.getElementById('mobile-menu').classList.remove('active'); this.classList.remove('active');"></div>
+    <div class="mobile-menu" id="mobile-menu">
+      <div class="mobile-menu-close" onclick="document.getElementById('mobile-menu').classList.remove('active'); document.getElementById('mobile-menu-overlay').classList.remove('active');">
+        <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="1.5" fill="none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </div>
+      <div class="mobile-navlinks">
+        <a href="shop.html">Shop All</a>
+
+        <div class="mobile-accordion">
+          <div class="mobile-acc-header" onclick="this.parentElement.classList.toggle('open')">
+            <span>Women</span>
+            <span class="mobile-acc-arrow">▾</span>
+          </div>
+          <div class="mobile-acc-content">
+            <a href="womens-traditional.html" style="font-weight:600; color:var(--primary) !important;">View All Women &rarr;</a>
+            <a href="womens-traditional.html?category=Co-Ord+Sets">Co-Ord Sets</a>
+            <a href="womens-traditional.html?category=Dresses+%26+Gowns">Dresses &amp; Gowns</a>
+            <a href="womens-traditional.html?category=Two-Piece+Suit+Sets">Two-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Three-Piece+Suit+Sets">Three-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Farsi+Salwar+Sets">Farsi Salwar Sets</a>
+            <a href="womens-traditional.html?category=Kurtas">Kurtas</a>
+            <a href="womens-traditional.html?category=Kurtis+%26+Tops">Kurtis &amp; Tops</a>
+          </div>
+        </div>
+
+        <div class="mobile-accordion open">
+          <div class="mobile-acc-header" onclick="this.parentElement.classList.toggle('open')">
+            <span style="font-weight:700; color:var(--primary);">Men</span>
+            <span class="mobile-acc-arrow">▾</span>
+          </div>
+          <div class="mobile-acc-content">
+            <a href="mens-ethnic.html" style="font-weight:600; color:var(--primary) !important;">View All Men &rarr;</a>
+            <a href="mens-ethnic.html?category=Cotton+Shirts">Cotton Shirts</a>
+            <a href="mens-ethnic.html?category=Kurtas">Kurtas</a>
+          </div>
+        </div>
+
+        <div class="mobile-accordion">
+          <div class="mobile-acc-header" onclick="this.parentElement.classList.toggle('open')">
+            <span>Kids</span>
+            <span class="mobile-acc-arrow">▾</span>
+          </div>
+          <div class="mobile-acc-content">
+            <a href="kids.html" style="font-weight:600; color:var(--primary) !important;">View All Kids &rarr;</a>
+            <a href="kids.html?category=Kurta+%26+Palazzo+Sets">Kurta &amp; Palazzo Sets</a>
+            <a href="kids.html?category=Lehenga+Choli">Lehenga Choli</a>
+            <a href="kids.html?category=Girls%27+Ethnic+Suits">Girls' Ethnic Suits</a>
+          </div>
+        </div>
+
+        <a href="our-cotton.html">Our Story</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Collection Hero -->
+  <section class="collection-hero">
+    <div class="wrap">
+      <div class="collection-breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="collection-breadcrumb-separator">/</span>
+        <a href="shop.html">Shop All</a>
+        <span class="collection-breadcrumb-separator">/</span>
+        <span style="color: #1e293b; font-weight: 600;">Men</span>
+      </div>
+
+      <div class="collection-hero-badge">
+        <span>🌿 100% Pure Organic Cotton &bull; Breathable Heritage Weave</span>
+      </div>
+
+      <h1>Men's Handloom &amp; Essentials</h1>
+      <p>Refined silhouettes, breathable Cuban-collar shirts, structured traditional kurtas, and tailored cotton trousers designed for discerning gentlemen.</p>
+
+      <!-- 2 Subcategories Filter Pills -->
+      <div class="collection-filter-bar" id="men-filter-bar">
+        <button type="button" class="collection-pill-btn active" data-sub="all" onclick="filterMenSubcategory('all', this)">
+          <span class="pill-dot"></span>
+          <span>All Men</span> (<span id="count-all">0</span>)
+        </button>
+        <button type="button" class="collection-pill-btn" data-sub="shirt" onclick="filterMenSubcategory('shirt', this)">
+          <span class="pill-dot"></span>
+          <span>Cotton Shirts</span>
+        </button>
+        <button type="button" class="collection-pill-btn" data-sub="kurta" onclick="filterMenSubcategory('kurta', this)">
+          <span class="pill-dot"></span>
+          <span>Kurtas</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section class="section" style="padding-top: 0; min-height: 50vh;">
+    <div class="wrap">
+      
+      <!-- Toolbar -->
+      <div class="collection-toolbar">
+        <div class="collection-item-count">
+          Showing <span id="men-visible-count">0</span> Handcrafted Piece(s)
+        </div>
+        <div class="collection-sort-wrap">
+          <label for="men-sort">Sort By:</label>
+          <select id="men-sort" class="collection-sort-select" onchange="sortMenProducts(this.value)">
+            <option value="featured">Featured &bull; Master's Choice</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="name">Alphabetical (A &ndash; Z)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Dynamic Product Grid -->
+      <div class="product-grid" id="men-grid-container">
+        <div style="grid-column: 1 / -1; text-align: center; padding: 80px 0; color: #64748b;">
+          Loading Men's Collection...
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Artisan Craftsmanship Showcase -->
+  <section class="collection-craft-banner">
+    <div class="wrap">
+      <div style="text-align: center; margin-bottom: 40px;">
+        <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700; color: #d97706;">Woven for Everyday Distinction</span>
+        <h2 style="font-family: var(--font-display, 'Trirong', serif); font-size: 32px; font-weight: 500; margin: 8px 0;">The JP Men's Standard</h2>
+      </div>
+      <div class="collection-craft-grid">
+        <div class="collection-craft-item">
+          <div class="collection-craft-icon">🧵</div>
+          <h3>Long-Staple Indian Cottons</h3>
+          <p>Hand-harvested in Gujarat and spun to premium yarn density. Delivers an unmatched structured drape that resists wrinkles and softens with every wash.</p>
+        </div>
+        <div class="collection-craft-item">
+          <div class="collection-craft-icon">🌬️</div>
+          <h3>Summer-Ready Open Weave</h3>
+          <p>Engineered for maximum air circulation in warm climates. Keeps you exceptionally cool during outdoor celebrations or daily office wear.</p>
+        </div>
+        <div class="collection-craft-item">
+          <div class="collection-craft-icon">👔</div>
+          <h3>Crisp Tailored Finishing</h3>
+          <p>Hand-attached mother-of-pearl buttons, single-needle reinforced stitching, and timeless collar proportions built to last for decades.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="wrap foot-top">
+      <div class="foot-logo">
+        <a href="index.html"><img src="assets/logo.png" alt="JP Cotton"></a>
+        <p>Centuries of Indian weaving heritage, tailored for modern living. 100% pure organic cotton garments directly from master artisans.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <a href="womens-traditional.html">Women's Collection</a>
+        <a href="mens-ethnic.html">Men's Collection</a>
+        <a href="kids.html">Kids' Festive</a>
+        <a href="shop.html">Shop All</a>
+      </div>
+      <div>
+        <h4>Customer Care</h4>
+        <a href="contact.html">Contact Concierge</a>
+        <a href="returns.html">Returns &amp; Refunds</a>
+        <a href="contact.html">Shipping FAQ</a>
+      </div>
+      <div>
+        <h4>JP Brand</h4>
+        <a href="our-cotton.html">Our Story</a>
+        <a href="our-cotton.html">The Fabric</a>
+        <a href="our-cotton.html">Artisan Journal</a>
+      </div>
+    </div>
+    <div class="foot-bottom wrap">
+      <div>&copy; 2026 JP Cotton All Rights Reserved.</div>
+      <div>Ethically crafted in Punjab, India.</div>
+    </div>
+  </footer>
+
+  <script src="app.js?v=6.0" defer></script>
+  <script>
+    let globalMenProducts = [];
+    let activeMenSub = 'all';
+
+    async function initMenPage() {
+      const container = document.getElementById('men-grid-container');
+      try {
+        const res = await fetch((window.getApiBase ? window.getApiBase() : '') + '/api/products');
+        const allProducts = await res.json();
+        
+        // Filter products belonging to Men
+        globalMenProducts = allProducts.filter(p => {
+          const cat = (p.category || '').toLowerCase();
+          const name = (p.name || '').toLowerCase();
+          return (cat.includes('men') && !cat.includes('women')) || name.includes('shirt') || (cat.includes('cotton') && name.includes('men'));
+        });
+
+        document.getElementById('count-all').textContent = globalMenProducts.length;
+
+        // Check URL params for pre-selected subcategory
+        const params = new URLSearchParams(window.location.search);
+        const catParam = params.get('category') || params.get('sub');
+        if (catParam) {
+          const lower = catParam.toLowerCase();
+          if (lower.includes('shirt')) activeMenSub = 'shirt';
+          else if (lower.includes('kurta')) activeMenSub = 'kurta';
+          
+          document.querySelectorAll('#men-filter-bar .collection-pill-btn').forEach(btn => {
+            if (btn.dataset.sub === activeMenSub) btn.classList.add('active');
+            else btn.classList.remove('active');
+          });
+        }
+
+        renderMenGrid();
+      } catch (e) {
+        console.error(e);
+        container.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; color: red; padding: 60px;">Failed to load Men\'s collection. Please ensure server is running.</div>';
+      }
+    }
+
+    function renderMenGrid() {
+      const container = document.getElementById('men-grid-container');
+      let list = [...globalMenProducts];
+
+      if (activeMenSub !== 'all') {
+        list = list.filter(p => {
+          const name = (p.name || '').toLowerCase();
+          const desc = (p.description || '').toLowerCase();
+          const sub = (p.subcategory || '').toLowerCase();
+
+          if (activeMenSub === 'shirt') {
+            return name.includes('shirt') || sub.includes('shirt') || desc.includes('shirt') || name.includes('tee') || name.includes('collar');
+          }
+          if (activeMenSub === 'kurta') {
+            return name.includes('kurta') || sub.includes('kurta') || desc.includes('kurta');
+          }
+          return true;
+        });
+      }
+
+      document.getElementById('men-visible-count').textContent = list.length;
+
+      if (list.length === 0) {
+        container.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 70px 20px; background: #FAF7F2; border-radius: 12px; margin-top: 20px;">
+            <div style="font-size: 36px; margin-bottom: 10px;">✨</div>
+            <h3 style="font-family: var(--font-display, serif); font-size: 22px; color: #1e293b; margin: 0 0 8px;">New Men's Pieces Arriving Soon</h3>
+            <p style="color: #64748b; font-size: 14px; margin: 0 0 20px;">Master artisans are tailoring the next release of this subcategory.</p>
+            <button class="btn-primary" onclick="filterMenSubcategory('all', document.querySelector('[data-sub=\\'all\\']'))">View All Men's Pieces</button>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = list.map(p => {
+        let isFav = false;
+        try {
+          const favs = JSON.parse(localStorage.getItem('petal_wishlist') || '[]');
+          isFav = favs.some(item => (typeof item === 'object' ? item.id == p.id : item == p.id));
+        } catch(e) {}
+
+        const hasOffer = p.original_price && Number(p.original_price) > Number(p.price);
+        const discountPct = hasOffer ? Math.round(((Number(p.original_price) - Number(p.price)) / Number(p.original_price)) * 100) : 0;
+
+        return `
+          <div class="p-card">
+            <div class="p-card-img" onclick="window.location.href='product.html?id=${p.id}'" style="cursor: pointer;">
+              <img src="${p.image || 'assets/product_kurta_ivory.jpg'}" alt="${p.name}" loading="lazy" onerror="this.src='assets/product_kurta_ivory.jpg'">
+              
+              <div class="p-badges" style="position: absolute; top: 12px; left: 12px; display: flex; flex-direction: column; gap: 4px;">
+                ${p.offer_tag ? `<span style="background: #b45309; color: white; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; text-transform: uppercase;">${p.offer_tag}</span>` : ''}
+                ${discountPct > 0 ? `<span style="background: #15803d; color: white; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px;">${discountPct}% OFF</span>` : ''}
+              </div>
+
+              <button class="p-wishlist ${isFav ? 'active' : ''}" onclick="toggleWishlist(event, this, ${p.id}, '${p.name.replace(/'/g, "\\'")}', ${p.price}, '${p.image}')" title="Save to Favorites" aria-label="Save to Wishlist">
+                <svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+              </button>
+
+              <button class="p-quick-add" onclick="quickAddMenItem(event, ${p.id})">Quick Add +</button>
+            </div>
+            
+            <div class="p-card-body">
+              <div class="p-card-cat">${p.subcategory || p.category || "Men's Cotton Essentials"}</div>
+              <h3 class="p-card-name"><a href="product.html?id=${p.id}">${p.name}</a></h3>
+              <div class="p-card-price">
+                <span class="price-current">₹${Number(p.price).toFixed(2)}</span>
+                ${hasOffer ? `<span class="price-orig">₹${Number(p.original_price).toFixed(2)}</span>` : ''}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function filterMenSubcategory(sub, btn) {
+      activeMenSub = sub;
+      document.querySelectorAll('#men-filter-bar .collection-pill-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderMenGrid();
+    }
+
+    function sortMenProducts(criteria) {
+      if (criteria === 'price-asc') {
+        globalMenProducts.sort((a, b) => Number(a.price) - Number(b.price));
+      } else if (criteria === 'price-desc') {
+        globalMenProducts.sort((a, b) => Number(b.price) - Number(a.price));
+      } else if (criteria === 'name') {
+        globalMenProducts.sort((a, b) => a.name.localeCompare(b.name));
+      } else {
+        globalMenProducts.sort((a, b) => b.id - a.id);
+      }
+      renderMenGrid();
+    }
+
+    function quickAddMenItem(event, id) {
+      event.stopPropagation();
+      const product = globalMenProducts.find(p => p.id == id);
+      if (!product) return;
+
+      const cartItem = {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        qty: 1,
+        size: 'L',
+        color: 'Natural Cotton'
+      };
+
+      if (window.jpCart) {
+        window.jpCart.add(cartItem);
+      } else {
+        const cart = JSON.parse(localStorage.getItem('petal_cart') || '[]');
+        const existing = cart.find(i => i.id == id);
+        if (existing) existing.qty += 1;
+        else cart.push(cartItem);
+        localStorage.setItem('petal_cart', JSON.stringify(cart));
+      }
+
+      if (window.updateCartCount) window.updateCartCount();
+      if (window.showToast) {
+        window.showToast(`Added "${product.name}" to your bag!`);
+      } else {
+        alert(`Added "${product.name}" to your bag!`);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', initMenPage);
+  </script>
+
+</body>
+</html>

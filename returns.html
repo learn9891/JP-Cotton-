@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Returns & Refunds â€“ JP Cotton</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css?v=6.0">
+<style>
+  .returns-wrap { max-width: 600px; margin: 80px auto; padding: 40px; background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+  .returns-wrap h1 { font-size: 24px; margin-bottom: 8px; }
+  .returns-wrap p { color: #666; margin-bottom: 24px; font-size: 14px; }
+  .f-group { margin-bottom: 16px; }
+  .f-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 8px; color: var(--ink-soft); }
+  .f-group input, .f-group textarea { width: 100%; padding: 12px; border: 1px solid rgba(0,0,0,0.1); font-family: inherit; border-radius: 4px; }
+  .f-group textarea { resize: vertical; min-height: 100px; }
+</style>
+</head>
+<body>
+
+    <!-- Site Header -->
+    <!-- Site Header -->
+    <!-- Site Header -->
+  <header id="main-header">
+    <div class="wrap">
+      <nav>
+        <div class="menu-toggle" onclick="document.getElementById('mobile-menu').classList.add('active'); document.getElementById('mobile-menu-overlay').classList.add('active');">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </div>
+        <div class="logo"><a href="index.html"><img src="assets/logo.png" alt="JP Cotton"></a></div>
+        <div class="search-bar">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" placeholder="Search for heritage pieces, pure cotton, sarees..." class="global-search">
+        </div>
+        <div class="icons">
+          <a href="favorites.html" title="Wishlist"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></a>
+          <a href="cart.html" title="Cart">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+            <span class="cart-badge" id="cart-badge">0</span>
+          </a>
+          <a href="login.html" id="auth-user-icon" title="Account"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+          <script>
+            (function() {
+              if (localStorage.getItem('petal_user')) {
+                const el = document.getElementById('auth-user-icon');
+                if (el) el.setAttribute('href', 'profile.html');
+              }
+            })();
+          </script>
+        </div>
+      </nav>
+      <div class="navlinks desktop-only">
+        <div class="nav-item">
+          <a href="shop.html">Shop All</a>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="womens-traditional.html">Women <span class="nav-arrow">▾</span></a>
+          <div class="dropdown">
+            <a href="womens-traditional.html?category=Co-Ord+Sets">Co-Ord Sets</a>
+            <a href="womens-traditional.html?category=Dresses+%26+Gowns">Dresses &amp; Gowns</a>
+            <a href="womens-traditional.html?category=Two-Piece+Suit+Sets">Two-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Three-Piece+Suit+Sets">Three-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Farsi+Salwar+Sets">Farsi Salwar Sets</a>
+            <a href="womens-traditional.html?category=Kurtas">Kurtas</a>
+            <a href="womens-traditional.html?category=Kurtis+%26+Tops">Kurtis &amp; Tops</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="mens-ethnic.html">Men <span class="nav-arrow">▾</span></a>
+          <div class="dropdown">
+            <a href="mens-ethnic.html?category=Cotton+Shirts">Cotton Shirts</a>
+            <a href="mens-ethnic.html?category=Kurtas">Kurtas</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="kids.html">Kids <span class="nav-arrow">▾</span></a>
+          <div class="dropdown">
+            <a href="kids.html?category=Kurta+%26+Palazzo+Sets">Kurta &amp; Palazzo Sets</a>
+            <a href="kids.html?category=Lehenga+Choli">Lehenga Choli</a>
+            <a href="kids.html?category=Girls%27+Ethnic+Suits">Girls' Ethnic Suits</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="our-cotton.html">Our Story</a>
+        </div>
+        <div class="nav-item">
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Premium Mobile Slide-Out Menu -->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay" onclick="document.getElementById('mobile-menu').classList.remove('active'); this.classList.remove('active');"></div>
+    <div class="mobile-menu" id="mobile-menu">
+      <div class="mobile-menu-close" onclick="document.getElementById('mobile-menu').classList.remove('active'); document.getElementById('mobile-menu-overlay').classList.remove('active');">
+        <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="1.5" fill="none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </div>
+      <div class="mobile-navlinks">
+        <a href="shop.html">Shop All</a>
+
+        <div class="mobile-accordion">
+          <div class="mobile-acc-header" onclick="this.parentElement.classList.toggle('open')">
+            <span>Women</span>
+            <span class="mobile-acc-arrow">▾</span>
+          </div>
+          <div class="mobile-acc-content">
+            <a href="womens-traditional.html" style="font-weight:600; color:var(--primary) !important;">View All Women &rarr;</a>
+            <a href="womens-traditional.html?category=Co-Ord+Sets">Co-Ord Sets</a>
+            <a href="womens-traditional.html?category=Dresses+%26+Gowns">Dresses &amp; Gowns</a>
+            <a href="womens-traditional.html?category=Two-Piece+Suit+Sets">Two-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Three-Piece+Suit+Sets">Three-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Farsi+Salwar+Sets">Farsi Salwar Sets</a>
+            <a href="womens-traditional.html?category=Kurtas">Kurtas</a>
+            <a href="womens-traditional.html?category=Kurtis+%26+Tops">Kurtis &amp; Tops</a>
+          </div>
+        </div>
+
+        <div class="mobile-accordion">
+          <div class="mobile-acc-header" onclick="this.parentElement.classList.toggle('open')">
+            <span>Men</span>
+            <span class="mobile-acc-arrow">▾</span>
+          </div>
+          <div class="mobile-acc-content">
+            <a href="mens-ethnic.html" style="font-weight:600; color:var(--primary) !important;">View All Men &rarr;</a>
+            <a href="mens-ethnic.html?category=Cotton+Shirts">Cotton Shirts</a>
+            <a href="mens-ethnic.html?category=Kurtas">Kurtas</a>
+          </div>
+        </div>
+
+        <div class="mobile-accordion">
+          <div class="mobile-acc-header" onclick="this.parentElement.classList.toggle('open')">
+            <span>Kids</span>
+            <span class="mobile-acc-arrow">▾</span>
+          </div>
+          <div class="mobile-acc-content">
+            <a href="kids.html" style="font-weight:600; color:var(--primary) !important;">View All Kids &rarr;</a>
+            <a href="kids.html?category=Kurta+%26+Palazzo+Sets">Kurta &amp; Palazzo Sets</a>
+            <a href="kids.html?category=Lehenga+Choli">Lehenga Choli</a>
+            <a href="kids.html?category=Girls%27+Ethnic+Suits">Girls' Ethnic Suits</a>
+          </div>
+        </div>
+
+        <a href="our-cotton.html">Our Story</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="returns-wrap">
+    <h1>Request a Return</h1>
+    <p>Not completely satisfied? We accept returns within 14 days of delivery. Please provide your Order ID to initiate the process.</p>
+    
+    <form id="return-form">
+      <div class="f-group">
+        <label>Order ID</label>
+        <input type="number" id="ret-order-id" placeholder="e.g. 1024" required>
+      </div>
+      <div class="f-group">
+        <label>Reason for Return</label>
+        <textarea id="ret-reason" placeholder="Please describe why you are returning this item..." required></textarea>
+      </div>
+      <button type="submit" class="btn-primary" style="width: 100%; margin-top: 10px;">Submit Request</button>
+    </form>
+    
+    <div id="return-msg" style="margin-top: 20px; text-align: center; font-weight: 500; display: none;"></div>  </div>
+
+  <!-- Master Size Guide Section -->
+  <section class="section" id="size-guide" style="background: #ffffff; padding: 60px 0; border-top: 1px solid var(--border); margin-top: 40px;">
+    <div class="wrap" style="max-width: 900px;">
+      <div style="text-align: center; margin-bottom: 36px;">
+        <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--primary);">Craft & Fit Standards</span>
+        <h2 style="font-family: var(--font-display); font-size: 32px; color: #1e293b; margin: 8px 0;">Handloom Size &amp; Measurement Guide</h2>
+        <p style="color: #64748b; font-size: 14px; max-width: 600px; margin: 0 auto;">Our pure cotton garments are tailored with relaxed, breathable drapes. For tailored fits, choose your true measurement; for a relaxed look, size up.</p>
+      </div>
+
+      <!-- Size Chart Tabs -->
+      <div style="display: flex; justify-content: center; gap: 12px; margin-bottom: 28px;">
+        <button type="button" class="btn-primary" onclick="showSizeTab('women', this)" style="padding: 8px 24px; border-radius: 20px; font-size: 13px;">Women's Drapes</button>
+        <button type="button" class="cat-pill-btn" onclick="showSizeTab('men', this)" style="padding: 8px 24px; border-radius: 20px; font-size: 13px;">Men's Essentials</button>
+        <button type="button" class="cat-pill-btn" onclick="showSizeTab('kids', this)" style="padding: 8px 24px; border-radius: 20px; font-size: 13px;">Kids' Festive</button>
+      </div>
+
+      <!-- Women's Chart -->
+      <div id="size-tab-women" class="size-chart-table-wrap" style="overflow-x: auto; background: #FAF7F2; padding: 20px; border-radius: 12px; border: 1px solid rgba(156,82,58,0.15);">
+        <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 13px;">
+          <thead>
+            <tr style="border-bottom: 2px solid rgba(156,82,58,0.2); color: #1e293b;">
+              <th style="padding: 12px 14px;">Size</th>
+              <th style="padding: 12px 14px;">Bust (in)</th>
+              <th style="padding: 12px 14px;">Waist (in)</th>
+              <th style="padding: 12px 14px;">Hip (in)</th>
+              <th style="padding: 12px 14px;">Kurta Length (in)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid rgba(0,0,0,0.05);">
+              <td style="padding: 12px 14px; font-weight: 700;">XS</td>
+              <td style="padding: 12px 14px;">32 - 34</td>
+              <td style="padding: 12px 14px;">26 - 28</td>
+              <td style="padding: 12px 14px;">36 - 38</td>
+              <td style="padding: 12px 14px;">44</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(0,0,0,0.05); background: rgba(255,255,255,0.6);">
+              <td style="padding: 12px 14px; font-weight: 700;">S</td>
+              <td style="padding: 12px 14px;">34 - 36</td>
+              <td style="padding: 12px 14px;">28 - 30</td>
+              <td style="padding: 12px 14px;">38 - 40</td>
+              <td style="padding: 12px 14px;">45</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(0,0,0,0.05);">
+              <td style="padding: 12px 14px; font-weight: 700;">M</td>
+              <td style="padding: 12px 14px;">36 - 38</td>
+              <td style="padding: 12px 14px;">30 - 32</td>
+              <td style="padding: 12px 14px;">40 - 42</td>
+              <td style="padding: 12px 14px;">46</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(0,0,0,0.05); background: rgba(255,255,255,0.6);">
+              <td style="padding: 12px 14px; font-weight: 700;">L</td>
+              <td style="padding: 12px 14px;">38 - 40</td>
+              <td style="padding: 12px 14px;">32 - 34</td>
+              <td style="padding: 12px 14px;">42 - 44</td>
+              <td style="padding: 12px 14px;">46</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px 14px; font-weight: 700;">XL</td>
+              <td style="padding: 12px 14px;">40 - 42</td>
+              <td style="padding: 12px 14px;">34 - 36</td>
+              <td style="padding: 12px 14px;">44 - 46</td>
+              <td style="padding: 12px 14px;">47</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Men's Chart -->
+      <div id="size-tab-men" class="size-chart-table-wrap" style="display: none; overflow-x: auto; background: #FAF7F2; padding: 20px; border-radius: 12px; border: 1px solid rgba(156,82,58,0.15);">
+        <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 13px;">
+          <thead>
+            <tr style="border-bottom: 2px solid rgba(156,82,58,0.2); color: #1e293b;">
+              <th style="padding: 12px 14px;">Size</th>
+              <th style="padding: 12px 14px;">Chest (in)</th>
+              <th style="padding: 12px 14px;">Shoulder (in)</th>
+              <th style="padding: 12px 14px;">Shirt Length (in)</th>
+              <th style="padding: 12px 14px;">Collar (in)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid rgba(0,0,0,0.05);">
+              <td style="padding: 12px 14px; font-weight: 700;">S (38)</td>
+              <td style="padding: 12px 14px;">38 - 40</td>
+              <td style="padding: 12px 14px;">17.5</td>
+              <td style="padding: 12px 14px;">29</td>
+              <td style="padding: 12px 14px;">15</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(0,0,0,0.05); background: rgba(255,255,255,0.6);">
+              <td style="padding: 12px 14px; font-weight: 700;">M (40)</td>
+              <td style="padding: 12px 14px;">40 - 42</td>
+              <td style="padding: 12px 14px;">18.5</td>
+              <td style="padding: 12px 14px;">30</td>
+              <td style="padding: 12px 14px;">15.5</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(0,0,0,0.05);">
+              <td style="padding: 12px 14px; font-weight: 700;">L (42)</td>
+              <td style="padding: 12px 14px;">42 - 44</td>
+              <td style="padding: 12px 14px;">19.5</td>
+              <td style="padding: 12px 14px;">31</td>
+              <td style="padding: 12px 14px;">16</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px 14px; font-weight: 700;">XL (44)</td>
+              <td style="padding: 12px 14px;">44 - 46</td>
+              <td style="padding: 12px 14px;">20.5</td>
+              <td style="padding: 12px 14px;">31.5</td>
+              <td style="padding: 12px 14px;">16.5</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Kids' Chart -->
+      <div id="size-tab-kids" class="size-chart-table-wrap" style="display: none; overflow-x: auto; background: #FAF7F2; padding: 20px; border-radius: 12px; border: 1px solid rgba(156,82,58,0.15);">
+        <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 13px;">
+          <thead>
+            <tr style="border-bottom: 2px solid rgba(156,82,58,0.2); color: #1e293b;">
+              <th style="padding: 12px 14px;">Age Group</th>
+              <th style="padding: 12px 14px;">Height (cm)</th>
+              <th style="padding: 12px 14px;">Chest (in)</th>
+              <th style="padding: 12px 14px;">Waist (in)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid rgba(0,0,0,0.05);">
+              <td style="padding: 12px 14px; font-weight: 700;">2 - 3 Yrs</td>
+              <td style="padding: 12px 14px;">92 - 98</td>
+              <td style="padding: 12px 14px;">21</td>
+              <td style="padding: 12px 14px;">20</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(0,0,0,0.05); background: rgba(255,255,255,0.6);">
+              <td style="padding: 12px 14px; font-weight: 700;">4 - 5 Yrs</td>
+              <td style="padding: 12px 14px;">104 - 110</td>
+              <td style="padding: 12px 14px;">23</td>
+              <td style="padding: 12px 14px;">22</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(0,0,0,0.05);">
+              <td style="padding: 12px 14px; font-weight: 700;">6 - 7 Yrs</td>
+              <td style="padding: 12px 14px;">116 - 122</td>
+              <td style="padding: 12px 14px;">25</td>
+              <td style="padding: 12px 14px;">23</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px 14px; font-weight: 700;">8 - 10 Yrs</td>
+              <td style="padding: 12px 14px;">128 - 140</td>
+              <td style="padding: 12px 14px;">27</td>
+              <td style="padding: 12px 14px;">24</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function showSizeTab(tab, btn) {
+      document.getElementById('size-tab-women').style.display = 'none';
+      document.getElementById('size-tab-men').style.display = 'none';
+      document.getElementById('size-tab-kids').style.display = 'none';
+      document.getElementById('size-tab-' + tab).style.display = 'block';
+
+      btn.parentElement.querySelectorAll('button').forEach(b => {
+        b.className = 'cat-pill-btn';
+        b.style.background = '#ffffff';
+        b.style.color = '#475569';
+      });
+      btn.className = 'btn-primary';
+      btn.style.background = 'var(--primary)';
+      btn.style.color = '#ffffff';
+    }
+  </script>
+
+  <!-- Standardized Footer -->
+  <footer>
+    <div class="wrap">
+      <div class="foot-top">
+        <div>
+          <div class="foot-logo"><img src="assets/logo.png" alt="JP Cotton"></div>
+          <p class="foot-desc">Centuries of Indian weaving heritage, tailored for modern living. 100% pure organic cotton garments directly from master artisans.</p>
+        </div>
+        <div>
+          <h4>Collections</h4>
+          <a href="womens-traditional.html">Women's Collection</a>
+          <a href="kids.html">Kids' Festive</a>
+          <a href="mens-ethnic.html">Men's Collection</a>
+          <a href="shop.html">Shop All</a>
+        </div>
+        <div>
+          <h4>Customer Care</h4>
+          <a href="returns.html">Returns &amp; Refunds</a>
+          <a href="returns.html#size-guide">Size Guide</a>
+          <a href="contact.html">Shipping FAQ</a>
+          <a href="contact.html">Contact Concierge</a>
+        </div>
+        <div>
+          <h4>JP Brand</h4>
+          <a href="our-cotton.html">Our Story</a>
+          <a href="our-cotton.html">The Fabric</a>
+          <a href="our-cotton.html">Artisan Journal</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <div>&copy; 2026 JP Cotton All Rights Reserved.</div>
+        <div>Ethically crafted in Punjab, India.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js?v=6.0" defer></script>
+  <script>
+    document.getElementById('return-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = e.target.querySelector('button');
+      const msg = document.getElementById('return-msg');
+      
+      btn.innerText = 'Submitting...';
+      btn.disabled = true;
+
+      const payload = {
+        order_id: document.getElementById('ret-order-id').value,
+        reason: document.getElementById('ret-reason').value
+      };
+
+      try {
+        const res = await fetch((window.getApiBase ? window.getApiBase() : '') + '/api/returns', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (res.ok) {
+          e.target.reset();
+          msg.style.color = '#27ae60';
+          msg.innerText = 'Your return request has been submitted successfully! We will review it shortly.';
+          msg.style.display = 'block';
+        } else {
+          msg.style.color = '#e74c3c';
+          msg.innerText = 'Failed to submit request. Please try again.';
+          msg.style.display = 'block';
+        }
+      } catch (err) {
+        msg.style.color = '#e74c3c';
+        msg.innerText = 'Server error. Please try again later.';
+        msg.style.display = 'block';
+      }
+
+      btn.innerText = 'Submit Request';
+      btn.disabled = false;
+    });
+  </script>
+
+</body>
+</html>

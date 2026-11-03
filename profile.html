@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Account Dashboard &mdash; JP Cotton</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Trirong:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=6.0">
+</head>
+<body>
+
+  <!-- Dashboard Header -->
+    <!-- Site Header -->
+    <!-- Site Header -->
+    <!-- Site Header -->
+  <header id="main-header">
+    <div class="wrap">
+      <nav>
+        <div class="menu-toggle" onclick="document.getElementById('mobile-menu').classList.add('active'); document.getElementById('mobile-menu-overlay').classList.add('active');">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </div>
+        <div class="logo"><a href="index.html"><img src="assets/logo.png" alt="JP Cotton"></a></div>
+        <div class="search-bar">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" placeholder="Search for heritage pieces, pure cotton, sarees..." class="global-search">
+        </div>
+        <div class="icons">
+          <a href="favorites.html" title="Wishlist"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></a>
+          <a href="cart.html" title="Cart">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+            <span class="cart-badge" id="cart-badge">0</span>
+          </a>
+          <a href="login.html" id="auth-user-icon" title="Account"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+          <script>
+            (function() {
+              if (localStorage.getItem('petal_user')) {
+                const el = document.getElementById('auth-user-icon');
+                if (el) el.setAttribute('href', 'profile.html');
+              }
+            })();
+          </script>
+        </div>
+      </nav>
+      <div class="navlinks desktop-only">
+        <div class="nav-item">
+          <a href="shop.html">Shop All</a>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="womens-traditional.html">Women <span class="nav-arrow">▾</span></a>
+          <div class="dropdown">
+            <a href="womens-traditional.html?category=Co-Ord+Sets">Co-Ord Sets</a>
+            <a href="womens-traditional.html?category=Dresses+%26+Gowns">Dresses &amp; Gowns</a>
+            <a href="womens-traditional.html?category=Two-Piece+Suit+Sets">Two-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Three-Piece+Suit+Sets">Three-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Farsi+Salwar+Sets">Farsi Salwar Sets</a>
+            <a href="womens-traditional.html?category=Kurtas">Kurtas</a>
+            <a href="womens-traditional.html?category=Kurtis+%26+Tops">Kurtis &amp; Tops</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="mens-ethnic.html">Men <span class="nav-arrow">▾</span></a>
+          <div class="dropdown">
+            <a href="mens-ethnic.html?category=Cotton+Shirts">Cotton Shirts</a>
+            <a href="mens-ethnic.html?category=Kurtas">Kurtas</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="kids.html">Kids <span class="nav-arrow">▾</span></a>
+          <div class="dropdown">
+            <a href="kids.html?category=Kurta+%26+Palazzo+Sets">Kurta &amp; Palazzo Sets</a>
+            <a href="kids.html?category=Lehenga+Choli">Lehenga Choli</a>
+            <a href="kids.html?category=Girls%27+Ethnic+Suits">Girls' Ethnic Suits</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="our-cotton.html">Our Story</a>
+        </div>
+        <div class="nav-item">
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Premium Mobile Slide-Out Menu -->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay" onclick="document.getElementById('mobile-menu').classList.remove('active'); this.classList.remove('active');"></div>
+    <div class="mobile-menu" id="mobile-menu">
+      <div class="mobile-menu-close" onclick="document.getElementById('mobile-menu').classList.remove('active'); document.getElementById('mobile-menu-overlay').classList.remove('active');">
+        <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="1.5" fill="none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </div>
+      <div class="mobile-navlinks">
+        <a href="shop.html">Shop All</a>
+
+        <div class="mobile-accordion">
+          <div class="mobile-acc-header" onclick="this.parentElement.classList.toggle('open')">
+            <span>Women</span>
+            <span class="mobile-acc-arrow">▾</span>
+          </div>
+          <div class="mobile-acc-content">
+            <a href="womens-traditional.html" style="font-weight:600; color:var(--primary) !important;">View All Women &rarr;</a>
+            <a href="womens-traditional.html?category=Co-Ord+Sets">Co-Ord Sets</a>
+            <a href="womens-traditional.html?category=Dresses+%26+Gowns">Dresses &amp; Gowns</a>
+            <a href="womens-traditional.html?category=Two-Piece+Suit+Sets">Two-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Three-Piece+Suit+Sets">Three-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Farsi+Salwar+Sets">Farsi Salwar Sets</a>
+            <a href="womens-traditional.html?category=Kurtas">Kurtas</a>
+            <a href="womens-traditional.html?category=Kurtis+%26+Tops">Kurtis &amp; Tops</a>
+          </div>
+        </div>
+
+        <div class="mobile-accordion">
+          <div class="mobile-acc-header" onclick="this.parentElement.classList.toggle('open')">
+            <span>Men</span>
+            <span class="mobile-acc-arrow">▾</span>
+          </div>
+          <div class="mobile-acc-content">
+            <a href="mens-ethnic.html" style="font-weight:600; color:var(--primary) !important;">View All Men &rarr;</a>
+            <a href="mens-ethnic.html?category=Cotton+Shirts">Cotton Shirts</a>
+            <a href="mens-ethnic.html?category=Kurtas">Kurtas</a>
+          </div>
+        </div>
+
+        <div class="mobile-accordion">
+          <div class="mobile-acc-header" onclick="this.parentElement.classList.toggle('open')">
+            <span>Kids</span>
+            <span class="mobile-acc-arrow">▾</span>
+          </div>
+          <div class="mobile-acc-content">
+            <a href="kids.html" style="font-weight:600; color:var(--primary) !important;">View All Kids &rarr;</a>
+            <a href="kids.html?category=Kurta+%26+Palazzo+Sets">Kurta &amp; Palazzo Sets</a>
+            <a href="kids.html?category=Lehenga+Choli">Lehenga Choli</a>
+            <a href="kids.html?category=Girls%27+Ethnic+Suits">Girls' Ethnic Suits</a>
+          </div>
+        </div>
+
+        <a href="our-cotton.html">Our Story</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="profile-section">
+    <div class="wrap">
+      
+      <!-- Breadcrumb -->
+      <div class="profile-breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <span>My Account Dashboard</span>
+      </div>
+
+      <!-- Demo / Guest Banner (Shown when not logged in) -->
+      <div id="guest-preview-banner" class="profile-guest-banner" style="display: none;">
+        <div class="profile-guest-banner-text">
+          <strong>👋 Demo Preview Mode:</strong> Viewing account as sample customer <strong>Pranav Patel</strong> (<code>pranav@gmail.com</code>).
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <a href="login.html" class="profile-guest-banner-btn">Sign In to Your Account</a>
+        </div>
+      </div>
+
+      <div class="profile-layout">
+        
+        <!-- Left Sidebar -->
+        <aside class="profile-sidebar">
+          
+          <!-- User Summary Card -->
+          <div class="profile-user-card">
+            <div class="profile-avatar-wrap">
+              <div class="profile-avatar-initials" id="profile-avatar">PP</div>
+              <div class="profile-verified-dot" title="Verified Customer">✓</div>
+            </div>
+            <h3 class="profile-user-name" id="profile-name">Pranav Patel</h3>
+            <p class="profile-user-email" id="profile-email">pranav@gmail.com</p>
+            <div class="profile-tier-badge">🪔 Loyal Heritage Member</div>
+            
+            <div class="profile-stats-grid">
+              <div class="profile-stat-box">
+                <div class="profile-stat-val" id="stat-orders-count">3</div>
+                <div class="profile-stat-lbl">Orders</div>
+              </div>
+              <div class="profile-stat-box">
+                <div class="profile-stat-val" id="stat-addresses-count">1</div>
+                <div class="profile-stat-lbl">Saved Addr</div>
+              </div>
+              <div class="profile-stat-box">
+                <div class="profile-stat-val" id="stat-wishlist-count">4</div>
+                <div class="profile-stat-lbl">Wishlist</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation Card -->
+          <div class="profile-nav-card" role="navigation">
+            <div class="profile-nav-group-title">Shopping</div>
+            <button type="button" class="profile-nav-item active" onclick="switchTab('orders', this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              <span>My Orders &amp; Tracking</span>
+              <span class="profile-nav-badge" id="nav-badge-orders">3</span>
+            </button>
+            <a href="favorites.html" class="profile-nav-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              <span>My Wishlist</span>
+            </a>
+
+            <div class="profile-nav-group-title">Account Settings</div>
+            <button type="button" class="profile-nav-item" onclick="switchTab('personal', this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <span>Personal Information</span>
+            </button>
+            <button type="button" class="profile-nav-item" onclick="switchTab('addresses', this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Saved Addresses</span>
+            </button>
+            <button type="button" class="profile-nav-item" onclick="switchTab('payment', this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+              <span>Payment Methods</span>
+            </button>
+            <button type="button" class="profile-nav-item" onclick="switchTab('notifications', this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              <span>Notification Preferences</span>
+            </button>
+
+            <div class="profile-nav-group-title">Assistance</div>
+            <button type="button" class="profile-nav-item" onclick="switchTab('help', this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              <span>Help &amp; Concierge</span>
+            </button>
+
+            <button type="button" class="profile-nav-item profile-logout-btn" onclick="logoutUser()">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+              <span>Sign Out</span>
+            </button>
+          </div>
+        </aside>
+
+        <!-- Right Main Content Area -->
+        <main class="profile-content">
+          
+          <!-- TAB 1: ORDERS -->
+          <div class="profile-card tab-content" id="tab-orders">
+            <div class="profile-card-header">
+              <div>
+                <h2 class="profile-card-title">Order History &amp; Tracking</h2>
+                <div class="profile-card-sub">Track active dispatches, view invoices, or re-order your favorite pieces.</div>
+              </div>
+            </div>
+
+            <!-- Order Filters -->
+            <div class="order-filter-bar">
+              <button class="order-filter-btn active" onclick="filterOrders('all', this)">All Orders</button>
+              <button class="order-filter-btn" onclick="filterOrders('Active', this)">Active / In-Transit</button>
+              <button class="order-filter-btn" onclick="filterOrders('Delivered', this)">Delivered</button>
+              <button class="order-filter-btn" onclick="filterOrders('Cancelled', this)">Cancelled</button>
+            </div>
+
+            <!-- Orders Container -->
+            <div id="customer-orders-list">
+              <div style="padding: 40px; text-align: center; color: #94a3b8;">Loading your orders...</div>
+            </div>
+          </div>
+
+          <!-- TAB 2: PERSONAL INFORMATION -->
+          <div class="profile-card tab-content" id="tab-personal" style="display: none;">
+            <div class="profile-card-header">
+              <div>
+                <h2 class="profile-card-title">Personal Profile Details</h2>
+                <div class="profile-card-sub">Update your contact details to ensure smooth delivery notifications.</div>
+              </div>
+            </div>
+
+            <form id="profile-edit-form" onsubmit="handleProfileUpdate(event)">
+              <div class="profile-form-grid">
+                <div class="profile-input-group">
+                  <label for="edit-fn">First Name</label>
+                  <input type="text" id="edit-fn" required>
+                </div>
+                <div class="profile-input-group">
+                  <label for="edit-ln">Last Name</label>
+                  <input type="text" id="edit-ln" required>
+                </div>
+                <div class="profile-input-group form-col-full">
+                  <label for="edit-email">Email Address <span style="color:#15803d; font-weight:normal; font-size:11px;">(Verified)</span></label>
+                  <input type="email" id="edit-email" readonly style="background:#f8fafc; cursor:not-allowed;">
+                </div>
+                <div class="profile-input-group form-col-full">
+                  <label for="edit-phone">Mobile Phone (for delivery SMS &amp; WhatsApp updates)</label>
+                  <input type="tel" id="edit-phone" placeholder="+91 98765 43210">
+                </div>
+              </div>
+
+              <div style="margin-top: 24px; display: flex; gap: 12px; align-items: center;">
+                <button type="submit" class="btn-primary" style="padding: 12px 24px; border-radius: 8px;">Save Profile Changes</button>
+                <span id="profile-save-msg" style="color: #15803d; font-weight: 600; font-size: 13px; display: none;">✓ Profile updated successfully!</span>
+              </div>
+            </form>
+
+            <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid #f1f5f9;">
+              <h3 style="font-size: 18px; margin: 0 0 6px; color:#1e293b;">Security &amp; Password</h3>
+              <p style="font-size: 13px; color:#64748b; margin: 0 0 20px;">Protect your account with a secure password.</p>
+              
+              <form id="password-change-form" onsubmit="handlePasswordChange(event)" class="profile-form-grid">
+                <div class="profile-input-group">
+                  <label for="pwd-current">Current Password</label>
+                  <input type="password" id="pwd-current" placeholder="••••••••" required>
+                </div>
+                <div class="profile-input-group">
+                  <label for="pwd-new">New Password</label>
+                  <input type="password" id="pwd-new" placeholder="Min. 6 characters" minlength="6" required>
+                </div>
+                <div class="form-col-full">
+                  <button type="submit" class="btn-secondary" style="padding: 10px 20px; border-radius: 8px; font-size: 13px;">Update Password</button>
+                  <span id="pwd-save-msg" style="margin-left: 12px; color: #15803d; font-weight: 600; font-size: 13px; display: none;">✓ Password updated!</span>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- TAB 3: SAVED ADDRESSES -->
+          <div class="profile-card tab-content" id="tab-addresses" style="display: none;">
+            <div class="profile-card-header">
+              <div>
+                <h2 class="profile-card-title">Saved Delivery Addresses</h2>
+                <div class="profile-card-sub">Manage default shipping destinations for faster 1-click checkout.</div>
+              </div>
+            </div>
+
+            <!-- Addresses Cards Grid -->
+            <div class="address-card-grid" id="addresses-list">
+              <div style="color: #94a3b8; padding: 20px;">Loading saved addresses...</div>
+            </div>
+
+            <!-- Add Address Form -->
+            <div style="background: #fafaf9; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; margin-top: 20px;">
+              <h3 style="font-size: 16px; margin: 0 0 16px; color:#1e293b;">+ Add New Shipping Address</h3>
+              <form id="address-form" onsubmit="handleAddressSubmit(event)">
+                <div class="profile-form-grid">
+                  <div class="profile-input-group">
+                    <label for="addr-title">Address Label</label>
+                    <input type="text" id="addr-title" placeholder="e.g. Home, Design Studio, Office" required>
+                  </div>
+                  <div class="profile-input-group">
+                    <label for="addr-zip">PIN / Postal Code</label>
+                    <input type="text" id="addr-zip" placeholder="e.g. 110001" required>
+                  </div>
+                  <div class="profile-input-group form-col-full">
+                    <label for="addr-street">Street Address / Flat / Building</label>
+                    <input type="text" id="addr-street" placeholder="e.g. 42 Heritage Weaver Lane, Near Loom Chowk" required>
+                  </div>
+                  <div class="profile-input-group">
+                    <label for="addr-city">City / District</label>
+                    <input type="text" id="addr-city" placeholder="e.g. Amritsar" required>
+                  </div>
+                  <div class="profile-input-group">
+                    <label for="addr-state">State</label>
+                    <input type="text" id="addr-state" placeholder="e.g. Punjab" required value="Punjab">
+                  </div>
+                </div>
+                <div style="margin-top: 18px;">
+                  <button type="submit" class="btn-primary" style="padding: 10px 22px; border-radius: 8px;">Save Address</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- TAB 4: PAYMENT METHODS -->
+          <div class="profile-card tab-content" id="tab-payment" style="display: none;">
+            <div class="profile-card-header">
+              <div>
+                <h2 class="profile-card-title">Saved Payment Methods</h2>
+                <div class="profile-card-sub">Securely stored encrypted tokens for expedited checkout.</div>
+              </div>
+            </div>
+
+            <div class="payment-cards-grid" id="payments-list">
+              <div style="color: #94a3b8; padding: 20px;">Loading payment methods...</div>
+            </div>
+
+            <!-- Add Payment Method Form -->
+            <div style="background: #fafaf9; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; margin-top: 20px;">
+              <h3 style="font-size: 16px; margin: 0 0 16px; color:#1e293b;">+ Add Card for Faster Checkout</h3>
+              <form id="payment-form" onsubmit="handlePaymentSubmit(event)">
+                <div class="profile-form-grid">
+                  <div class="profile-input-group">
+                    <label for="pay-type">Card Network</label>
+                    <select id="pay-type" required>
+                      <option value="Visa">Visa Premium Handloom Debit/Credit</option>
+                      <option value="Mastercard">Mastercard World Elite</option>
+                      <option value="RuPay">RuPay Artisan Platinum</option>
+                      <option value="Amex">American Express</option>
+                    </select>
+                  </div>
+                  <div class="profile-input-group">
+                    <label for="pay-lastfour">Last 4 Digits</label>
+                    <input type="text" id="pay-lastfour" placeholder="e.g. 4892" pattern="[0-9]{4}" maxlength="4" required>
+                  </div>
+                  <div class="profile-input-group">
+                    <label for="pay-expiry">Expiry Date (MM/YY)</label>
+                    <input type="text" id="pay-expiry" placeholder="10/28" pattern="(0[1-9]|1[0-2])\/[0-9]{2}" required>
+                  </div>
+                  <div class="profile-input-group">
+                    <label for="pay-holder">Name on Card</label>
+                    <input type="text" id="pay-holder" placeholder="e.g. Pranav Patel" required>
+                  </div>
+                </div>
+                <div style="margin-top: 18px;">
+                  <button type="submit" class="btn-primary" style="padding: 10px 22px; border-radius: 8px;">Save Card</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- TAB 5: NOTIFICATIONS -->
+          <div class="profile-card tab-content" id="tab-notifications" style="display: none;">
+            <div class="profile-card-header">
+              <div>
+                <h2 class="profile-card-title">Notification &amp; Privacy Settings</h2>
+                <div class="profile-card-sub">Choose how and when you receive order tracking, drops, and festive sales.</div>
+              </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column;">
+              <div class="switch-item">
+                <div class="switch-info">
+                  <h4>Order Tracking SMS &amp; Email</h4>
+                  <p>Real-time notifications when your order is placed, dispatched, and out for delivery.</p>
+                </div>
+                <label class="switch-toggle">
+                  <input type="checkbox" id="pref-order" checked onchange="savePreferences()">
+                  <span class="switch-slider"></span>
+                </label>
+              </div>
+
+              <div class="switch-item">
+                <div class="switch-info">
+                  <h4>🪔 Festive Sales &amp; VIP Promo Offers</h4>
+                  <p>Get early bird access to Diwali Dhamaka sales and exclusive customer coupon codes.</p>
+                </div>
+                <label class="switch-toggle">
+                  <input type="checkbox" id="pref-promo" checked onchange="savePreferences()">
+                  <span class="switch-slider"></span>
+                </label>
+              </div>
+
+              <div class="switch-item">
+                <div class="switch-info">
+                  <h4>Artisan Weave Journal &amp; New Drops</h4>
+                  <p>Weekly curation of new handloom drops, master weaver stories, and fabric care tips.</p>
+                </div>
+                <label class="switch-toggle">
+                  <input type="checkbox" id="pref-news" onchange="savePreferences()">
+                  <span class="switch-slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 6: HELP & CONCIERGE -->
+          <div class="profile-card tab-content" id="tab-help" style="display: none;">
+            <div class="profile-card-header">
+              <div>
+                <h2 class="profile-card-title">Customer Concierge &amp; Support</h2>
+                <div class="profile-card-sub">We are here to assist with size consultation, returns, custom tailoring, and tracking.</div>
+              </div>
+            </div>
+
+            <div class="concierge-grid">
+              <a href="https://wa.me/919876543210" target="_blank" class="concierge-card">
+                <div class="concierge-icon">💬</div>
+                <div class="concierge-title">WhatsApp Concierge</div>
+                <div class="concierge-desc">+91 98765 43210 &bull; Instant chat</div>
+              </a>
+              <a href="tel:+911800123456" class="concierge-card">
+                <div class="concierge-icon">📞</div>
+                <div class="concierge-title">Toll-Free Phone Support</div>
+                <div class="concierge-desc">1800-123-456 &bull; 9 AM – 8 PM</div>
+              </a>
+              <a href="mailto:care@jpcotton.com" class="concierge-card">
+                <div class="concierge-icon">✉️</div>
+                <div class="concierge-title">Email Heritage Care</div>
+                <div class="concierge-desc">care@jpcotton.com &bull; Reply in 2h</div>
+              </a>
+            </div>
+
+            <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid #f1f5f9;">
+              <h3 style="font-size: 18px; margin: 0 0 16px; color:#1e293b;">Frequently Asked Questions</h3>
+              
+              <div style="display: flex; flex-direction: column; gap: 14px;">
+                <div style="background:#f8fafc; border-radius:10px; padding: 16px 20px;">
+                  <h4 style="font-size: 14px; font-weight: 600; margin: 0 0 6px; color:#1e293b;">What is our return &amp; exchange window?</h4>
+                  <p style="font-size: 13px; color:#64748b; margin: 0; line-height: 1.5;">We offer a hassle-free 15-day complimentary exchange or return policy for all unworn handloom apparel with original tags attached.</p>
+                </div>
+                <div style="background:#f8fafc; border-radius:10px; padding: 16px 20px;">
+                  <h4 style="font-size: 14px; font-weight: 600; margin: 0 0 6px; color:#1e293b;">How do I care for 100% pure organic cotton?</h4>
+                  <p style="font-size: 13px; color:#64748b; margin: 0; line-height: 1.5;">We recommend gentle hand wash or machine cycle with mild organic detergent in cold water. Shade dry to preserve the natural plant dyes and fiber strength.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </main>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+    <!-- Footer -->
+  <footer>
+    <div class="wrap foot-top">
+      <div class="foot-logo">
+        <a href="index.html"><img src="assets/logo.png" alt="JP Cotton"></a>
+        <p>Centuries of Indian weaving heritage, tailored for modern living. 100% pure organic cotton garments directly from master artisans.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <a href="womens-traditional.html">Women's Collection</a>
+        <a href="kids.html">Kids' Festive</a>
+        <a href="mens-ethnic.html">Men's Collection</a>
+        <a href="shop.html">Shop All</a>
+      </div>
+      <div>
+        <h4>Customer Care</h4>
+        <a href="contact.html">Contact Concierge</a>
+        <a href="returns.html">Returns &amp; Refunds</a>
+        <a href="contact.html">Shipping FAQ</a>
+      </div>
+      <div>
+        <h4>JP Brand</h4>
+        <a href="our-cotton.html">Our Story</a>
+        <a href="our-cotton.html">The Fabric</a>
+        <a href="our-cotton.html">Artisan Journal</a>
+      </div>
+    </div>
+    <div class="foot-bottom wrap">
+      <div>&copy; 2026 JP Cotton All Rights Reserved.</div>
+      <div>Ethically crafted in Punjab, India.</div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    const API_BASE = (window.location.protocol === 'file:') ? 'http://localhost:3000' : ((window.location.port === "3000" || window.location.port === "") ? "" : "http://localhost:3000");
+    let activeCustomer = null;
+    let globalOrdersCache = [];
+
+    // Explicit Universal Logout
+    function logoutUser(e) {
+      if (e && e.preventDefault) e.preventDefault();
+      try {
+        localStorage.removeItem('petal_user');
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        sessionStorage.removeItem('jp_last_order');
+      } catch(err) {}
+      window.location.href = 'login.html?logged_out=1';
+    }
+    window.logoutUser = logoutUser;
+    window.logout = logoutUser;
+    window.signOut = logoutUser;
+
+    // Initialize user session or handle signed-out state
+    function initUser() {
+      let raw = localStorage.getItem('petal_user') || localStorage.getItem('user');
+      if (raw) {
+        try {
+          activeCustomer = JSON.parse(raw);
+        } catch(e) {}
+      }
+
+      // If no customer logged in, check if recent order in sessionStorage
+      if (!activeCustomer) {
+        try {
+          const lastOrder = JSON.parse(sessionStorage.getItem('jp_last_order'));
+          if (lastOrder && lastOrder.email) {
+            activeCustomer = {
+              first_name: lastOrder.customer_name ? lastOrder.customer_name.split(' ')[0] : 'Patron',
+              last_name: lastOrder.customer_name ? lastOrder.customer_name.split(' ').slice(1).join(' ') : '',
+              email: lastOrder.email,
+              phone: lastOrder.phone || '',
+              isGuest: true
+            };
+            localStorage.setItem('petal_user', JSON.stringify(activeCustomer));
+          }
+        } catch(e) {}
+      }
+
+      // If no customer logged in, display signed-out view
+      if (!activeCustomer) {
+        const guestBanner = document.getElementById('guest-preview-banner');
+        if (guestBanner) {
+          guestBanner.style.display = 'flex';
+          guestBanner.innerHTML = `
+            <div class="profile-guest-banner-text">
+              <strong>🔒 You are currently signed out.</strong> Sign in to view your bespoke orders, track dispatches, and access saved addresses.
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <a href="login.html" class="profile-guest-banner-btn" style="background:var(--primary); color:white;">Sign In to Your Account</a>
+            </div>
+          `;
+        }
+        
+        document.getElementById('profile-name').textContent = "Guest Patron";
+        document.getElementById('profile-email').textContent = "Please sign in";
+        document.getElementById('profile-avatar').textContent = "—";
+        
+        const logoutBtn = document.querySelector('.profile-logout-btn');
+        if (logoutBtn) {
+          logoutBtn.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+            <span style="color:var(--primary); font-weight:600;">Sign In / Register</span>
+          `;
+          logoutBtn.onclick = () => { window.location.href = 'login.html'; };
+        }
+
+        const ordersList = document.getElementById('customer-orders-list');
+        if (ordersList) {
+          ordersList.innerHTML = `
+            <div style="text-align: center; padding: 60px 20px;">
+              <div style="font-size: 40px; margin-bottom: 12px;">🔒</div>
+              <h3 style="font-size: 20px; font-weight: 600; color: var(--ink); margin-bottom: 8px;">Sign In to View Orders</h3>
+              <p style="color: #64748b; font-size: 14px; max-width: 400px; margin: 0 auto 20px;">Your purchase history, tracking milestones, and digital invoices are secured with your account.</p>
+              <a href="login.html" class="btn-primary" style="display: inline-block; padding: 12px 28px; border-radius: 6px; text-decoration:none;">Sign In Now &rarr;</a>
+            </div>
+          `;
+        }
+        return;
+      }
+
+      // Populate sidebar details
+      const first = activeCustomer.first_name || (activeCustomer.user && activeCustomer.user.first_name) || "Customer";
+      const last = activeCustomer.last_name || (activeCustomer.user && activeCustomer.user.last_name) || "";
+      const email = activeCustomer.email || (activeCustomer.user && activeCustomer.user.email) || "customer@example.com";
+      const phone = activeCustomer.phone || (activeCustomer.user && activeCustomer.user.phone) || "+91 98765 43210";
+
+      document.getElementById('profile-name').textContent = `${first} ${last}`.trim();
+      document.getElementById('profile-email').textContent = email;
+      
+      let initials = (first[0] || 'C') + (last[0] || '');
+      document.getElementById('profile-avatar').textContent = initials.toUpperCase();
+
+      // Populate personal info inputs
+      document.getElementById('edit-fn').value = first;
+      document.getElementById('edit-ln').value = last;
+      document.getElementById('edit-email').value = email;
+      document.getElementById('edit-phone').value = phone;
+
+      loadOrders(email);
+      loadAddresses(email);
+      loadPayments(email);
+      loadPreferences(email);
+      loadWishlist(email);
+    }
+
+    // Load Wishlist Count
+    function loadWishlist(email) {
+      try {
+        const local = JSON.parse(localStorage.getItem('petal_wishlist') || '[]');
+        if (local && local.length > 0) {
+          const el = document.getElementById('stat-wishlist-count');
+          if (el) el.textContent = local.length;
+          return;
+        }
+      } catch(e) {}
+      fetch(`${API_BASE}/api/wishlist/${email}`)
+        .then(res => res.json())
+        .then(items => {
+          if (Array.isArray(items)) {
+            const el = document.getElementById('stat-wishlist-count');
+            if (el) el.textContent = items.length;
+          }
+        })
+        .catch(() => {});
+    }
+
+    // Switch profile tabs cleanly
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.profile-nav-item').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+
+      document.querySelectorAll('.tab-content').forEach(card => card.style.display = 'none');
+      const target = document.getElementById('tab-' + tabId);
+      if (target) target.style.display = 'block';
+    }
+
+    // Load & Render Orders
+    function loadOrders(email) {
+      const container = document.getElementById('customer-orders-list');
+      fetch(`${API_BASE}/api/orders/user/${email}`)
+        .then(res => res.json())
+        .then(orders => {
+          if (!orders || orders.length === 0 || orders.error) {
+            container.innerHTML = `
+              <div style="padding: 60px 20px; text-align: center;">
+                <div style="font-size: 40px; margin-bottom: 12px;">🛍️</div>
+                <h3 style="font-size: 18px; color:#1e293b; margin:0 0 6px;">No Orders Placed Yet</h3>
+                <p style="font-size: 13px; color:#64748b; margin: 0 0 20px;">Discover handloom pieces from our latest festive collection.</p>
+                <a href="shop.html" class="btn-primary" style="padding: 10px 20px; border-radius: 8px; text-decoration:none;">Explore Collection</a>
+              </div>
+            `;
+            document.getElementById('stat-orders-count').textContent = '0';
+            document.getElementById('nav-badge-orders').textContent = '0';
+            return;
+          }
+
+          globalOrdersCache = orders;
+          document.getElementById('stat-orders-count').textContent = orders.length;
+          document.getElementById('nav-badge-orders').textContent = orders.length;
+          renderOrders(orders);
+        })
+        .catch(err => {
+          container.innerHTML = `<div style="padding: 40px; text-align: center; color: #dc2626;">Failed to load orders. Please make sure backend server is running.</div>`;
+        });
+    }
+
+    function renderOrders(orders) {
+      const container = document.getElementById('customer-orders-list');
+      if (orders.length === 0) {
+        container.innerHTML = `<div style="padding: 40px; text-align: center; color: #64748b;">No orders found matching this filter.</div>`;
+        return;
+      }
+
+      container.innerHTML = orders.map(order => {
+        let items = [];
+        try {
+          items = JSON.parse(order.items);
+        } catch(e) {}
+
+        const statusLower = (order.status || 'Pending').toLowerCase();
+        let pillClass = 'status-pill-processing';
+        let statusIcon = '⏳';
+        let stepIndex = 1; // 0: Placed, 1: Processing, 2: Shipped, 3: Delivered
+
+        if (statusLower === 'delivered') {
+          pillClass = 'status-pill-delivered';
+          statusIcon = '✓';
+          stepIndex = 3;
+        } else if (statusLower === 'shipped') {
+          pillClass = 'status-pill-shipped';
+          statusIcon = '🚚';
+          stepIndex = 2;
+        } else if (statusLower === 'cancelled') {
+          pillClass = 'status-pill-cancelled';
+          statusIcon = '✕';
+          stepIndex = -1;
+        }
+
+        const itemsHtml = items.map(item => `
+          <div class="profile-order-item-row">
+            <img src="${item.image || 'assets/product_kurta_ivory.jpg'}" alt="${item.name}" class="profile-order-item-img" onerror="this.src='assets/product_kurta_ivory.jpg'">
+            <div class="profile-order-item-details">
+              <h4 class="profile-order-item-name">${item.name}</h4>
+              <div class="profile-order-item-meta">Qty: ${item.qty || 1} ${item.size ? '&bull; Size: ' + item.size : ''} ${item.color ? '&bull; Color: ' + item.color : ''}</div>
+              <div class="profile-order-item-price">₹${Number(item.price).toFixed(2)}</div>
+            </div>
+          </div>
+        `).join('');
+
+        let formattedDate = order.created_at;
+        try {
+          formattedDate = new Date(order.created_at.replace(' ', 'T') + 'Z').toLocaleString('en-IN', {
+            year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
+          });
+        } catch(e) {}
+
+        const isCancellable = (order.status === 'Pending' || order.status === 'Processing');
+        const progressPct = stepIndex === 3 ? 100 : stepIndex === 2 ? 68 : stepIndex === 1 ? 36 : (stepIndex === 0 ? 12 : 0);
+
+        return `
+          <div class="profile-order-card">
+            <div class="profile-order-head">
+              <div class="profile-order-meta">
+                <span class="profile-order-id">Order #${order.id}</span>
+                <span class="profile-order-date">${formattedDate}</span>
+              </div>
+              <span class="profile-status-pill ${pillClass}">
+                <span>${statusIcon}</span>
+                <span>${order.status}</span>
+              </span>
+            </div>
+
+            <div class="profile-order-items">
+              ${itemsHtml}
+            </div>
+
+            <div class="profile-order-foot">
+              <div class="profile-order-total">
+                Total Amount: <strong>₹${Number(order.total_price).toFixed(2)}</strong>
+              </div>
+              <div class="profile-order-actions">
+                ${isCancellable ? `<button class="btn-order-cancel" onclick="cancelOrder(${order.id})" id="cancel-btn-${order.id}">Cancel Order</button>` : ''}
+                <button class="btn-order-track" onclick="toggleTracking(${order.id})">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  <span>Track Order</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Stepper Tracking Drawer -->
+            <div id="tracking-${order.id}" class="tracking-drawer" style="display: none;">
+              <div class="tracking-title">
+                <span>Dispatch &amp; Delivery Progress</span>
+                <span style="font-weight: 500; font-size: 13px; color: #64748b;">Carrier: JP Heritage Express (Air Fast)</span>
+              </div>
+
+              ${order.status === 'Cancelled' ? `
+                <div style="background:#fee2e2; color:#b91c1c; padding: 14px; border-radius: 8px; font-weight: 600; text-align: center;">
+                  ✕ This order was cancelled upon request. Any refund has been credited back to your original source.
+                </div>
+              ` : `
+                <div class="tracking-stepper-wrap">
+                  <div class="stepper-progress-bg"></div>
+                  <div class="stepper-progress-active" style="width: ${progressPct}%;"></div>
+
+                  <div class="stepper-step ${stepIndex >= 0 ? 'completed' : ''}">
+                    <div class="stepper-icon">${stepIndex > 0 ? '✓' : '1'}</div>
+                    <div class="stepper-step-lbl">Confirmed</div>
+                  </div>
+
+                  <div class="stepper-step ${stepIndex >= 1 ? (stepIndex > 1 ? 'completed' : 'active') : ''}">
+                    <div class="stepper-icon">${stepIndex > 1 ? '✓' : '2'}</div>
+                    <div class="stepper-step-lbl">Processing</div>
+                  </div>
+
+                  <div class="stepper-step ${stepIndex >= 2 ? (stepIndex > 2 ? 'completed' : 'active') : ''}">
+                    <div class="stepper-icon">${stepIndex > 2 ? '✓' : '3'}</div>
+                    <div class="stepper-step-lbl">Shipped</div>
+                  </div>
+
+                  <div class="stepper-step ${stepIndex === 3 ? 'completed' : ''}">
+                    <div class="stepper-icon">${stepIndex === 3 ? '✓' : '4'}</div>
+                    <div class="stepper-step-lbl">Delivered</div>
+                  </div>
+                </div>
+              `}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Toggle Order Stepper
+    function toggleTracking(orderId) {
+      const drawer = document.getElementById('tracking-' + orderId);
+      if (drawer) {
+        const isHidden = (drawer.style.display === 'none' || !drawer.style.display);
+        drawer.style.display = isHidden ? 'block' : 'none';
+        if (isHidden) {
+          setTimeout(() => drawer.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+        }
+      }
+    }
+
+    // Filter Orders
+    function filterOrders(filter, btn) {
+      document.querySelectorAll('.order-filter-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+
+      if (filter === 'all') {
+        renderOrders(globalOrdersCache);
+      } else if (filter === 'Active') {
+        const filtered = globalOrdersCache.filter(o => o.status === 'Pending' || o.status === 'Processing' || o.status === 'Shipped');
+        renderOrders(filtered);
+      } else {
+        const filtered = globalOrdersCache.filter(o => o.status.toLowerCase() === filter.toLowerCase());
+        renderOrders(filtered);
+      }
+    }
+
+    // Cancel Order
+    function cancelOrder(orderId) {
+      if (!confirm(`Are you sure you want to cancel Order #${orderId}?`)) return;
+      const btn = document.getElementById('cancel-btn-' + orderId);
+      if (btn) btn.disabled = true;
+
+      fetch(`${API_BASE}/api/orders/${orderId}/cancel`, { method: 'PUT' })
+        .then(res => res.json())
+        .then(data => {
+          if (data.error) {
+            alert(data.error);
+            if (btn) btn.disabled = false;
+          } else {
+            alert('Order cancelled successfully.');
+            const email = activeCustomer.email || (activeCustomer.user && activeCustomer.user.email);
+            loadOrders(email);
+          }
+        })
+        .catch(err => {
+          alert('Failed to cancel order.');
+          if (btn) btn.disabled = false;
+        });
+    }
+
+    // Update Personal Profile
+    function handleProfileUpdate(e) {
+      e.preventDefault();
+      const fn = document.getElementById('edit-fn').value.trim();
+      const ln = document.getElementById('edit-ln').value.trim();
+      const email = document.getElementById('edit-email').value.trim();
+      const phone = document.getElementById('edit-phone').value.trim();
+
+      fetch(`${API_BASE}/api/users/profile`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, first_name: fn, last_name: ln, phone })
+      })
+      .then(res => res.json())
+      .then(() => {
+        // Update local object
+        activeCustomer.first_name = fn;
+        activeCustomer.last_name = ln;
+        activeCustomer.phone = phone;
+        localStorage.setItem('petal_user', JSON.stringify(activeCustomer));
+
+        document.getElementById('profile-name').textContent = `${fn} ${ln}`.trim();
+        let initials = (fn[0] || 'C') + (ln[0] || '');
+        document.getElementById('profile-avatar').textContent = initials.toUpperCase();
+
+        const msg = document.getElementById('profile-save-msg');
+        msg.style.display = 'inline-block';
+        setTimeout(() => { msg.style.display = 'none'; }, 3000);
+      })
+      .catch(() => alert('Failed to update profile.'));
+    }
+
+    // Password Update
+    function handlePasswordChange(e) {
+      e.preventDefault();
+      const msg = document.getElementById('pwd-save-msg');
+      msg.style.display = 'inline-block';
+      e.target.reset();
+      setTimeout(() => { msg.style.display = 'none'; }, 3000);
+    }
+
+    // Load Addresses
+    function loadAddresses(email) {
+      const container = document.getElementById('addresses-list');
+      fetch(`${API_BASE}/api/addresses/${email}`)
+        .then(res => res.json())
+        .then(addresses => {
+          if (!addresses || addresses.length === 0) {
+            container.innerHTML = `
+              <div class="address-card" style="border-style:dashed; text-align:center; padding: 30px;">
+                <div style="font-size:24px; margin-bottom:8px;">📍</div>
+                <div style="font-size:14px; font-weight:600; color:#1e293b;">No Addresses Saved</div>
+                <p style="font-size:12px; color:#64748b; margin:4px 0 0;">Add your shipping address below for easy checkout.</p>
+              </div>
+            `;
+            document.getElementById('stat-addresses-count').textContent = '0';
+            return;
+          }
+
+          document.getElementById('stat-addresses-count').textContent = addresses.length;
+          container.innerHTML = addresses.map((a, idx) => `
+            <div class="address-card">
+              <div class="address-card-title">
+                <span>📍 ${a.title || 'Address'}</span>
+                ${idx === 0 ? '<span style="font-size:10px; font-weight:700; color:#15803d; background:#dcfce7; padding:2px 6px; border-radius:4px;">DEFAULT</span>' : ''}
+              </div>
+              <div class="address-card-text">
+                ${a.street}<br>
+                ${a.city}, ${a.zip}
+              </div>
+              <div class="address-card-actions">
+                <button type="button" class="address-card-btn delete" onclick="deleteAddress(${a.id})">Delete</button>
+              </div>
+            </div>
+          `).join('');
+        })
+        .catch(() => {
+          container.innerHTML = '<div style="color:#64748b;">No saved addresses.</div>';
+        });
+    }
+
+    // Add Address
+    function handleAddressSubmit(e) {
+      e.preventDefault();
+      const email = activeCustomer.email || (activeCustomer.user && activeCustomer.user.email);
+      const data = {
+        user_email: email,
+        title: document.getElementById('addr-title').value,
+        street: document.getElementById('addr-street').value,
+        city: document.getElementById('addr-city').value + ', ' + document.getElementById('addr-state').value,
+        zip: document.getElementById('addr-zip').value
+      };
+
+      fetch(`${API_BASE}/api/addresses`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(() => {
+        e.target.reset();
+        loadAddresses(email);
+      });
+    }
+
+    // Delete Address
+    function deleteAddress(id) {
+      if (!confirm('Are you sure you want to delete this address?')) return;
+      fetch(`${API_BASE}/api/addresses/${id}`, { method: 'DELETE' })
+        .then(() => {
+          const email = activeCustomer.email || (activeCustomer.user && activeCustomer.user.email);
+          loadAddresses(email);
+        });
+    }
+
+    // Load Payments
+    function loadPayments(email) {
+      const container = document.getElementById('payments-list');
+      fetch(`${API_BASE}/api/payment-methods/${email}`)
+        .then(res => res.json())
+        .then(payments => {
+          if (!payments || payments.length === 0) {
+            container.innerHTML = `
+              <div class="credit-card-mock" style="background: linear-gradient(135deg, #475569, #334155); opacity: 0.9;">
+                <div class="credit-card-chip"></div>
+                <div class="credit-card-num">&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 4892</div>
+                <div class="credit-card-meta">
+                  <div>
+                    <div class="credit-card-holder">Cardholder</div>
+                    <div class="credit-card-name">${activeCustomer.first_name || 'Pranav'} ${activeCustomer.last_name || 'Patel'}</div>
+                  </div>
+                  <div style="font-size:12px; font-weight:700; color:#cbd5e1;">VISA</div>
+                </div>
+              </div>
+            `;
+            return;
+          }
+
+          container.innerHTML = payments.map(p => `
+            <div class="credit-card-mock">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <div class="credit-card-chip"></div>
+                <button type="button" onclick="deletePayment(${p.id})" style="background:none; border:none; color:#fca5a5; font-size:12px; cursor:pointer;">Delete</button>
+              </div>
+              <div class="credit-card-num">&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; ${p.last_four}</div>
+              <div class="credit-card-meta">
+                <div>
+                  <div class="credit-card-holder">Expires</div>
+                  <div class="credit-card-name">${p.expiry}</div>
+                </div>
+                <div style="font-size:14px; font-weight:700; color:#fbbf24;">${p.card_type}</div>
+              </div>
+            </div>
+          `).join('');
+        })
+        .catch(() => {
+          container.innerHTML = '<div style="color:#64748b;">No cards saved.</div>';
+        });
+    }
+
+    // Add Payment
+    function handlePaymentSubmit(e) {
+      e.preventDefault();
+      const email = activeCustomer.email || (activeCustomer.user && activeCustomer.user.email);
+      const data = {
+        user_email: email,
+        card_type: document.getElementById('pay-type').value,
+        last_four: document.getElementById('pay-lastfour').value,
+        expiry: document.getElementById('pay-expiry').value
+      };
+
+      fetch(`${API_BASE}/api/payment-methods`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(() => {
+        e.target.reset();
+        loadPayments(email);
+      });
+    }
+
+    // Delete Payment
+    function deletePayment(id) {
+      if (!confirm('Are you sure you want to remove this card?')) return;
+      fetch(`${API_BASE}/api/payment-methods/${id}`, { method: 'DELETE' })
+        .then(() => {
+          const email = activeCustomer.email || (activeCustomer.user && activeCustomer.user.email);
+          loadPayments(email);
+        });
+    }
+
+    // Load Preferences
+    function loadPreferences(email) {
+      fetch(`${API_BASE}/api/preferences/${email}`)
+        .then(res => res.json())
+        .then(pref => {
+          if (pref) {
+            document.getElementById('pref-order').checked = !!pref.order_updates;
+            document.getElementById('pref-promo').checked = !!pref.promotions;
+            document.getElementById('pref-news').checked = !!pref.newsletter;
+          }
+        })
+        .catch(() => {});
+    }
+
+    // Save Preferences
+    function savePreferences() {
+      const email = activeCustomer.email || (activeCustomer.user && activeCustomer.user.email);
+      const data = {
+        user_email: email,
+        order_updates: document.getElementById('pref-order').checked ? 1 : 0,
+        promotions: document.getElementById('pref-promo').checked ? 1 : 0,
+        newsletter: document.getElementById('pref-news').checked ? 1 : 0
+      };
+      fetch(`${API_BASE}/api/preferences`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+    }
+
+    // Run on load
+    document.addEventListener('DOMContentLoaded', initUser);
+  </script>
+
+  <script src="app.js?v=6.0"></script>
+</body>
+</html>

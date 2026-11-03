@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Your Favorites &mdash; JP Cotton</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css?v=6.0">
+<style>
+  .fav-empty { text-align: center; padding: 100px 20px; }
+  .fav-empty svg { width: 48px; height: 48px; stroke: var(--ink-muted); margin-bottom: 24px; }
+  .fav-empty h2 { font-family: var(--font-display); font-size: 32px; color: var(--indigo-d); margin-bottom: 16px; font-style: italic; }
+  .fav-empty p { font-size: 14px; color: var(--ink-soft); margin-bottom: 32px; }
+</style>
+</head>
+<body>
+  <script>
+    const currentUser = getCurrentUser();
+  </script>
+
+  <!-- Header -->
+    <!-- Site Header -->
+    <!-- Site Header -->
+    <!-- Site Header -->
+  <header id="main-header">
+    <div class="wrap">
+      <nav>
+        <div class="menu-toggle" onclick="document.getElementById('mobile-menu').classList.add('active'); document.getElementById('mobile-menu-overlay').classList.add('active');">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </div>
+        <div class="logo"><a href="index.html"><img src="assets/logo.png" alt="JP Cotton"></a></div>
+        <div class="search-bar">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" placeholder="Search for heritage pieces, pure cotton, sarees..." class="global-search">
+        </div>
+        <div class="icons">
+          <a href="favorites.html" title="Wishlist"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></a>
+          <a href="cart.html" title="Cart">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+            <span class="cart-badge" id="cart-badge">0</span>
+          </a>
+          <a href="login.html" id="auth-user-icon" title="Account"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+          <script>
+            (function() {
+              if (localStorage.getItem('petal_user')) {
+                const el = document.getElementById('auth-user-icon');
+                if (el) el.setAttribute('href', 'profile.html');
+              }
+            })();
+          </script>
+        </div>
+      </nav>
+      <div class="navlinks desktop-only">
+        <div class="nav-item">
+          <a href="shop.html">Shop All</a>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="womens-traditional.html">Women <span class="nav-arrow">▾</span></a>
+          <div class="dropdown">
+            <a href="womens-traditional.html?category=Co-Ord+Sets">Co-Ord Sets</a>
+            <a href="womens-traditional.html?category=Dresses+%26+Gowns">Dresses &amp; Gowns</a>
+            <a href="womens-traditional.html?category=Two-Piece+Suit+Sets">Two-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Three-Piece+Suit+Sets">Three-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Farsi+Salwar+Sets">Farsi Salwar Sets</a>
+            <a href="womens-traditional.html?category=Kurtas">Kurtas</a>
+            <a href="womens-traditional.html?category=Kurtis+%26+Tops">Kurtis &amp; Tops</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="mens-ethnic.html">Men <span class="nav-arrow">▾</span></a>
+          <div class="dropdown">
+            <a href="mens-ethnic.html?category=Cotton+Shirts">Cotton Shirts</a>
+            <a href="mens-ethnic.html?category=Kurtas">Kurtas</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="kids.html">Kids <span class="nav-arrow">▾</span></a>
+          <div class="dropdown">
+            <a href="kids.html?category=Kurta+%26+Palazzo+Sets">Kurta &amp; Palazzo Sets</a>
+            <a href="kids.html?category=Lehenga+Choli">Lehenga Choli</a>
+            <a href="kids.html?category=Girls%27+Ethnic+Suits">Girls' Ethnic Suits</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="our-cotton.html">Our Story</a>
+        </div>
+        <div class="nav-item">
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Premium Mobile Slide-Out Menu -->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay" onclick="document.getElementById('mobile-menu').classList.remove('active'); this.classList.remove('active');"></div>
+    <div class="mobile-menu" id="mobile-menu">
+      <div class="mobile-menu-close" onclick="document.getElementById('mobile-menu').classList.remove('active'); document.getElementById('mobile-menu-overlay').classList.remove('active');">
+        <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="1.5" fill="none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </div>
+      <div class="mobile-navlinks">
+        <a href="shop.html">Shop All</a>
+
+        <div class="mobile-accordion">
+          <div class="mobile-acc-header" onclick="this.parentElement.classList.toggle('open')">
+            <span>Women</span>
+            <span class="mobile-acc-arrow">▾</span>
+          </div>
+          <div class="mobile-acc-content">
+            <a href="womens-traditional.html" style="font-weight:600; color:var(--primary) !important;">View All Women &rarr;</a>
+            <a href="womens-traditional.html?category=Co-Ord+Sets">Co-Ord Sets</a>
+            <a href="womens-traditional.html?category=Dresses+%26+Gowns">Dresses &amp; Gowns</a>
+            <a href="womens-traditional.html?category=Two-Piece+Suit+Sets">Two-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Three-Piece+Suit+Sets">Three-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Farsi+Salwar+Sets">Farsi Salwar Sets</a>
+            <a href="womens-traditional.html?category=Kurtas">Kurtas</a>
+            <a href="womens-traditional.html?category=Kurtis+%26+Tops">Kurtis &amp; Tops</a>
+          </div>
+        </div>
+
+        <div class="mobile-accordion">
+          <div class="mobile-acc-header" onclick="this.parentElement.classList.toggle('open')">
+            <span>Men</span>
+            <span class="mobile-acc-arrow">▾</span>
+          </div>
+          <div class="mobile-acc-content">
+            <a href="mens-ethnic.html" style="font-weight:600; color:var(--primary) !important;">View All Men &rarr;</a>
+            <a href="mens-ethnic.html?category=Cotton+Shirts">Cotton Shirts</a>
+            <a href="mens-ethnic.html?category=Kurtas">Kurtas</a>
+          </div>
+        </div>
+
+        <div class="mobile-accordion">
+          <div class="mobile-acc-header" onclick="this.parentElement.classList.toggle('open')">
+            <span>Kids</span>
+            <span class="mobile-acc-arrow">▾</span>
+          </div>
+          <div class="mobile-acc-content">
+            <a href="kids.html" style="font-weight:600; color:var(--primary) !important;">View All Kids &rarr;</a>
+            <a href="kids.html?category=Kurta+%26+Palazzo+Sets">Kurta &amp; Palazzo Sets</a>
+            <a href="kids.html?category=Lehenga+Choli">Lehenga Choli</a>
+            <a href="kids.html?category=Girls%27+Ethnic+Suits">Girls' Ethnic Suits</a>
+          </div>
+        </div>
+
+        <a href="our-cotton.html">Our Story</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="page-header reveal" style="padding: 60px 0; margin-bottom: 40px; background: white;">
+    <div class="wrap">
+      <h1 style="font-size: 36px;">Saved Items</h1>
+      <p>Pieces you've loved and saved for later.</p>
+    </div>
+  </div>
+
+  <section class="section reveal" style="padding-top: 0;">
+    <div class="wrap">
+      
+      <!-- Dynamic Favorites Grid -->
+      <div class="product-grid" id="dynamic-favorites" style="display: none;"></div>
+      
+      <!-- Mockup Grid of Favorited Items -->
+      <div class="fav-empty" id="fav-empty-state">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+        <h2>Your Wishlist is Empty</h2>
+        <p>Save items you love here to shop them later.</p>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="wrap">
+      <div class="foot-top">
+        <div>
+          <div class="foot-logo"><img src="assets/logo.png" alt="JP Cotton"></div>
+          <p class="foot-desc">Elevated everyday cotton clothing, woven close to the source.</p>
+        </div>
+        <div>
+          <h4>Collections</h4>
+          <a href="womens-traditional.html">Women's Collection</a>
+          <a href="kids.html">Kids' Festive</a>
+          <a href="mens-ethnic.html">Men's Collection</a>
+          <a href="shop.html">Shop All</a>
+        </div>
+        <div>
+          <h4>Support</h4>
+          <a href="returns.html">Shipping &amp; Returns</a>
+          <a href="returns.html#size-guide">Size Guide</a>
+          <a href="contact.html">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function renderFavorites() {
+      const favs = window.jpWishlist.get();
+      const grid = document.getElementById('dynamic-favorites');
+      const emptyState = document.getElementById('fav-empty-state');
+      
+      if (favs.length === 0) {
+        grid.style.display = 'none';
+        emptyState.style.display = 'block';
+      } else {
+        emptyState.style.display = 'none';
+        grid.style.display = 'grid';
+        grid.innerHTML = favs.map(f => `
+          <div class="product-card">
+            <div class="card-image-wrap">
+              <a href="product.html?id=${f.id}"><img src="${f.image}" alt="${f.name}"></a>
+              <button class="wishlist-btn active" onclick="removeFromFavs(${f.id}, this)">
+                <svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+              </button>
+            </div>
+            <div class="card-info">
+              <a href="product.html?id=${f.id}" class="card-title">${f.name}</a>
+              <div class="card-price">₹${f.price}</div>
+              <button class="btn-primary" style="margin-top: 10px; width: 100%;" onclick="window.jpCart.add({id:${f.id}, name:'${f.name}', price:${f.price}, image:'${f.image}'}); window.location.href='cart.html'">Move to Cart</button>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+
+    function removeFromFavs(id, btn) {
+      window.jpWishlist.remove(id);
+      renderFavorites();
+    }
+
+    document.addEventListener('DOMContentLoaded', renderFavorites);
+    document.addEventListener('wishlist-synced', renderFavorites);
+  </script>
+
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof VANTA !== 'undefined' && document.querySelector('#main-header')) {
+        VANTA.CLOUDS({
+          el: "#main-header",
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 80.00,
+          minWidth: 200.00,
+          backgroundColor: 0xF4EFE6,
+          skyColor: 0xFDFBF7,
+          cloudColor: 0xffffff,
+          cloudShadowColor: 0xE8DCCB,
+          sunColor: 0xFDFBF7,
+          sunGlareColor: 0xFDFBF7,
+          sunlightColor: 0xFDFBF7,
+          speed: 1.00
+        });
+      }
+    });
+  </script>
+
+  <script src="app.js?v=6.0"></script>
+</body>
+</html>

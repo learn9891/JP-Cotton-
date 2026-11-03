@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Contact Concierge &mdash; JP Cotton</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Trirong:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=6.0">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header id="main-header">
+    <div class="wrap">
+      <nav>
+        <div class="menu-toggle" onclick="document.getElementById('mobile-menu').classList.add('active'); document.getElementById('mobile-menu-overlay').classList.add('active');">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </div>
+        <div class="logo"><a href="index.html"><img src="assets/logo.png" alt="JP Cotton"></a></div>
+        <div class="search-bar">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" placeholder="Search for heritage pieces, pure cotton, sarees..." class="global-search">
+        </div>
+        <div class="icons">
+          <a href="favorites.html" title="Wishlist"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></a>
+          <a href="cart.html" title="Cart">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+            <span class="cart-badge" id="cart-badge">0</span>
+          </a>
+          <a href="login.html" id="auth-user-icon" title="Account"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+          <script>
+            (function() {
+              if (localStorage.getItem('petal_user')) {
+                const el = document.getElementById('auth-user-icon');
+                if (el) el.setAttribute('href', 'profile.html');
+              }
+            })();
+          </script>
+        </div>
+      </nav>
+      <div class="navlinks desktop-only">
+        <div class="nav-item">
+          <a href="shop.html">Shop All</a>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="womens-traditional.html">Women <span class="nav-arrow">▾</span></a>
+          <div class="dropdown">
+            <a href="womens-traditional.html?category=Co-Ord+Sets">Co-Ord Sets</a>
+            <a href="womens-traditional.html?category=Dresses+%26+Gowns">Dresses &amp; Gowns</a>
+            <a href="womens-traditional.html?category=Two-Piece+Suit+Sets">Two-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Three-Piece+Suit+Sets">Three-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Farsi+Salwar+Sets">Farsi Salwar Sets</a>
+            <a href="womens-traditional.html?category=Kurtas">Kurtas</a>
+            <a href="womens-traditional.html?category=Kurtis+%26+Tops">Kurtis &amp; Tops</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="mens-ethnic.html">Men <span class="nav-arrow">▾</span></a>
+          <div class="dropdown">
+            <a href="mens-ethnic.html?category=Cotton+Shirts">Cotton Shirts</a>
+            <a href="mens-ethnic.html?category=Kurtas">Kurtas</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="kids.html">Kids <span class="nav-arrow">▾</span></a>
+          <div class="dropdown">
+            <a href="kids.html?category=Kurta+%26+Palazzo+Sets">Kurta &amp; Palazzo Sets</a>
+            <a href="kids.html?category=Lehenga+Choli">Lehenga Choli</a>
+            <a href="kids.html?category=Girls%27+Ethnic+Suits">Girls' Ethnic Suits</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="our-cotton.html">Our Story</a>
+        </div>
+        <div class="nav-item active">
+          <a href="contact.html" class="active">Contact</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Premium Mobile Slide-Out Menu -->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay" onclick="document.getElementById('mobile-menu').classList.remove('active'); this.classList.remove('active');"></div>
+    <div class="mobile-menu" id="mobile-menu">
+      <div class="mobile-menu-close" onclick="document.getElementById('mobile-menu').classList.remove('active'); document.getElementById('mobile-menu-overlay').classList.remove('active');">
+        <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="1.5" fill="none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </div>
+      <div class="mobile-navlinks">
+        <a href="shop.html">Shop All</a>
+
+        <div class="mobile-accordion">
+          <div class="mobile-acc-header" onclick="this.parentElement.classList.toggle('open')">
+            <span>Women</span>
+            <span class="mobile-acc-arrow">▾</span>
+          </div>
+          <div class="mobile-acc-content">
+            <a href="womens-traditional.html" style="font-weight:600; color:var(--primary) !important;">View All Women &rarr;</a>
+            <a href="womens-traditional.html?category=Co-Ord+Sets">Co-Ord Sets</a>
+            <a href="womens-traditional.html?category=Dresses+%26+Gowns">Dresses &amp; Gowns</a>
+            <a href="womens-traditional.html?category=Two-Piece+Suit+Sets">Two-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Three-Piece+Suit+Sets">Three-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Farsi+Salwar+Sets">Farsi Salwar Sets</a>
+            <a href="womens-traditional.html?category=Kurtas">Kurtas</a>
+            <a href="womens-traditional.html?category=Kurtis+%26+Tops">Kurtis &amp; Tops</a>
+          </div>
+        </div>
+
+        <div class="mobile-accordion">
+          <div class="mobile-acc-header" onclick="this.parentElement.classList.toggle('open')">
+            <span>Men</span>
+            <span class="mobile-acc-arrow">▾</span>
+          </div>
+          <div class="mobile-acc-content">
+            <a href="mens-ethnic.html" style="font-weight:600; color:var(--primary) !important;">View All Men &rarr;</a>
+            <a href="mens-ethnic.html?category=Cotton+Shirts">Cotton Shirts</a>
+            <a href="mens-ethnic.html?category=Kurtas">Kurtas</a>
+          </div>
+        </div>
+
+        <div class="mobile-accordion">
+          <div class="mobile-acc-header" onclick="this.parentElement.classList.toggle('open')">
+            <span>Kids</span>
+            <span class="mobile-acc-arrow">▾</span>
+          </div>
+          <div class="mobile-acc-content">
+            <a href="kids.html" style="font-weight:600; color:var(--primary) !important;">View All Kids &rarr;</a>
+            <a href="kids.html?category=Kurta+%26+Palazzo+Sets">Kurta &amp; Palazzo Sets</a>
+            <a href="kids.html?category=Lehenga+Choli">Lehenga Choli</a>
+            <a href="kids.html?category=Girls%27+Ethnic+Suits">Girls' Ethnic Suits</a>
+          </div>
+        </div>
+
+        <a href="our-cotton.html">Our Story</a>
+        <a href="contact.html" style="font-weight:700; color:var(--primary) !important;">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="collection-hero">
+    <div class="wrap">
+      <div class="collection-breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="collection-breadcrumb-separator">/</span>
+        <span style="color: #1e293b; font-weight: 600;">Client Concierge</span>
+      </div>
+
+      <div class="collection-hero-badge">
+        <span>✨ Dedicated Sizing, Order Care &amp; Bespoke Styling</span>
+      </div>
+
+      <h1>Client Concierge &amp; Ateliers</h1>
+      <p>Whether you require personalized drape recommendations, bespoke tailoring guidance, or order status assistance, our dedicated styling concierge is here to assist you.</p>
+    </div>
+  </section>
+
+  <!-- Split Contact & Info Grid -->
+  <div class="wrap">
+    <div class="contact-grid">
+      
+      <!-- Left: Concierge Inquiry Form -->
+      <div class="contact-card-box">
+        <h2 style="font-family: var(--font-display, 'Trirong', serif); font-size: 26px; color: #1e293b; margin: 0 0 10px; font-weight: 500;">Send a Message</h2>
+        <p style="font-size: 14px; color: #64748b; margin: 0 0 28px;">Fill in your details below and a concierge specialist will respond within 4 business hours.</p>
+
+        <form id="client-concierge-form" onsubmit="handleConciergeSubmit(event)" style="display: flex; flex-direction: column; gap: 20px;">
+          <div>
+            <label style="display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #1e293b; margin-bottom: 8px;">Full Name *</label>
+            <input type="text" id="contact-name" placeholder="E.g. Priya Sharma" required style="width: 100%; padding: 12px 16px; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit; font-size: 14px;">
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div>
+              <label style="display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #1e293b; margin-bottom: 8px;">Email Address *</label>
+              <input type="email" id="contact-email" placeholder="you@domain.com" required style="width: 100%; padding: 12px 16px; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit; font-size: 14px;">
+            </div>
+            <div>
+              <label style="display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #1e293b; margin-bottom: 8px;">Phone / WhatsApp</label>
+              <input type="tel" id="contact-phone" placeholder="+91 98765 00000" style="width: 100%; padding: 12px 16px; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit; font-size: 14px;">
+            </div>
+          </div>
+
+          <div>
+            <label style="display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #1e293b; margin-bottom: 8px;">Inquiry Type</label>
+            <select id="contact-type" style="width: 100%; padding: 12px 16px; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit; font-size: 14px; background: white;">
+              <option value="sizing">Sizing &amp; Drape Guidance</option>
+              <option value="order">Order Tracking &amp; Delivery</option>
+              <option value="returns">Exchange &amp; Returns Request</option>
+              <option value="bespoke">Bespoke Handloom Request</option>
+              <option value="general">General Brand Inquiry</option>
+            </select>
+          </div>
+
+          <div>
+            <label style="display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #1e293b; margin-bottom: 8px;">How Can We Assist You? *</label>
+            <textarea id="contact-message" placeholder="Please describe your query, product reference, or order number..." rows="5" required style="width: 100%; padding: 12px 16px; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit; font-size: 14px; resize: vertical;"></textarea>
+          </div>
+
+          <button type="submit" id="contact-submit-btn" class="btn-primary" style="padding: 14px 28px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer;">Submit Concierge Request &rarr;</button>
+
+          <div id="contact-success-box" style="display: none; padding: 16px; background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 6px; color: #065f46; font-size: 14px; text-align: center;">
+            ✓ Thank you! Your concierge inquiry has been registered. An advisor will contact you shortly.
+          </div>
+        </form>
+      </div>
+
+      <!-- Right: Direct Assistance Cards -->
+      <div>
+        <h2 style="font-family: var(--font-display, 'Trirong', serif); font-size: 24px; color: #1e293b; margin: 0 0 20px; font-weight: 500;">Direct Contact Channels</h2>
+
+        <div class="contact-info-card">
+          <div class="contact-info-icon">💬</div>
+          <div>
+            <h4 style="font-size: 15px; font-weight: 700; color: #1e293b; margin: 0 0 4px;">WhatsApp Styling Concierge</h4>
+            <p style="font-size: 13px; color: #64748b; margin: 0 0 8px; line-height: 1.5;">Receive video tours of fabric textures, drape fittings, and instant checkout support.</p>
+            <a href="https://wa.me/919876543210" target="_blank" style="font-size: 13px; font-weight: 700; color: #9C523A; text-decoration: none;">Chat on WhatsApp: +91 98765 43210 &rarr;</a>
+          </div>
+        </div>
+
+        <div class="contact-info-card">
+          <div class="contact-info-icon">📞</div>
+          <div>
+            <h4 style="font-size: 15px; font-weight: 700; color: #1e293b; margin: 0 0 4px;">Telephone Support</h4>
+            <p style="font-size: 13px; color: #64748b; margin: 0 0 8px; line-height: 1.5;">Available Monday through Saturday, from 9:30 AM to 7:00 PM IST.</p>
+            <a href="tel:+919876543210" style="font-size: 13px; font-weight: 700; color: #9C523A; text-decoration: none;">+91 (0) 98765 43210</a>
+          </div>
+        </div>
+
+        <div class="contact-info-card">
+          <div class="contact-info-icon">✉️</div>
+          <div>
+            <h4 style="font-size: 15px; font-weight: 700; color: #1e293b; margin: 0 0 4px;">Client Concierge Desk</h4>
+            <p style="font-size: 13px; color: #64748b; margin: 0 0 8px; line-height: 1.5;">For order inquiries, custom sizing, wholesale inquiries, or press features.</p>
+            <a href="mailto:concierge@jpcotton.com" style="font-size: 13px; font-weight: 700; color: #9C523A; text-decoration: none;">concierge@jpcotton.com</a>
+          </div>
+        </div>
+
+        <div class="contact-info-card">
+          <div class="contact-info-icon">🏛️</div>
+          <div>
+            <h4 style="font-size: 15px; font-weight: 700; color: #1e293b; margin: 0 0 4px;">Flagship Atelier &amp; Loom House</h4>
+            <p style="font-size: 13px; color: #64748b; margin: 0; line-height: 1.6;">
+              Heritage Loom House, Heritage Lane,<br>
+              Civil Lines, Amritsar, Punjab 143001, India.<br>
+              <em style="font-size: 12px; color: #94a3b8;">Private appointments available by request.</em>
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Quick Concierge FAQ Accordion -->
+    <div style="margin: 20px 0 100px; padding: 40px; background: #FAF7F2; border-radius: 12px; border: 1px solid rgba(156, 82, 58, 0.1);">
+      <h3 style="font-family: var(--font-display, 'Trirong', serif); font-size: 24px; text-align: center; color: #1e293b; margin: 0 0 28px;">Frequently Answered Concierge Questions</h3>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+        <div style="background: white; padding: 20px; border-radius: 8px; border: 1px solid #e2e8f0;">
+          <h4 style="font-size: 14px; font-weight: 700; color: #1e293b; margin: 0 0 8px;">How long does shipping take?</h4>
+          <p style="font-size: 13px; color: #64748b; margin: 0; line-height: 1.6;">All metro domestic orders are delivered within 2–4 business days via complimentary express courier.</p>
+        </div>
+        <div style="background: white; padding: 20px; border-radius: 8px; border: 1px solid #e2e8f0;">
+          <h4 style="font-size: 14px; font-weight: 700; color: #1e293b; margin: 0 0 8px;">What is your exchange policy?</h4>
+          <p style="font-size: 13px; color: #64748b; margin: 0; line-height: 1.6;">We offer 15-day complimentary reverse pick-up and exchange for size adjustments with zero hassle.</p>
+        </div>
+        <div style="background: white; padding: 20px; border-radius: 8px; border: 1px solid #e2e8f0;">
+          <h4 style="font-size: 14px; font-weight: 700; color: #1e293b; margin: 0 0 8px;">How do I care for pure cotton?</h4>
+          <p style="font-size: 13px; color: #64748b; margin: 0; line-height: 1.6;">We recommend gentle hand wash in cold water using mild eco-detergent. Line dry in shade to preserve block print vibrancy.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="wrap foot-top">
+      <div class="foot-logo">
+        <a href="index.html"><img src="assets/logo.png" alt="JP Cotton"></a>
+        <p>Centuries of Indian weaving heritage, tailored for modern living. 100% pure organic cotton garments directly from master artisans.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <a href="womens-traditional.html">Women's Collection</a>
+        <a href="mens-ethnic.html">Men's Collection</a>
+        <a href="kids.html">Kids' Festive</a>
+        <a href="shop.html">Shop All</a>
+      </div>
+      <div>
+        <h4>Customer Care</h4>
+        <a href="contact.html">Contact Concierge</a>
+        <a href="returns.html">Returns &amp; Refunds</a>
+        <a href="contact.html">Shipping FAQ</a>
+      </div>
+      <div>
+        <h4>JP Brand</h4>
+        <a href="our-cotton.html">Our Story</a>
+        <a href="our-cotton.html">The Fabric</a>
+        <a href="our-cotton.html">Artisan Journal</a>
+      </div>
+    </div>
+    <div class="foot-bottom wrap">
+      <div>&copy; 2026 JP Cotton All Rights Reserved.</div>
+      <div>Ethically crafted in Punjab, India.</div>
+    </div>
+  </footer>
+
+  <script src="app.js?v=6.0" defer></script>
+  <script>
+    function handleConciergeSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('contact-submit-btn');
+      const box = document.getElementById('contact-success-box');
+      btn.textContent = 'Transmitting to Concierge...';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.style.display = 'none';
+        box.style.display = 'block';
+        if (window.showToast) {
+          window.showToast('Inquiry sent to Concierge desk!');
+        }
+      }, 700);
+    }
+  </script>
+
+</body>
+</html>

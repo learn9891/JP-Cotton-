@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>JP Cotton &mdash; Premium Heritage Wear</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Trirong:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=6.0">
+</head>
+<body>
+
+  <!-- Header -->
+    <!-- Site Header -->
+    <!-- Site Header -->
+    <!-- Site Header -->
+  <header id="main-header">
+    <div class="wrap">
+      <nav>
+        <div class="menu-toggle" onclick="document.getElementById('mobile-menu').classList.add('active'); document.getElementById('mobile-menu-overlay').classList.add('active');">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </div>
+        <div class="logo"><a href="index.html"><img src="assets/logo.png" alt="JP Cotton"></a></div>
+        <div class="search-bar">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" placeholder="Search for heritage pieces, pure cotton, sarees..." class="global-search">
+        </div>
+        <div class="icons">
+          <a href="favorites.html" title="Wishlist"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></a>
+          <a href="cart.html" title="Cart">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+            <span class="cart-badge" id="cart-badge">0</span>
+          </a>
+          <a href="login.html" id="auth-user-icon" title="Account"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+          <script>
+            (function() {
+              if (localStorage.getItem('petal_user')) {
+                const el = document.getElementById('auth-user-icon');
+                if (el) el.setAttribute('href', 'profile.html');
+              }
+            })();
+          </script>
+        </div>
+      </nav>
+      <div class="navlinks desktop-only">
+        <div class="nav-item">
+          <a href="shop.html">Shop All</a>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="womens-traditional.html">Women <span class="nav-arrow">▾</span></a>
+          <div class="dropdown">
+            <a href="womens-traditional.html?category=Co-Ord+Sets">Co-Ord Sets</a>
+            <a href="womens-traditional.html?category=Dresses+%26+Gowns">Dresses &amp; Gowns</a>
+            <a href="womens-traditional.html?category=Two-Piece+Suit+Sets">Two-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Three-Piece+Suit+Sets">Three-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Farsi+Salwar+Sets">Farsi Salwar Sets</a>
+            <a href="womens-traditional.html?category=Kurtas">Kurtas</a>
+            <a href="womens-traditional.html?category=Kurtis+%26+Tops">Kurtis &amp; Tops</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="mens-ethnic.html">Men <span class="nav-arrow">▾</span></a>
+          <div class="dropdown">
+            <a href="mens-ethnic.html?category=Cotton+Shirts">Cotton Shirts</a>
+            <a href="mens-ethnic.html?category=Kurtas">Kurtas</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="kids.html">Kids <span class="nav-arrow">▾</span></a>
+          <div class="dropdown">
+            <a href="kids.html?category=Kurta+%26+Palazzo+Sets">Kurta &amp; Palazzo Sets</a>
+            <a href="kids.html?category=Lehenga+Choli">Lehenga Choli</a>
+            <a href="kids.html?category=Girls%27+Ethnic+Suits">Girls' Ethnic Suits</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="our-cotton.html">Our Story</a>
+        </div>
+        <div class="nav-item">
+          <a href="track-order.html" style="color:var(--primary); font-weight:600;">Track Order</a>
+        </div>
+        <div class="nav-item">
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Premium Mobile Slide-Out Menu -->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay" onclick="document.getElementById('mobile-menu').classList.remove('active'); this.classList.remove('active');"></div>
+    <div class="mobile-menu" id="mobile-menu">
+      <div class="mobile-menu-close" onclick="document.getElementById('mobile-menu').classList.remove('active'); document.getElementById('mobile-menu-overlay').classList.remove('active');">
+        <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="1.5" fill="none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </div>
+      <div class="mobile-navlinks">
+        <a href="shop.html">Shop All</a>
+
+        <div class="mobile-accordion">
+          <div class="mobile-acc-header" onclick="this.parentElement.classList.toggle('open')">
+            <span>Women</span>
+            <span class="mobile-acc-arrow">▾</span>
+          </div>
+          <div class="mobile-acc-content">
+            <a href="womens-traditional.html" style="font-weight:600; color:var(--primary) !important;">View All Women &rarr;</a>
+            <a href="womens-traditional.html?category=Co-Ord+Sets">Co-Ord Sets</a>
+            <a href="womens-traditional.html?category=Dresses+%26+Gowns">Dresses &amp; Gowns</a>
+            <a href="womens-traditional.html?category=Two-Piece+Suit+Sets">Two-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Three-Piece+Suit+Sets">Three-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Farsi+Salwar+Sets">Farsi Salwar Sets</a>
+            <a href="womens-traditional.html?category=Kurtas">Kurtas</a>
+            <a href="womens-traditional.html?category=Kurtis+%26+Tops">Kurtis &amp; Tops</a>
+          </div>
+        </div>
+
+        <div class="mobile-accordion">
+          <div class="mobile-acc-header" onclick="this.parentElement.classList.toggle('open')">
+            <span>Men</span>
+            <span class="mobile-acc-arrow">▾</span>
+          </div>
+          <div class="mobile-acc-content">
+            <a href="mens-ethnic.html" style="font-weight:600; color:var(--primary) !important;">View All Men &rarr;</a>
+            <a href="mens-ethnic.html?category=Cotton+Shirts">Cotton Shirts</a>
+            <a href="mens-ethnic.html?category=Kurtas">Kurtas</a>
+          </div>
+        </div>
+
+        <div class="mobile-accordion">
+          <div class="mobile-acc-header" onclick="this.parentElement.classList.toggle('open')">
+            <span>Kids</span>
+            <span class="mobile-acc-arrow">▾</span>
+          </div>
+          <div class="mobile-acc-content">
+            <a href="kids.html" style="font-weight:600; color:var(--primary) !important;">View All Kids &rarr;</a>
+            <a href="kids.html?category=Kurta+%26+Palazzo+Sets">Kurta &amp; Palazzo Sets</a>
+            <a href="kids.html?category=Lehenga+Choli">Lehenga Choli</a>
+            <a href="kids.html?category=Girls%27+Ethnic+Suits">Girls' Ethnic Suits</a>
+          </div>
+        </div>
+
+        <a href="our-cotton.html">Our Story</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </header>
+
+    <!-- Hero Section -->
+        <!-- Hero Section -->
+    <section class="hero-split">
+      <div class="hero-split-text">
+        <div class="hero-split-content reveal">
+          <h1 id="hero-title">Modern Fashion. 100% Pure Cotton.</h1>
+          <p id="hero-subtitle">Elevate your wardrobe with our luxurious, breathable cotton collections designed for the modern lifestyle.</p>
+          <a href="#curated-edits" class="btn-primary" id="hero-button">Discover Pure Cotton</a>
+          
+          <div class="hero-split-nav">
+            <button class="hero-prev" aria-label="Previous Slide">&larr; Prev</button>
+            <div class="hero-dots" id="hero-dots"></div>
+            <button class="hero-next" aria-label="Next Slide">Next &rarr;</button>
+          </div>
+        </div>
+      </div>
+      <div class="hero-slider hero-split-slider" id="dynamic-hero-slider">
+        <!-- Slides will be loaded dynamically by app.js?v=6.0 -->
+      </div>
+    </section>
+
+    <!-- The Curated Edits — Luxury Editorial Showcase Redesign -->
+    <section class="curated-edits-section reveal" id="curated-edits">
+      <div class="wrap">
+        <!-- Section Header -->
+        <div class="curated-header">
+          <div class="curated-eyebrow">Artisanal Wardrobe Pillars</div>
+          <div class="curated-title-row">
+            <h2 class="curated-title">The Curated Edits</h2>
+            <a href="shop.html" class="curated-see-all">
+              <span>Explore Complete Catalog (Shop All)</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+          <p class="curated-subtitle">Signature silhouettes tailored from 100% organic Indian cotton. Designed for effortless daily grace, regal celebration, and breathable slow-fashion luxury.</p>
+        </div>
+
+        <!-- Trio Department Showcase -->
+        <div class="curated-trio-grid" id="curated-trio-grid">
+          
+          <!-- Card 1: Women's Collection -->
+          <div class="curated-pillar-card">
+            <div class="curated-card-bg-wrap">
+              <img id="curated-women-img" src="assets/womens_traditional.jpg" alt="Women's Handloom Cotton Collection" loading="lazy">
+            </div>
+            <div class="curated-card-gradient"></div>
+            
+            <div class="curated-card-top">
+              <span class="curated-badge badge-women">Handloom Drapes</span>
+              <span class="curated-card-tag">7 Silhouettes</span>
+            </div>
+
+            <div class="curated-card-body">
+              <div class="curated-card-kicker">Festive &amp; Contemporary</div>
+              <h3 class="curated-card-title" id="curated-women-title">Women's Collection</h3>
+              <p class="curated-card-desc" id="curated-women-desc">Breezy mulmul suits, hand-block co-ords, regal farsi salwars &amp; celebratory gowns.</p>
+              
+              <div class="curated-pills-row">
+                <a href="womens-traditional.html?category=Co-Ord+Sets" class="curated-pill">Co-Ord Sets</a>
+                <a href="womens-traditional.html?category=Dresses+%26+Gowns" class="curated-pill">Dresses &amp; Gowns</a>
+                <a href="womens-traditional.html?category=Two-Piece+Suit+Sets" class="curated-pill">Suit Sets</a>
+                <a href="womens-traditional.html?category=Kurtis+%26+Tops" class="curated-pill">Kurtas &amp; Tops</a>
+              </div>
+
+              <a href="womens-traditional.html" class="curated-btn">
+                <span>Shop Women's Collection</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 2: Men's Essentials -->
+          <div class="curated-pillar-card">
+            <div class="curated-card-bg-wrap">
+              <img id="curated-men-img" src="assets/mens-cotton-shirt.jpg" alt="Men's Cotton Essentials & Handloom Kurtas" loading="lazy">
+            </div>
+            <div class="curated-card-gradient"></div>
+
+            <div class="curated-card-top">
+              <span class="curated-badge badge-men">100% Combed Cotton</span>
+              <span class="curated-card-tag">Tailored Fit</span>
+            </div>
+
+            <div class="curated-card-body">
+              <div class="curated-card-kicker">Refined Tailoring</div>
+              <h3 class="curated-card-title" id="curated-men-title">Men's Essentials</h3>
+              <p class="curated-card-desc" id="curated-men-desc">Cuban-collar casual shirts, festive cambric kurtas &amp; breathable everyday trousers.</p>
+
+              <div class="curated-pills-row">
+                <a href="mens-ethnic.html?category=Cotton+Shirts" class="curated-pill">Cotton Shirts</a>
+                <a href="mens-ethnic.html?category=Kurtas" class="curated-pill">Festive Kurtas</a>
+                <a href="mens-ethnic.html" class="curated-pill">Loom Trousers</a>
+              </div>
+
+              <a href="mens-ethnic.html" class="curated-btn">
+                <span>Shop Men's Collection</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 3: Kids' Festive & Daily -->
+          <div class="curated-pillar-card">
+            <div class="curated-card-bg-wrap">
+              <img id="curated-kids-img" src="assets/womens-cotton-dress.jpg" alt="Kids' Festive Handloom Cotton Garments" loading="lazy">
+            </div>
+            <div class="curated-card-gradient"></div>
+
+            <div class="curated-card-top">
+              <span class="curated-badge badge-kids">Feather-Soft Organic</span>
+              <span class="curated-card-tag">Ages 2–14</span>
+            </div>
+
+            <div class="curated-card-body">
+              <div class="curated-card-kicker">Pure &amp; Hypoallergenic</div>
+              <h3 class="curated-card-title" id="curated-kids-title">Kids' Festive</h3>
+              <p class="curated-card-desc" id="curated-kids-desc">Hypoallergenic cotton lehengas, breezy palazzo sets &amp; gentle festival wear for little ones.</p>
+
+              <div class="curated-pills-row">
+                <a href="kids.html?category=Lehenga+Choli" class="curated-pill">Lehenga Choli</a>
+                <a href="kids.html?category=Kurta+%26+Palazzo+Sets" class="curated-pill">Palazzo Sets</a>
+                <a href="kids.html?category=Girls%27+Ethnic+Suits" class="curated-pill">Ethnic Suits</a>
+              </div>
+
+              <a href="kids.html" class="curated-btn">
+                <span>Shop Kids' Festive</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        </div>
+    </section>
+
+  <!-- Fresh Arrivals Grid -->
+  <section class="section alt-bg reveal" id="fresh-arrivals">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--primary); margin-bottom: 6px;">New From The Loom</div>
+          <h2 style="margin: 0;">Fresh Arrivals</h2>
+        </div>
+        <a href="shop.html" class="see-all">Explore All Pieces &rarr;</a>
+      </div>
+      <div class="product-grid" id="dynamic-products">
+        <!-- Products will be injected here dynamically by app.js?v=6.0 from the database -->
+        <p style="grid-column: span 12; text-align: center; color: #888; padding: 100px 0;">Loading fresh arrivals...</p>
+      </div>
+    </div>
+  </section>
+
+      <!-- Artisan Heritage Storytelling (Weavers Villa Inspired) -->
+  <section class="artisan-section reveal" id="artisan-heritage">
+    <div class="wrap">
+      <div class="artisan-grid">
+        <!-- Left: Layered Visual Composition -->
+        <div class="artisan-visual">
+          <div class="artisan-seal">
+            <span class="artisan-seal-year">Est. 1984</span>
+            <span class="artisan-seal-text">Master Handloom</span>
+          </div>
+          <div class="artisan-main-img-wrap">
+            <img src="assets/artisan_loom.jpg" alt="Master Artisan Weaving on Traditional Wooden Loom" loading="lazy">
+          </div>
+          <div class="artisan-inset-card">
+            <div class="artisan-inset-thumb">
+              <img src="assets/artisan_embroidery.jpg" alt="Delicate Hand Needlework and Zardozi Detailing" loading="lazy">
+            </div>
+            <div class="artisan-inset-info">
+              <div>
+                <div class="artisan-inset-label">Zari &amp; Aari Craft</div>
+                <div class="artisan-inset-sub">Hand-guided needlework</div>
+              </div>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Storytelling Content & Pillars -->
+        <div class="artisan-content">
+          <div class="artisan-eyebrow">Honoring The Loom &amp; The Hands</div>
+          <h2 class="artisan-title">Centuries of Heritage. <em>Woven into Every Thread.</em></h2>
+          <p class="artisan-desc">
+            True luxury is never rushed. From the historic handloom clusters of Punjab and Kashmir to our sustainably cultivated cotton fields, every garment embodies generational artistry. Our master weavers hand-interlace each warp and weft on traditional wooden pit looms—preserving sacred techniques that modern automated mass production could never replicate.
+          </p>
+
+          <ul class="artisan-pillars">
+            <li class="artisan-pillar-item">
+              <div class="pillar-icon-box">
+                <svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18M6.5 6.5l11 11M17.5 6.5l-11 11"/></svg>
+              </div>
+              <div class="pillar-text">
+                <h4>Slow Pit-Loom Weaving</h4>
+                <p>Over 40 to 60 hours of focused artisanal hand-looming per drape, yielding a feather-light feel and natural breathable drape.</p>
+              </div>
+            </li>
+            <li class="artisan-pillar-item">
+              <div class="pillar-icon-box">
+                <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div class="pillar-text">
+                <h4>Direct Artisan Fair Trade</h4>
+                <p>We eliminate intermediaries, guaranteeing living wages and health security for 300+ generational weaver families.</p>
+              </div>
+            </li>
+            <li class="artisan-pillar-item">
+              <div class="pillar-icon-box">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div class="pillar-text">
+                <h4>100% Zero-Synthetic Purity</h4>
+                <p>Unblended long-staple cotton, natural wools, and organic plant-based dyes that soften and develop rich patina over time.</p>
+              </div>
+            </li>
+          </ul>
+
+          <div class="artisan-footer-action">
+            <a href="our-cotton.html" class="btn-pill-heritage">
+              <span>Discover Our Heritage Story</span>
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <div class="artisan-quote-mini">
+              &ldquo;We do not merely weave cloth; we weave our culture, breath, and memories into each motif.&rdquo;
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Fabric Archive (Interactive Cotton Swatches) -->
+  <section class="fabric-archive-section reveal" id="fabric-archive">
+    <div class="wrap">
+      <div class="section-head" style="text-align: center; margin-bottom: 40px;">
+        <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--primary); margin-bottom: 8px;">Textile Anatomy &amp; Weaves</div>
+        <h2 style="margin: 0 0 10px; font-family: var(--font-display, 'Trirong', serif); font-size: 34px;">The Fabric Archive</h2>
+        <p style="color: #64748b; font-size: 14px; max-width: 620px; margin: 0 auto; line-height: 1.6;">Touch, weight, and transparency decoded. Learn why each artisanal weave behaves uniquely against skin and Indian seasons.</p>
+      </div>
+      <div class="fabric-archive-grid">
+        <!-- Swatch 1: Mulmul -->
+        <div class="fabric-swatch-card" onclick="window.location.href='womens-traditional.html?category=Co-Ord+Sets'">
+          <div class="swatch-img-box">
+            <img src="assets/swatch_mulmul_1787394498344.jpg" alt="Chanderi Mulmul Cotton Swatch" loading="lazy">
+            <span class="swatch-gsm-badge">80 GSM</span>
+          </div>
+          <div class="swatch-content">
+            <div class="swatch-category">Gossamer Weave</div>
+            <h3 class="swatch-title">Chanderi Mulmul</h3>
+            <p class="swatch-desc">Feather-light plain weave with a gossamer translucent drape. Calibrated for sweltering summers and delicate, fluid layering.</p>
+            <div class="swatch-metrics">
+              <span class="swatch-metric-tag">Ultra Breathable</span>
+              <span class="swatch-metric-tag">Soft Washed</span>
+              <span class="swatch-metric-tag">Zero Starch</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Swatch 2: Pima Cotton -->
+        <div class="fabric-swatch-card" onclick="window.location.href='mens-ethnic.html?category=Cotton+Shirts'">
+          <div class="swatch-img-box">
+            <img src="assets/swatch-pima-cotton.jpg" alt="Extra-Long Staple Pima Cotton Swatch" loading="lazy">
+            <span class="swatch-gsm-badge">140 GSM</span>
+          </div>
+          <div class="swatch-content">
+            <div class="swatch-category">Long-Staple Luxury</div>
+            <h3 class="swatch-title">Supima Twill</h3>
+            <p class="swatch-desc">Lustrous combed yarns offering extraordinary tensile strength and rich natural sheen. Wrinkle-resistant with a tailored fall.</p>
+            <div class="swatch-metrics">
+              <span class="swatch-metric-tag">Silky Finish</span>
+              <span class="swatch-metric-tag">Long Fiber</span>
+              <span class="swatch-metric-tag">High Durability</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Swatch 3: Poplin -->
+        <div class="fabric-swatch-card" onclick="window.location.href='mens-ethnic.html?category=Cotton+Shirts'">
+          <div class="swatch-img-box">
+            <img src="assets/swatch_poplin_1787394515962.jpg" alt="Crisp Cambric Poplin Swatch" loading="lazy">
+            <span class="swatch-gsm-badge">120 GSM</span>
+          </div>
+          <div class="swatch-content">
+            <div class="swatch-category">Structured Classic</div>
+            <h3 class="swatch-title">Crisp Poplin</h3>
+            <p class="swatch-desc">Tightly woven fine-rib weave with a crisp tactile finish. Perfect for tailored shirts, kurtas, and structured drapes.</p>
+            <div class="swatch-metrics">
+              <span class="swatch-metric-tag">Crisp Hand</span>
+              <span class="swatch-metric-tag">Color Rich</span>
+              <span class="swatch-metric-tag">All-Season</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Swatch 4: Raw Slub Khadi -->
+        <div class="fabric-swatch-card" onclick="window.location.href='womens-traditional.html?category=Three-Piece+Suit+Sets'">
+          <div class="swatch-img-box">
+            <img src="assets/swatch-raw-cotton.jpg" alt="Heritage Slub Khadi Swatch" loading="lazy">
+            <span class="swatch-gsm-badge">180 GSM</span>
+          </div>
+          <div class="swatch-content">
+            <div class="swatch-category">Handspun Heritage</div>
+            <h3 class="swatch-title">Textured Khadi</h3>
+            <p class="swatch-desc">Organic handspun yarn with organic slub textures. Cool in summer, warm in winter, softening gracefully with every wash cycle.</p>
+            <div class="swatch-metrics">
+              <span class="swatch-metric-tag">Handspun</span>
+              <span class="swatch-metric-tag">Thermal Regulating</span>
+              <span class="swatch-metric-tag">Living Fiber</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- Trust Badges Bar (Luxury Guarantee Bar) -->
+  <section class="trust-badges-section reveal" id="trust-guarantee">
+    <div class="wrap">
+      <div class="trust-badges-grid">
+        <div class="trust-badge-card">
+          <div class="trust-icon-wrapper">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <h4>100% Certified Craft</h4>
+          <p>Certified pure cotton &amp; authentic natural fibers verified at the source.</p>
+        </div>
+
+        <div class="trust-badge-card">
+          <div class="trust-icon-wrapper">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h4>Artisan Fair Trade</h4>
+          <p>Ethically crafted with respectful wages for master weaver families.</p>
+        </div>
+
+        <div class="trust-badge-card">
+          <div class="trust-icon-wrapper">
+            <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <h4>Pan-India &amp; Global Express</h4>
+          <p>Complimentary insured shipping over ₹1,999 with live tracking.</p>
+        </div>
+
+        <div class="trust-badge-card">
+          <div class="trust-icon-wrapper">
+            <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+          </div>
+          <h4>7-Day Easy Returns</h4>
+          <p>Hassle-free doorstep pickup &amp; instantaneous size exchanges.</p>
+        </div>
+
+        <div class="trust-badge-card">
+          <div class="trust-icon-wrapper">
+            <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <h4>256-Bit Secure Payments</h4>
+          <p>Bank-grade SSL encryption for cards, UPI, net banking, and COD.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section reveal">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>From Our Community</h2>
+      </div>
+      <div class="testimonial-row">
+        <div class="t-card">
+          <img src="assets/community_1.jpg" alt="Community Member in Saree" loading="lazy">
+          <div class="t-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+          <p>"The mulmul cotton saree is unbelievably light and breathable. The drape is elegant and effortless."</p>
+          <div class="t-author">&mdash; ANJALI S., VERIFIED BUYER</div>
+        </div>
+        <div class="t-card">
+          <img src="assets/product_cotton_close.jpg" alt="Community Member reviewing fabric" loading="lazy">
+          <div class="t-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+          <p>"Finally an ethnic brand that tells you the actual GSM and weave. The fabric feels honest and premium."</p>
+          <div class="t-author">&mdash; RAHUL I., VERIFIED BUYER</div>
+        </div>
+        <div class="t-card">
+          <img src="assets/product_kurta_ivory.jpg" alt="Community Member in Kurta" loading="lazy">
+          <div class="t-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+          <p>"Loved the men's kurta &mdash; true to size and genuinely breathable for summer weddings. Perfect tailoring."</p>
+          <div class="t-author">&mdash; MEHR K., VERIFIED BUYER</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <!-- Community Lifestyle Grid ("Styled By You" • #JPCottonLiving) -->
+  <section class="section reveal" id="community-lifestyle" style="padding-top: 40px; padding-bottom: 20px;">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom: 28px;">
+        <div>
+          <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--primary); margin-bottom: 6px;">#JPCottonLiving</div>
+          <h2 style="margin: 0; font-family: var(--font-display, 'Trirong', serif);">Styled By You</h2>
+        </div>
+        <a href="https://instagram.com" target="_blank" rel="noopener" class="see-all">Tag @JPCottonCo on Instagram &rarr;</a>
+      </div>
+      <div class="community-lifestyle-grid">
+        <div class="community-photo-card" onclick="window.location.href='womens-traditional.html?category=Dresses+%26+Gowns'">
+          <img src="assets/walnut-dress.jpg" alt="Client styling Walnut Mulmul Dress" loading="lazy">
+          <div class="community-photo-overlay">
+            <div class="community-handle">@priya.sharma_</div>
+            <div class="community-location">Jaipur, Rajasthan</div>
+            <span class="community-outfit-tag">Walnut Mulmul Maxi</span>
+          </div>
+        </div>
+        <div class="community-photo-card" onclick="window.location.href='womens-traditional.html?category=Three-Piece+Suit+Sets'">
+          <img src="assets/product_saree.jpg" alt="Client in Handloom Festive Suit" loading="lazy">
+          <div class="community-photo-overlay">
+            <div class="community-handle">@tara.lifestyle</div>
+            <div class="community-location">South Delhi, DL</div>
+            <span class="community-outfit-tag">Zari Handloom Ensemble</span>
+          </div>
+        </div>
+        <div class="community-photo-card" onclick="window.location.href='mens-ethnic.html?category=Cotton+Shirts'">
+          <img src="assets/mens-cotton-shirt.jpg" alt="Client styling Combed Cotton Shirt" loading="lazy">
+          <div class="community-photo-overlay">
+            <div class="community-handle">@aditya_verma</div>
+            <div class="community-location">Bandra, Mumbai</div>
+            <span class="community-outfit-tag">Cuban Cotton Shirt</span>
+          </div>
+        </div>
+        <div class="community-photo-card" onclick="window.location.href='womens-traditional.html'">
+          <img src="assets/womens_traditional.jpg" alt="Client in Traditional Festive Co-Ord" loading="lazy">
+          <div class="community-photo-overlay">
+            <div class="community-handle">@sonal_kapoor</div>
+            <div class="community-location">Bengaluru, KA</div>
+            <span class="community-outfit-tag">Heritage Loom Co-Ord</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Loom Circle (VIP Patron Privilege Newsletter) -->
+  <section class="loom-circle-section reveal" id="loom-circle">
+    <div class="wrap">
+      <div class="loom-circle-box">
+        <div class="loom-circle-content">
+          <span class="loom-circle-kicker">Join The Inner Circle</span>
+          <h2 class="loom-circle-title">The Loom Circle</h2>
+          <p class="loom-circle-desc">Receive intimate dispatches on rare capsule drops, handloom heritage stories, and 10% privilege savings on your maiden order.</p>
+          
+          <form class="loom-circle-form" id="loom-circle-form" onsubmit="handleLoomCircleSubmit(event)">
+            <input type="email" id="loom-email-input" placeholder="Enter your email address" required autocomplete="email">
+            <button type="submit" id="loom-submit-btn">Receive Privilege &rarr;</button>
+          </form>
+
+          <div class="loom-circle-perks">
+            <span>✦ 10% off maiden order (Code: <strong>PATRON10</strong>)</span>
+            <span>✦ Private drop previews</span>
+            <span>✦ Zero spam guarantee</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="wrap">
+      <div class="foot-top">
+        <div>
+          <div class="foot-logo"><img src="assets/logo.png" alt="JP Cotton"></div>
+          <p class="foot-desc">Elevated everyday cotton clothing, woven close to the source.</p>
+        </div>
+        <div>
+          <h4>Collections</h4>
+          <a href="womens-traditional.html">Women's Collection</a>
+          <a href="kids.html">Kids' Festive</a>
+          <a href="mens-ethnic.html">Men's Collection</a>
+          <a href="shop.html">Shop All</a>
+        </div>
+        <div>
+          <h4>Help</h4>
+          <a href="track-order.html" style="color:var(--primary); font-weight:600;">🚚 Track Order</a>
+          <a href="returns.html">Returns &amp; Refunds</a>
+          <a href="contact.html">Shipping FAQ</a>
+        </div>
+        <div>
+          <h4>JP Brand</h4>
+          <a href="our-cotton.html">Our Story</a>
+          <a href="our-cotton.html">The Fabric</a>
+          <a href="our-cotton.html">Journal</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <div>&copy; 2026 JP Cotton All Rights Reserved.</div>
+        <div>Ethically crafted.</div>
+      </div>
+    </div>
+  </footer>
+
+  
+  <!-- Product Quick-View Modal Overlay -->
+  <div class="quickview-modal-overlay" id="quickview-modal-overlay" onclick="closeQuickView(event)">
+    <div class="quickview-modal" onclick="event.stopPropagation()">
+      <button type="button" class="quickview-close-btn" onclick="closeQuickView()" aria-label="Close modal">&times;</button>
+      <div class="quickview-grid">
+        <div class="quickview-img-wrap">
+          <img id="qv-img" src="assets/product_kurta_ivory.jpg" alt="Product Quick View">
+        </div>
+        <div class="quickview-details">
+          <div class="quickview-category" id="qv-category">PURE HANDLOOM COTTON</div>
+          <h2 class="quickview-title" id="qv-title">Handloom Silhouette</h2>
+          <div class="quickview-price-row">
+            <span class="quickview-price-curr" id="qv-price">&#8377;1,899.00</span>
+            <span class="quickview-price-orig" id="qv-original-price">&#8377;2,499.00</span>
+            <span class="quickview-discount-pill" id="qv-discount">24% OFF</span>
+          </div>
+          <p class="quickview-desc" id="qv-desc">Artisanal 100% natural cotton silhouette hand-finished with meticulous precision, feather-light breathability, and generous fluid drape.</p>
+          
+          <div class="quickview-size-label">Select Size</div>
+          <div class="quickview-sizes" id="qv-sizes">
+            <button type="button" class="quickview-size-btn" onclick="selectQuickViewSize(this, 'S')">S</button>
+            <button type="button" class="quickview-size-btn active" onclick="selectQuickViewSize(this, 'M')">M</button>
+            <button type="button" class="quickview-size-btn" onclick="selectQuickViewSize(this, 'L')">L</button>
+            <button type="button" class="quickview-size-btn" onclick="selectQuickViewSize(this, 'XL')">XL</button>
+            <button type="button" class="quickview-size-btn" onclick="selectQuickViewSize(this, 'XXL')">XXL</button>
+          </div>
+
+          <div class="quickview-actions">
+            <button type="button" class="quickview-add-btn" id="qv-add-btn" onclick="addQuickViewToCart()">Add To Bag &bull; Free Shipping</button>
+            <a href="#" class="quickview-pdp-link" id="qv-pdp-link">Full Details &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js?v=6.0" defer></script>
+
+</body>
+</html>

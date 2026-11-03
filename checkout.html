@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Secure Checkout &mdash; JP Cotton</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css?v=6.0">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header id="main-header">
+    <div class="wrap">
+      <nav>
+        <div class="menu-toggle" onclick="document.getElementById('mobile-menu').classList.add('active'); document.getElementById('mobile-menu-overlay').classList.add('active');">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </div>
+        <div class="logo"><a href="index.html"><img src="assets/logo.png" alt="JP Cotton"></a></div>
+        <div class="search-bar">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" placeholder="Search for heritage pieces, pure cotton, sarees..." class="global-search">
+        </div>
+        <div class="icons">
+          <a href="favorites.html" title="Wishlist"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></a>
+          <a href="cart.html" title="Cart">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+            <span class="cart-badge" id="cart-badge">0</span>
+          </a>
+          <a href="login.html" id="auth-user-icon" title="Account"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+          <script>
+            (function() {
+              if (localStorage.getItem('petal_user')) {
+                const el = document.getElementById('auth-user-icon');
+                if (el) el.setAttribute('href', 'profile.html');
+              }
+            })();
+          </script>
+        </div>
+      </nav>
+      <div class="navlinks desktop-only">
+        <div class="nav-item">
+          <a href="shop.html">Shop All</a>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="womens-traditional.html">Women <span class="nav-arrow">▾</span></a>
+          <div class="dropdown">
+            <a href="womens-traditional.html?category=Co-Ord+Sets">Co-Ord Sets</a>
+            <a href="womens-traditional.html?category=Dresses+%26+Gowns">Dresses &amp; Gowns</a>
+            <a href="womens-traditional.html?category=Two-Piece+Suit+Sets">Two-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Three-Piece+Suit+Sets">Three-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Farsi+Salwar+Sets">Farsi Salwar Sets</a>
+            <a href="womens-traditional.html?category=Kurtas">Kurtas</a>
+            <a href="womens-traditional.html?category=Kurtis+%26+Tops">Kurtis &amp; Tops</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="mens-ethnic.html">Men <span class="nav-arrow">▾</span></a>
+          <div class="dropdown">
+            <a href="mens-ethnic.html?category=Cotton+Shirts">Cotton Shirts</a>
+            <a href="mens-ethnic.html?category=Kurtas">Kurtas</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="kids.html">Kids <span class="nav-arrow">▾</span></a>
+          <div class="dropdown">
+            <a href="kids.html?category=Kurta+%26+Palazzo+Sets">Kurta &amp; Palazzo Sets</a>
+            <a href="kids.html?category=Lehenga+Choli">Lehenga Choli</a>
+            <a href="kids.html?category=Girls%27+Ethnic+Suits">Girls' Ethnic Suits</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="our-cotton.html">Our Story</a>
+        </div>
+        <div class="nav-item">
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Slide-Out Menu -->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay" onclick="document.getElementById('mobile-menu').classList.remove('active'); this.classList.remove('active');"></div>
+    <div class="mobile-menu" id="mobile-menu">
+      <div class="mobile-menu-close" onclick="document.getElementById('mobile-menu').classList.remove('active'); document.getElementById('mobile-menu-overlay').classList.remove('active');">
+        <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="1.5" fill="none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </div>
+      <div class="mobile-navlinks">
+        <a href="shop.html">Shop All</a>
+        <div class="mobile-accordion">
+          <div class="mobile-acc-header" onclick="this.parentElement.classList.toggle('open')">
+            <span>Women</span>
+            <span class="mobile-acc-arrow">▾</span>
+          </div>
+          <div class="mobile-acc-content">
+            <a href="womens-traditional.html" style="font-weight:600; color:var(--primary) !important;">View All Women &rarr;</a>
+            <a href="womens-traditional.html?category=Co-Ord+Sets">Co-Ord Sets</a>
+            <a href="womens-traditional.html?category=Dresses+%26+Gowns">Dresses &amp; Gowns</a>
+            <a href="womens-traditional.html?category=Two-Piece+Suit+Sets">Two-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Three-Piece+Suit+Sets">Three-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Farsi+Salwar+Sets">Farsi Salwar Sets</a>
+            <a href="womens-traditional.html?category=Kurtas">Kurtas</a>
+            <a href="womens-traditional.html?category=Kurtis+%26+Tops">Kurtis &amp; Tops</a>
+          </div>
+        </div>
+        <div class="mobile-accordion">
+          <div class="mobile-acc-header" onclick="this.parentElement.classList.toggle('open')">
+            <span>Men</span>
+            <span class="mobile-acc-arrow">▾</span>
+          </div>
+          <div class="mobile-acc-content">
+            <a href="mens-ethnic.html" style="font-weight:600; color:var(--primary) !important;">View All Men &rarr;</a>
+            <a href="mens-ethnic.html?category=Cotton+Shirts">Cotton Shirts</a>
+            <a href="mens-ethnic.html?category=Kurtas">Kurtas</a>
+          </div>
+        </div>
+        <div class="mobile-accordion">
+          <div class="mobile-acc-header" onclick="this.parentElement.classList.toggle('open')">
+            <span>Kids</span>
+            <span class="mobile-acc-arrow">▾</span>
+          </div>
+          <div class="mobile-acc-content">
+            <a href="kids.html" style="font-weight:600; color:var(--primary) !important;">View All Kids &rarr;</a>
+            <a href="kids.html?category=Kurta+%26+Palazzo+Sets">Kurta &amp; Palazzo Sets</a>
+            <a href="kids.html?category=Lehenga+Choli">Lehenga Choli</a>
+            <a href="kids.html?category=Girls%27+Ethnic+Suits">Girls' Ethnic Suits</a>
+          </div>
+        </div>
+        <a href="our-cotton.html">Our Story</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Checkout Steps Progress -->
+  <div class="checkout-steps-bar">
+    <div class="checkout-step-item completed">
+      <span>1. Shopping Bag</span>
+    </div>
+    <span class="checkout-step-sep">&rarr;</span>
+    <div class="checkout-step-item active">
+      <span>2. Delivery Details</span>
+    </div>
+    <span class="checkout-step-sep">&rarr;</span>
+    <div class="checkout-step-item">
+      <span>3. Payment</span>
+    </div>
+    <span class="checkout-step-sep">&rarr;</span>
+    <div class="checkout-step-item">
+      <span>4. Confirmation</span>
+    </div>
+  </div>
+
+  <!-- Main Checkout Layout -->
+  <div class="checkout-layout">
+    
+    <!-- Left Column: Checkout Details Form -->
+    <div class="checkout-main-col">
+
+      <!-- Logged In Greeting Banner -->
+      <div id="logged-in-banner" style="display:none; background:#f0fdf4; border:1px solid #bbf7d0; padding:16px 20px; margin-bottom:24px; border-radius:10px; font-size:14px; color:#166534;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px;">
+          <div>
+            <div style="font-weight:700; margin-bottom:2px;">👋 Welcome back, <span id="logged-user-name">Patron</span>!</div>
+            <div style="font-size:13px; color:#15803d;">You are signed in as <strong id="logged-user-email"></strong>. Your saved details are loaded below, and this order will be tracked in your <a href="profile.html" style="text-decoration:underline; font-weight:600; color:#15803d;">account profile</a>.</div>
+          </div>
+          <button type="button" onclick="logoutUser(event)" style="background:#fee2e2; border:1px solid #fca5a5; color:#991b1b; padding:4px 10px; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer;">Sign Out</button>
+        </div>
+      </div>
+
+      <!-- Guest / Returning Customer Switcher (Shown only if not logged in) -->
+      <div id="guest-switch-card" class="checkout-box" style="padding-bottom: 20px;">
+        <div class="checkout-tab-switch">
+          <button type="button" class="checkout-tab-btn active" id="tab-btn-guest" onclick="switchCheckoutAuthTab('guest')">
+            🛍️ Express Guest Checkout
+          </button>
+          <button type="button" class="checkout-tab-btn" id="tab-btn-login" onclick="switchCheckoutAuthTab('login')">
+            🔑 Returning Customer? Sign In
+          </button>
+        </div>
+
+        <div id="tab-content-guest">
+          <p style="font-size: 13px; color: #64748b; margin: 0;">
+            No account or password needed! Fill in your delivery details below to place your order directly.
+          </p>
+        </div>
+
+        <!-- Inline Quick Sign-in Form -->
+        <div id="tab-content-login" style="display: none;">
+          <div style="background: #faf7f2; border: 1px solid rgba(156,82,58,0.2); border-radius: 8px; padding: 18px; margin-top: 10px;">
+            <div style="font-size: 13px; font-weight: 600; color: #1e293b; margin-bottom: 12px;">Sign In to auto-fill saved addresses & speed up checkout:</div>
+            <div class="co-grid-2">
+              <div class="co-group" style="margin-bottom: 0;">
+                <label>Email Address</label>
+                <input type="email" id="inline-login-email" placeholder="you@example.com">
+              </div>
+              <div class="co-group" style="margin-bottom: 0;">
+                <label>Password</label>
+                <input type="password" id="inline-login-password" placeholder="••••••••">
+              </div>
+            </div>
+            <div style="display: flex; gap: 10px; align-items: center; margin-top: 14px;">
+              <button type="button" id="inline-signin-btn" class="btn-primary" style="padding: 10px 20px; font-size: 13px;" onclick="handleInlineLogin()">Sign In &amp; Auto-Fill</button>
+              <div id="inline-login-err" style="color: #dc2626; font-size: 12px; display: none;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 1: Shipping & Delivery Details -->
+      <div class="checkout-box">
+        <h2 class="checkout-box-title">
+          <span><span class="step-pill">1</span>Delivery Address &amp; Contact</span>
+        </h2>
+
+        <!-- Saved Addresses Section (For Logged-in patrons) -->
+        <div id="saved-addresses-wrapper" style="display: none; margin-bottom: 24px;">
+          <div style="font-size: 13px; font-weight: 700; color: #1e293b; margin-bottom: 10px;">Select a Saved Address:</div>
+          <div class="saved-addr-list" id="saved-address-cards">
+            <!-- JS fills saved address cards -->
+          </div>
+          <button type="button" id="btn-use-new-addr" class="btn-secondary" style="font-size: 12px; padding: 8px 14px;" onclick="toggleNewAddressForm()">+ Deliver to a Different Address</button>
+        </div>
+
+        <form id="checkout-form">
+          <div id="new-address-form-fields">
+            <div class="co-grid-2">
+              <div class="co-group">
+                <label>Full Name *</label>
+                <input type="text" id="c-name" placeholder="e.g. Priya Sharma" required>
+              </div>
+              <div class="co-group">
+                <label>Mobile Number (For Courier OTP &amp; Delivery) *</label>
+                <input type="tel" id="c-phone" placeholder="e.g. 9876543210" pattern="[0-9]{10}" maxlength="10" required>
+              </div>
+            </div>
+
+            <div class="co-grid-2">
+              <div class="co-group">
+                <label>Email Address (For Order Invoice &amp; Tracking) *</label>
+                <input type="email" id="c-email" placeholder="you@example.com" required>
+              </div>
+              <div class="co-group">
+                <label>6-Digit Indian Pincode *</label>
+                <input type="text" id="c-pincode" placeholder="e.g. 560001" maxlength="6" pattern="[0-9]{6}" required oninput="handlePincodeLookup(this.value)">
+                <div id="pincode-status" style="font-size: 11px; margin-top: 4px; display: none;"></div>
+              </div>
+            </div>
+
+            <div class="co-group">
+              <label>Flat, House No., Apartment / Building *</label>
+              <input type="text" id="c-flat" placeholder="e.g. Flat 402, Lotus Orchid, Tower B" required>
+            </div>
+
+            <div class="co-group">
+              <label>Street, Colony, Area &amp; Landmark *</label>
+              <input type="text" id="c-street" placeholder="e.g. 12th Main Road, Indiranagar, Near BDA Complex" required>
+            </div>
+
+            <div class="co-grid-2">
+              <div class="co-group">
+                <label>City *</label>
+                <input type="text" id="c-city" placeholder="e.g. Bengaluru" required>
+              </div>
+              <div class="co-group">
+                <label>State *</label>
+                <select id="c-state" required>
+                  <option value="">Select State</option>
+                  <option value="Punjab" selected>Punjab</option>
+                  <option value="Delhi NCR">Delhi NCR</option>
+                  <option value="Maharashtra">Maharashtra</option>
+                  <option value="Karnataka">Karnataka</option>
+                  <option value="Tamil Nadu">Tamil Nadu</option>
+                  <option value="Gujarat">Gujarat</option>
+                  <option value="Rajasthan">Rajasthan</option>
+                  <option value="Haryana">Haryana</option>
+                  <option value="Uttar Pradesh">Uttar Pradesh</option>
+                  <option value="West Bengal">West Bengal</option>
+                  <option value="Telangana">Telangana</option>
+                  <option value="Kerala">Kerala</option>
+                  <option value="Other">Other State / UT</option>
+                </select>
+              </div>
+            </div>
+
+            <div id="save-address-checkbox-wrap" style="display: none; margin-top: 10px;">
+              <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #475569; cursor: pointer;">
+                <input type="checkbox" id="save-addr-profile" checked style="width: auto;">
+                Save this address to my profile for future orders
+              </label>
+            </div>
+          </div>
+
+          <!-- STEP 2: Payment Method -->
+          <div style="margin-top: 36px; padding-top: 32px; border-top: 1px solid #e2e8f0;">
+            <h2 class="checkout-box-title" style="margin-bottom: 16px;">
+              <span><span class="step-pill">2</span>Payment Method</span>
+            </h2>
+
+            <div class="payment-methods-grid">
+              <!-- COD Option -->
+              <label class="payment-card selected" id="card-cod">
+                <input type="radio" name="payment_method" value="Cash on Delivery" checked onchange="handlePaymentChange(this.value)">
+                <div class="payment-card-body">
+                  <h4>💵 Cash on Delivery (COD)</h4>
+                  <p>Pay cash or UPI QR at your doorstep to the express delivery courier. 100% verified, zero convenience fee.</p>
+                </div>
+              </label>
+
+              <!-- Instant UPI Option -->
+              <label class="payment-card" id="card-upi">
+                <input type="radio" name="payment_method" value="Instant UPI" onchange="handlePaymentChange(this.value)">
+                <div class="payment-card-body">
+                  <h4>⚡ Instant UPI (Google Pay, PhonePe, Paytm, BHIM)</h4>
+                  <p>Instant UPI verification with 0% extra fee. Scan QR code or enter your VPA upon order placement.</p>
+                  <div id="upi-details-box" style="display: none; margin-top: 12px; padding: 12px; background: #faf7f2; border-radius: 6px; border: 1px dashed rgba(180,83,9,0.3);">
+                    <div style="font-size: 12px; color: #1e293b; font-weight: 600; margin-bottom: 6px;">Enter your UPI ID / VPA:</div>
+                    <input type="text" id="upi-vpa-input" placeholder="e.g. mobile@okaxis or username@paytm" style="padding: 8px 12px; font-size: 13px; border: 1px solid #d1d5db; border-radius: 4px; width: 100%; box-sizing: border-box;">
+                    <div style="font-size: 11px; color: #15803d; margin-top: 4px;">✓ Verified Merchant: <strong>JP COTTON (HERITAGE WEAVES)</strong></div>
+                  </div>
+                </div>
+              </label>
+
+              <!-- Credit / Debit Cards Option -->
+              <label class="payment-card" id="card-cards">
+                <input type="radio" name="payment_method" value="Credit / Debit Card" onchange="handlePaymentChange(this.value)">
+                <div class="payment-card-body">
+                  <h4>💳 Credit / Debit Cards &amp; Net Banking</h4>
+                  <p>Visa, MasterCard, RuPay, Maestro &amp; Net Banking via 256-Bit Bank-Grade SSL Encryption.</p>
+                  <div id="cards-details-box" style="display: none; margin-top: 12px; padding: 12px; background: #faf7f2; border-radius: 6px; border: 1px dashed rgba(180,83,9,0.3);">
+                    <input type="text" id="card-num-input" placeholder="Card Number (4000 1234 5678 9010)" maxlength="19" style="padding: 8px 12px; font-size: 13px; border: 1px solid #d1d5db; border-radius: 4px; width: 100%; box-sizing: border-box; margin-bottom: 8px;">
+                    <div style="display: flex; gap: 8px;">
+                      <input type="text" placeholder="MM / YY" maxlength="5" style="padding: 8px 12px; font-size: 13px; border: 1px solid #d1d5db; border-radius: 4px; width: 50%;">
+                      <input type="password" placeholder="CVV" maxlength="4" style="padding: 8px 12px; font-size: 13px; border: 1px solid #d1d5db; border-radius: 4px; width: 50%;">
+                    </div>
+                  </div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" id="submit-order-btn" class="btn-primary" style="width: 100%; padding: 18px; font-size: 16px; font-weight: 700; border-radius: 8px; margin-top: 16px;">
+            Place Order &bull; <span id="btn-total-amount">₹0.00</span>
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Right Column: Order Summary Sidebar -->
+    <div class="checkout-sidebar-col">
+      <div class="checkout-summary-box">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px;">
+          <h3 style="font-family: var(--font-display); font-size: 20px; color: var(--indigo-d); margin: 0;">Order Summary</h3>
+          <span id="summary-items-count" style="font-size: 12px; font-weight: 600; color: #b45309; background: #fef3c7; padding: 2px 8px; border-radius: 12px;">0 Items</span>
+        </div>
+
+        <!-- Items Preview Scrollable -->
+        <div class="checkout-items-preview" id="checkout-items-container">
+          <!-- Filled by JS -->
+        </div>
+
+        <!-- Promo Code Box -->
+        <div style="margin: 20px 0; padding: 14px; background: #FAF7F2; border-radius: 8px; border: 1px solid rgba(156,82,58,0.15);">
+          <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; color: #475569; margin-bottom: 6px;">Have a Promo Code?</label>
+          <div style="display: flex; gap: 8px;">
+            <input type="text" id="promo-input" placeholder="e.g. PATRON10 or DIWALI20" style="flex: 1; padding: 9px 12px; border: 1px solid #cbd5e1; border-radius: 4px; text-transform: uppercase; font-size: 13px;">
+            <button type="button" id="apply-promo-btn" style="padding: 9px 16px; background: var(--primary, #b45309); color: white; border: none; border-radius: 4px; font-weight: 600; font-size: 12px; cursor: pointer;">Apply</button>
+          </div>
+          <div id="promo-msg" style="margin-top: 6px; font-size: 12px; font-weight: 600;"></div>
+        </div>
+
+        <!-- Price Breakdown -->
+        <div class="co-calc-row">
+          <span>Bag Subtotal (MRP)</span>
+          <span id="co-subtotal">₹0.00</span>
+        </div>
+        <div class="co-calc-row" id="co-discount-row" style="display: none; color: #15803d;">
+          <span>Festive / Coupon Savings</span>
+          <span id="co-discount-amt">-₹0.00</span>
+        </div>
+        <div class="co-calc-row">
+          <span>Insured Express Shipping</span>
+          <span style="color: #15803d; font-weight: 600;">FREE (Complimentary)</span>
+        </div>
+        <div class="co-calc-row">
+          <span>Goods &amp; Services Tax (GST)</span>
+          <span style="color: #64748b;">Included in MRP (5%)</span>
+        </div>
+
+        <div class="co-calc-total">
+          <span>Total Payable</span>
+          <span id="co-final-total" style="color: #b45309;">₹0.00</span>
+        </div>
+
+        <!-- Delivery & Assurance Badges -->
+        <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid #f1f5f9; display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #475569;">
+            <span>🚚</span>
+            <span>Estimated Delivery: <strong>3–4 Business Days</strong></span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #475569;">
+            <span>🌿</span>
+            <span>100% Certified Handloom Pure Organic Cotton</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #475569;">
+            <span>🔄</span>
+            <span>15-Day Free Doorstep Returns &amp; Exchanges</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #475569;">
+            <span>🔒</span>
+            <span>256-Bit SSL Bank-Grade Encrypted Checkout</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Trust Footer -->
+  <div style="text-align: center; padding: 24px 20px; font-size: 12px; color: #64748b; border-top: 1px solid #e2e8f0; margin-top: 40px;">
+    <div>&copy; 2026 JP Cotton &bull; Handcrafted ethically in Punjab, India. All rights reserved.</div>
+  </div>
+
+  <script src="app.js?v=6.0" defer></script>
+  <script>
+    function getApiBase() {
+      if (window.location.protocol === 'file:') return 'http://localhost:3000';
+      if (window.location.port === '3000' || window.location.port === '') return '';
+      return 'http://localhost:3000';
+    }
+
+    let cart = [];
+    let subtotal = 0;
+    let discountAmount = 0;
+    let finalTotal = 0;
+    let activeCustomer = null;
+    let savedAddressesCache = [];
+    let selectedAddressId = 'new';
+    let selectedPaymentMethod = 'Cash on Delivery';
+
+    function initCheckout() {
+      try {
+        cart = JSON.parse(localStorage.getItem('petal_cart')) || [];
+      } catch(e) { cart = []; }
+
+      const itemsContainer = document.getElementById('checkout-items-container');
+      const submitBtn = document.getElementById('submit-order-btn');
+
+      if (cart.length === 0) {
+        itemsContainer.innerHTML = '<div style="padding: 40px 10px; text-align: center; color: #64748b;"><div style="font-size:32px; margin-bottom:8px;">🛍️</div><p>Your shopping bag is empty.</p><a href="shop.html" class="btn-primary" style="display:inline-block; margin-top:12px; padding:8px 16px; font-size:13px; text-decoration:none;">Explore Handlooms</a></div>';
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = '0.5';
+        submitBtn.style.cursor = 'not-allowed';
+        return;
+      }
+
+      // Render Items Preview
+      subtotal = 0;
+      let totalQty = 0;
+      itemsContainer.innerHTML = cart.map(item => {
+        const qty = item.qty || 1;
+        totalQty += qty;
+        const itemLineTotal = item.price * qty;
+        subtotal += itemLineTotal;
+        const meta = [item.color ? `Color: ${item.color}` : '', item.size ? `Size: ${item.size}` : ''].filter(Boolean).join(' • ');
+
+        return `
+          <div class="checkout-item-row">
+            <img src="${item.image || 'assets/product_kurta_ivory.jpg'}" alt="${item.name}" class="checkout-item-img" onerror="this.src='assets/product_kurta_ivory.jpg'">
+            <div class="checkout-item-details">
+              <div class="checkout-item-title">${item.name}</div>
+              <div class="checkout-item-meta">${meta ? meta + ' • ' : ''}Qty: ${qty}</div>
+              <div class="checkout-item-price">₹${itemLineTotal.toFixed(2)}</div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      document.getElementById('summary-items-count').textContent = `${totalQty} Item${totalQty > 1 ? 's' : ''}`;
+      recalculateTotals();
+
+      // Check User Session
+      checkCustomerSession();
+    }
+
+    function recalculateTotals() {
+      finalTotal = Math.max(0, subtotal - discountAmount);
+      document.getElementById('co-subtotal').textContent = `₹${subtotal.toFixed(2)}`;
+      document.getElementById('co-final-total').textContent = `₹${finalTotal.toFixed(2)}`;
+      document.getElementById('btn-total-amount').textContent = `₹${finalTotal.toFixed(2)}`;
+
+      const discRow = document.getElementById('co-discount-row');
+      if (discountAmount > 0) {
+        discRow.style.display = 'flex';
+        document.getElementById('co-discount-amt').textContent = `-₹${discountAmount.toFixed(2)}`;
+      } else {
+        discRow.style.display = 'none';
+      }
+    }
+
+    // Customer Session & Saved Address Handling
+    function checkCustomerSession() {
+      const rawUser = localStorage.getItem('petal_user');
+      if (rawUser) {
+        try {
+          activeCustomer = JSON.parse(rawUser);
+          const first = activeCustomer.first_name || (activeCustomer.user && activeCustomer.user.first_name) || '';
+          const last = activeCustomer.last_name || (activeCustomer.user && activeCustomer.user.last_name) || '';
+          const email = activeCustomer.email || (activeCustomer.user && activeCustomer.user.email) || '';
+          const phone = activeCustomer.phone || (activeCustomer.user && activeCustomer.user.phone) || '';
+          const fullName = `${first} ${last}`.trim();
+
+          // Hide Guest Card, Show Logged In Banner
+          const guestCard = document.getElementById('guest-switch-card');
+          if (guestCard) guestCard.style.display = 'none';
+
+          const loggedBanner = document.getElementById('logged-in-banner');
+          if (loggedBanner) {
+            document.getElementById('logged-user-name').textContent = fullName || 'Patron';
+            document.getElementById('logged-user-email').textContent = email;
+            loggedBanner.style.display = 'block';
+          }
+
+          // Pre-fill profile contact info
+          if (fullName) document.getElementById('c-name').value = fullName;
+          if (email) document.getElementById('c-email').value = email;
+          if (phone) document.getElementById('c-phone').value = phone;
+
+          // Fetch Saved Addresses
+          fetchSavedAddresses(email);
+        } catch(e) {}
+      } else {
+        // Guest mode
+        const guestCard = document.getElementById('guest-switch-card');
+        if (guestCard) guestCard.style.display = 'block';
+        const saveCheck = document.getElementById('save-address-checkbox-wrap');
+        if (saveCheck) saveCheck.style.display = 'none';
+      }
+    }
+
+    // Fetch and render saved addresses from account
+    function fetchSavedAddresses(email) {
+      const apiBase = window.getApiBase ? window.getApiBase() : '';
+      fetch(`${apiBase}/api/addresses/${encodeURIComponent(email)}`)
+        .then(res => res.json())
+        .then(addresses => {
+          if (Array.isArray(addresses) && addresses.length > 0) {
+            savedAddressesCache = addresses;
+            renderSavedAddresses(addresses);
+          }
+        })
+        .catch(() => {});
+    }
+
+    function renderSavedAddresses(addresses) {
+      const wrapper = document.getElementById('saved-addresses-wrapper');
+      const container = document.getElementById('saved-address-cards');
+      if (!wrapper || !container) return;
+
+      wrapper.style.display = 'block';
+      selectedAddressId = addresses[0].id; // default to first saved address
+
+      container.innerHTML = addresses.map((addr, idx) => {
+        const isSelected = idx === 0;
+        const fullAddrStr = `${addr.street}, ${addr.city} - ${addr.zip}`;
+        return `
+          <label class="saved-addr-card ${isSelected ? 'selected' : ''}" id="addr-card-${addr.id}" onclick="selectSavedAddress(${addr.id})">
+            <input type="radio" name="saved_addr_radio" class="saved-addr-radio" value="${addr.id}" ${isSelected ? 'checked' : ''}>
+            <div>
+              <div class="saved-addr-title">${addr.title || 'Saved Delivery Address'}</div>
+              <div class="saved-addr-text">${fullAddrStr}</div>
+            </div>
+          </label>
+        `;
+      }).join('');
+
+      // Auto-fill fields from first saved address
+      populateFieldsFromSavedAddress(addresses[0]);
+    }
+
+    function selectSavedAddress(id) {
+      selectedAddressId = id;
+      document.querySelectorAll('.saved-addr-card').forEach(c => c.classList.remove('selected'));
+      const activeCard = document.getElementById(`addr-card-${id}`);
+      if (activeCard) activeCard.classList.add('selected');
+
+      const addr = savedAddressesCache.find(a => a.id == id);
+      if (addr) populateFieldsFromSavedAddress(addr);
+    }
+
+    function populateFieldsFromSavedAddress(addr) {
+      if (!addr) return;
+      document.getElementById('c-street').value = addr.street || '';
+      document.getElementById('c-city').value = addr.city || '';
+      document.getElementById('c-pincode').value = addr.zip || '';
+      if (!document.getElementById('c-flat').value) {
+        document.getElementById('c-flat').value = 'Residence';
+      }
+    }
+
+    function toggleNewAddressForm() {
+      selectedAddressId = 'new';
+      document.querySelectorAll('.saved-addr-card').forEach(c => {
+        c.classList.remove('selected');
+        const radio = c.querySelector('input[type="radio"]');
+        if (radio) radio.checked = false;
+      });
+      // Clear address inputs so user can type new one
+      document.getElementById('c-flat').value = '';
+      document.getElementById('c-street').value = '';
+      document.getElementById('c-city').value = '';
+      document.getElementById('c-pincode').value = '';
+      document.getElementById('c-flat').focus();
+    }
+
+    // Guest vs Login Tabs
+    function switchCheckoutAuthTab(tab) {
+      const btnGuest = document.getElementById('tab-btn-guest');
+      const btnLogin = document.getElementById('tab-btn-login');
+      const viewGuest = document.getElementById('tab-content-guest');
+      const viewLogin = document.getElementById('tab-content-login');
+
+      if (tab === 'login') {
+        btnGuest.classList.remove('active');
+        btnLogin.classList.add('active');
+        viewGuest.style.display = 'none';
+        viewLogin.style.display = 'block';
+      } else {
+        btnLogin.classList.remove('active');
+        btnGuest.classList.add('active');
+        viewLogin.style.display = 'none';
+        viewGuest.style.display = 'block';
+      }
+    }
+
+    // Inline Sign In on Checkout
+    async function handleInlineLogin() {
+      const email = document.getElementById('inline-login-email').value.trim();
+      const password = document.getElementById('inline-login-password').value;
+      const errBox = document.getElementById('inline-login-err');
+      const btn = document.getElementById('inline-signin-btn');
+
+      if (!email || !password) {
+        errBox.textContent = 'Please enter both email and password.';
+        errBox.style.display = 'block';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Verifying...';
+      errBox.style.display = 'none';
+
+      try {
+        const apiBase = window.getApiBase ? window.getApiBase() : '';
+        const res = await fetch(`${apiBase}/api/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+
+        if (res.ok && data.user) {
+          localStorage.setItem('petal_user', JSON.stringify(data));
+          checkCustomerSession();
+        } else {
+          errBox.textContent = data.error || 'Invalid email or password.';
+          errBox.style.display = 'block';
+        }
+      } catch(e) {
+        errBox.textContent = 'Connection error. Please try again.';
+        errBox.style.display = 'block';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Sign In & Auto-Fill';
+      }
+    }
+
+    // Payment Selection
+    function handlePaymentChange(val) {
+      selectedPaymentMethod = val;
+      document.querySelectorAll('.payment-card').forEach(c => c.classList.remove('selected'));
+      document.getElementById('upi-details-box').style.display = 'none';
+      document.getElementById('cards-details-box').style.display = 'none';
+
+      if (val === 'Cash on Delivery') {
+        document.getElementById('card-cod').classList.add('selected');
+      } else if (val === 'Instant UPI') {
+        document.getElementById('card-upi').classList.add('selected');
+        document.getElementById('upi-details-box').style.display = 'block';
+      } else if (val === 'Credit / Debit Card') {
+        document.getElementById('card-cards').classList.add('selected');
+        document.getElementById('cards-details-box').style.display = 'block';
+      }
+    }
+
+    // Pincode Lookup Simulator
+    function handlePincodeLookup(val) {
+      const statusEl = document.getElementById('pincode-status');
+      if (val && val.length === 6) {
+        statusEl.textContent = '✓ Express Handloom Delivery Available to ' + val;
+        statusEl.style.color = '#15803d';
+        statusEl.style.display = 'block';
+      } else {
+        statusEl.style.display = 'none';
+      }
+    }
+
+    // Promo Code Application
+    document.getElementById('apply-promo-btn').addEventListener('click', async () => {
+      const code = (document.getElementById('promo-input').value || '').trim();
+      const msg = document.getElementById('promo-msg');
+      if (!code) return;
+
+      try {
+        const apiBase = window.getApiBase ? window.getApiBase() : '';
+        const res = await fetch(`${apiBase}/api/discounts/validate`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ code })
+        });
+        const data = await res.json();
+
+        if (res.ok && data.valid) {
+          msg.style.color = '#15803d';
+          msg.textContent = `🎉 Promo code applied! ${data.discount_percent}% off your order.`;
+          discountAmount = subtotal * (data.discount_percent / 100);
+          recalculateTotals();
+        } else {
+          msg.style.color = '#dc2626';
+          msg.textContent = data.error || 'Invalid or expired promo code.';
+          discountAmount = 0;
+          recalculateTotals();
+        }
+      } catch(err) {
+        msg.style.color = '#dc2626';
+        msg.textContent = 'Failed to validate promo code.';
+      }
+    });
+
+    // Form Submission & Order Placement
+    document.getElementById('checkout-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const submitBtn = document.getElementById('submit-order-btn');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'Placing Your Order...';
+
+      const customer_name = document.getElementById('c-name').value.trim();
+      const email = document.getElementById('c-email').value.trim();
+      const phone = document.getElementById('c-phone').value.trim();
+      const flat = document.getElementById('c-flat').value.trim();
+      const street = document.getElementById('c-street').value.trim();
+      const city = document.getElementById('c-city').value.trim();
+      const state = document.getElementById('c-state').value;
+      const pincode = document.getElementById('c-pincode').value.trim();
+
+      const fullAddress = `${flat}, ${street}, ${city}, ${state} - ${pincode}`;
+
+      const orderPayload = {
+        customer_name,
+        email,
+        phone,
+        address: fullAddress,
+        city,
+        pincode,
+        payment_method: selectedPaymentMethod,
+        total_price: finalTotal,
+        items: cart
+      };
+
+      try {
+        const apiBase = window.getApiBase ? window.getApiBase() : '';
+        const res = await fetch(`${apiBase}/api/orders`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(orderPayload)
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          const orderId = (data && data.id) ? data.id : Math.floor(1000 + Math.random() * 9000);
+
+          // Save last completed order to sessionStorage for the Rich Invoice on success.html
+          const orderReceipt = {
+            orderId: orderId,
+            customer_name,
+            email,
+            phone,
+            address: fullAddress,
+            payment_method: selectedPaymentMethod,
+            total_price: finalTotal,
+            subtotal: subtotal,
+            discount: discountAmount,
+            items: cart,
+            placed_at: new Date().toISOString()
+          };
+          sessionStorage.setItem('jp_last_order', JSON.stringify(orderReceipt));
+
+          // Ensure active user session in localStorage so profile.html instantly loads this order
+          if (!localStorage.getItem('petal_user')) {
+            const guestUser = {
+              first_name: customer_name.split(' ')[0] || 'Patron',
+              last_name: customer_name.split(' ').slice(1).join(' ') || '',
+              email: email,
+              phone: phone
+            };
+            localStorage.setItem('petal_user', JSON.stringify(guestUser));
+          }
+
+          // Optionally save address to profile if logged in & checked
+          if (activeCustomer && document.getElementById('save-addr-profile')?.checked && selectedAddressId === 'new') {
+            fetch(`${apiBase}/api/addresses`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                user_email: email,
+                title: 'Recent Delivery Address',
+                street: `${flat}, ${street}`,
+                city: city,
+                zip: pincode
+              })
+            }).catch(() => {});
+          }
+
+          // Clear bag
+          localStorage.removeItem('petal_cart');
+          if (window.updateCartCount) window.updateCartCount();
+
+          // Redirect to Rich Confirmation Page
+          const encodedName = encodeURIComponent(customer_name);
+          window.location.href = `success.html?orderId=${orderId}&total=${finalTotal.toFixed(2)}&name=${encodedName}`;
+        } else {
+          alert('Failed to place order. Please check all details and try again.');
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = `Place Order &bull; <span>₹${finalTotal.toFixed(2)}</span>`;
+        }
+      } catch(err) {
+        console.error(err);
+        alert('Server communication error. Please ensure backend is running.');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = `Place Order &bull; <span>₹${finalTotal.toFixed(2)}</span>`;
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', initCheckout);
+  </script>
+
+</body>
+</html>

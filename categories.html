@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="refresh" content="0; url=shop.html">
+<script>window.location.replace('shop.html');</script>
+<title>Shop All Handloom Garments &mdash; JP Cotton</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Explore JP Cotton's signature categories: Men's Cotton Essentials, Women's Pure Cotton Traditional, and Breezy Western Cottons.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Trirong:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=6.0">
+<style>
+  .categories-hero {
+    background: #FAF7F2;
+    padding: 60px 0 40px;
+    text-align: center;
+    border-bottom: 1px solid rgba(156, 82, 58, 0.1);
+  }
+  .categories-hero-sub {
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #b45309;
+    margin-bottom: 8px;
+  }
+  .categories-hero h1 {
+    font-family: var(--font-display, 'Trirong', serif);
+    font-size: 42px;
+    color: #1e293b;
+    margin: 0 0 12px;
+    font-weight: 500;
+  }
+  .categories-hero p {
+    max-width: 650px;
+    margin: 0 auto 24px;
+    font-size: 15px;
+    color: #64748b;
+    line-height: 1.6;
+  }
+  
+  .cat-pill-filter-bar {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .cat-pill-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: #475569;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .cat-pill-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+
+  /* 1. All Categories (Deep Slate) */
+  .cat-pill-btn[data-group="all"] {
+    border-color: #cbd5e1;
+    color: #1e293b;
+    background: #f8fafc;
+  }
+  .cat-pill-btn[data-group="all"].active {
+    background: #1e293b !important;
+    color: #ffffff !important;
+    border-color: #1e293b !important;
+    box-shadow: 0 4px 14px rgba(30, 41, 59, 0.25) !important;
+  }
+
+  /* 2. Main Collections (Heritage Terracotta) */
+  .cat-pill-btn[data-group="main"] {
+    border-color: rgba(156, 82, 58, 0.3);
+    color: #9C523A;
+    background: rgba(156, 82, 58, 0.06);
+  }
+  .cat-pill-btn[data-group="main"].active {
+    background: #9C523A !important;
+    color: #ffffff !important;
+    border-color: #9C523A !important;
+    box-shadow: 0 4px 14px rgba(156, 82, 58, 0.3) !important;
+  }
+
+  /* 3. Men's Essentials (Royal Indigo) */
+  .cat-pill-btn[data-group="men"] {
+    border-color: #bfdbfe;
+    color: #1d4ed8;
+    background: #eff6ff;
+  }
+  .cat-pill-btn[data-group="men"].active {
+    background: #1d4ed8 !important;
+    color: #ffffff !important;
+    border-color: #1d4ed8 !important;
+    box-shadow: 0 4px 14px rgba(29, 78, 216, 0.3) !important;
+  }
+
+  /* 4. Women's Collections (Berry Plum / Rose) */
+  .cat-pill-btn[data-group="women"] {
+    border-color: #fbcfe8;
+    color: #be185d;
+    background: #fdf2f8;
+  }
+  .cat-pill-btn[data-group="women"].active {
+    background: #be185d !important;
+    color: #ffffff !important;
+    border-color: #be185d !important;
+    box-shadow: 0 4px 14px rgba(190, 24, 93, 0.3) !important;
+  }
+
+  /* 5. Artisan & Heritage (Saffron Amber) */
+  .cat-pill-btn[data-group="heritage"] {
+    border-color: #fde68a;
+    color: #b45309;
+    background: #fffbeb;
+  }
+  .cat-pill-btn[data-group="heritage"].active {
+    background: #b45309 !important;
+    color: #ffffff !important;
+    border-color: #b45309 !important;
+    box-shadow: 0 4px 14px rgba(180, 83, 9, 0.3) !important;
+  }
+
+  .collections-section {
+    padding: 60px 0 100px;
+    background: #FAF7F2;
+  }
+
+  .collections-masonry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 32px;
+  }
+
+  .collection-card {
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(156, 82, 58, 0.12);
+    box-shadow: 0 8px 24px rgba(44, 38, 35, 0.04);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  }
+  .collection-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(44, 38, 35, 0.09);
+  }
+
+  .collection-card-img-wrap {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+    background: #f1f5f9;
+  }
+  .collection-card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .collection-card:hover .collection-card-img-wrap img {
+    transform: scale(1.06);
+  }
+
+  .collection-card-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    color: #b45309;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(180, 83, 9, 0.2);
+  }
+
+  .collection-card-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .collection-card-title {
+    font-family: var(--font-display, 'Trirong', serif);
+    font-size: 22px;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0 0 8px;
+  }
+
+  .collection-card-desc {
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 18px;
+    flex: 1;
+  }
+
+  .collection-sub-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  .collection-sub-tag {
+    font-size: 11px;
+    font-weight: 600;
+    color: #475569;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 3px 10px;
+    border-radius: 12px;
+  }
+
+  .collection-card-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid #f1f5f9;
+  }
+
+  .collection-explore-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #b45309;
+    text-decoration: none;
+    transition: gap 0.2s ease, color 0.2s ease;
+  }
+  .collection-explore-btn:hover {
+    color: #92400e;
+    gap: 10px;
+  }
+
+  @media (max-width: 768px) {
+    .categories-hero h1 { font-size: 30px; }
+    .collections-masonry-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Site Header -->
+    <!-- Site Header -->
+    <!-- Site Header -->
+    <!-- Site Header -->
+  <header id="main-header">
+    <div class="wrap">
+      <nav>
+        <div class="menu-toggle" onclick="document.getElementById('mobile-menu').classList.add('active'); document.getElementById('mobile-menu-overlay').classList.add('active');">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </div>
+        <div class="logo"><a href="index.html"><img src="assets/logo.png" alt="JP Cotton"></a></div>
+        <div class="search-bar">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" placeholder="Search for heritage pieces, pure cotton, sarees..." class="global-search">
+        </div>
+        <div class="icons">
+          <a href="favorites.html" title="Wishlist"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></a>
+          <a href="cart.html" title="Cart">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+            <span class="cart-badge" id="cart-badge">0</span>
+          </a>
+          <a href="login.html" id="auth-user-icon" title="Account"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+          <script>
+            (function() {
+              if (localStorage.getItem('petal_user')) {
+                const el = document.getElementById('auth-user-icon');
+                if (el) el.setAttribute('href', 'profile.html');
+              }
+            })();
+          </script>
+        </div>
+      </nav>
+      <div class="navlinks desktop-only">
+        <div class="nav-item">
+          <a href="shop.html">Shop All</a>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="womens-traditional.html">Women <span class="nav-arrow">▾</span></a>
+          <div class="dropdown">
+            <a href="womens-traditional.html?category=Co-Ord+Sets">Co-Ord Sets</a>
+            <a href="womens-traditional.html?category=Dresses+%26+Gowns">Dresses &amp; Gowns</a>
+            <a href="womens-traditional.html?category=Two-Piece+Suit+Sets">Two-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Three-Piece+Suit+Sets">Three-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Farsi+Salwar+Sets">Farsi Salwar Sets</a>
+            <a href="womens-traditional.html?category=Kurtas">Kurtas</a>
+            <a href="womens-traditional.html?category=Kurtis+%26+Tops">Kurtis &amp; Tops</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="mens-ethnic.html">Men <span class="nav-arrow">▾</span></a>
+          <div class="dropdown">
+            <a href="mens-ethnic.html?category=Cotton+Shirts">Cotton Shirts</a>
+            <a href="mens-ethnic.html?category=Kurtas">Kurtas</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="kids.html">Kids <span class="nav-arrow">▾</span></a>
+          <div class="dropdown">
+            <a href="kids.html?category=Kurta+%26+Palazzo+Sets">Kurta &amp; Palazzo Sets</a>
+            <a href="kids.html?category=Lehenga+Choli">Lehenga Choli</a>
+            <a href="kids.html?category=Girls%27+Ethnic+Suits">Girls' Ethnic Suits</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="our-cotton.html">Our Story</a>
+        </div>
+        <div class="nav-item">
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Premium Mobile Slide-Out Menu -->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay" onclick="document.getElementById('mobile-menu').classList.remove('active'); this.classList.remove('active');"></div>
+    <div class="mobile-menu" id="mobile-menu">
+      <div class="mobile-menu-close" onclick="document.getElementById('mobile-menu').classList.remove('active'); document.getElementById('mobile-menu-overlay').classList.remove('active');">
+        <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="1.5" fill="none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </div>
+      <div class="mobile-navlinks">
+        <a href="shop.html">Shop All</a>
+
+        <div class="mobile-accordion">
+          <div class="mobile-acc-header" onclick="this.parentElement.classList.toggle('open')">
+            <span>Women</span>
+            <span class="mobile-acc-arrow">▾</span>
+          </div>
+          <div class="mobile-acc-content">
+            <a href="womens-traditional.html" style="font-weight:600; color:var(--primary) !important;">View All Women &rarr;</a>
+            <a href="womens-traditional.html?category=Co-Ord+Sets">Co-Ord Sets</a>
+            <a href="womens-traditional.html?category=Dresses+%26+Gowns">Dresses &amp; Gowns</a>
+            <a href="womens-traditional.html?category=Two-Piece+Suit+Sets">Two-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Three-Piece+Suit+Sets">Three-Piece Suit Sets</a>
+            <a href="womens-traditional.html?category=Farsi+Salwar+Sets">Farsi Salwar Sets</a>
+            <a href="womens-traditional.html?category=Kurtas">Kurtas</a>
+            <a href="womens-traditional.html?category=Kurtis+%26+Tops">Kurtis &amp; Tops</a>
+          </div>
+        </div>
+
+        <div class="mobile-accordion">
+          <div class="mobile-acc-header" onclick="this.parentElement.classList.toggle('open')">
+            <span>Men</span>
+            <span class="mobile-acc-arrow">▾</span>
+          </div>
+          <div class="mobile-acc-content">
+            <a href="mens-ethnic.html" style="font-weight:600; color:var(--primary) !important;">View All Men &rarr;</a>
+            <a href="mens-ethnic.html?category=Cotton+Shirts">Cotton Shirts</a>
+            <a href="mens-ethnic.html?category=Kurtas">Kurtas</a>
+          </div>
+        </div>
+
+        <div class="mobile-accordion">
+          <div class="mobile-acc-header" onclick="this.parentElement.classList.toggle('open')">
+            <span>Kids</span>
+            <span class="mobile-acc-arrow">▾</span>
+          </div>
+          <div class="mobile-acc-content">
+            <a href="kids.html" style="font-weight:600; color:var(--primary) !important;">View All Kids &rarr;</a>
+            <a href="kids.html?category=Kurta+%26+Palazzo+Sets">Kurta &amp; Palazzo Sets</a>
+            <a href="kids.html?category=Lehenga+Choli">Lehenga Choli</a>
+            <a href="kids.html?category=Girls%27+Ethnic+Suits">Girls' Ethnic Suits</a>
+          </div>
+        </div>
+
+        <a href="our-cotton.html">Our Story</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="categories-hero">
+    <div class="wrap">
+      <div class="collection-breadcrumb" style="margin-bottom: 16px;">
+        <a href="index.html">Home</a>
+        <span class="collection-breadcrumb-separator">/</span>
+        <span style="color: #1e293b; font-weight: 600;">All Collections</span>
+      </div>
+      <div class="categories-hero-sub">Heritage &bull; Contemporary &bull; Handloom</div>
+      <h1>Store Categories &amp; Collections</h1>
+      <p>Centuries of loom artistry, spun from 100% pure organic cotton. Explore our full library of wardrobe essentials, festive handlooms, and breathable daily wear.</p>
+
+      <!-- Filter Bar -->
+      <div class="cat-pill-filter-bar">
+        <button type="button" class="cat-pill-btn active" data-group="all" onclick="filterLiveCategoryGroup('all', this)">
+          <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:currentColor;"></span>
+          <span>All Active Collections</span> (<span id="pill-count-all">7</span>)
+        </button>
+        <button type="button" class="cat-pill-btn" data-group="women" onclick="filterLiveCategoryGroup('women', this)">
+          <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:currentColor;"></span>
+          <span>Women's Collections</span> (<span id="pill-count-women">3</span>)
+        </button>
+        <button type="button" class="cat-pill-btn" data-group="men" onclick="filterLiveCategoryGroup('men', this)">
+          <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:currentColor;"></span>
+          <span>Men's Essentials</span> (<span id="pill-count-men">2</span>)
+        </button>
+        <button type="button" class="cat-pill-btn" data-group="kids" onclick="filterLiveCategoryGroup('kids', this)">
+          <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:currentColor;"></span>
+          <span>Kids' Festive</span> (<span id="pill-count-kids">2</span>)
+        </button>
+        <a href="shop.html" class="cat-pill-btn" style="text-decoration:none; background:#0f172a; color:#ffffff; border-color:#0f172a;">
+          <span>🛍️ Browse All Products (Shop All) &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Collections Grid -->
+  <section class="collections-section">
+    <div class="wrap">
+      <div class="collections-masonry-grid" id="categories-grid-container">
+        <!-- Rendered dynamically via fetch to /api/categories -->
+        <div style="grid-column: 1 / -1; text-align: center; padding: 60px 0; color: #64748b;">
+          Loading store collections...
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Heritage Craft Banner -->
+  <section style="background: #11100f; color: #FAF7F2; padding: 70px 0; border-top: 1px solid rgba(255,255,255,0.08);">
+    <div class="wrap" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px;">
+      <div style="max-width: 600px;">
+        <div style="color: #b45309; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Direct From The Weavers</div>
+        <h2 style="font-family: var(--font-display, 'Trirong', serif); font-size: 32px; margin: 0 0 10px; font-weight: 500;">Honoring The Loom &amp; The Hands</h2>
+        <p style="color: #94a3b8; font-size: 14px; line-height: 1.6; margin: 0;">Every single garment in our store is woven with single-origin Indian cotton, preserving age-old wood-loom traditions while offering effortless contemporary comfort.</p>
+      </div>
+      <div>
+        <a href="our-cotton.html" class="btn-primary" style="padding: 12px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; display: inline-block;">Read Our Heritage Story &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+    <!-- Footer -->
+  <footer>
+    <div class="wrap foot-top">
+      <div class="foot-logo">
+        <a href="index.html"><img src="assets/logo.png" alt="JP Cotton"></a>
+        <p>Centuries of Indian weaving heritage, tailored for modern living. 100% pure organic cotton garments directly from master artisans.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <a href="womens-traditional.html">Women's Collection</a>
+        <a href="kids.html">Kids' Festive</a>
+        <a href="mens-ethnic.html">Men's Collection</a>
+        <a href="shop.html">Shop All</a>
+      </div>
+      <div>
+        <h4>Customer Care</h4>
+        <a href="contact.html">Contact Concierge</a>
+        <a href="returns.html">Returns &amp; Refunds</a>
+        <a href="contact.html">Shipping FAQ</a>
+      </div>
+      <div>
+        <h4>JP Brand</h4>
+        <a href="our-cotton.html">Our Story</a>
+        <a href="our-cotton.html">The Fabric</a>
+        <a href="our-cotton.html">Artisan Journal</a>
+      </div>
+    </div>
+    <div class="foot-bottom wrap">
+      <div>&copy; 2026 JP Cotton All Rights Reserved.</div>
+      <div>Ethically crafted in Punjab, India.</div>
+    </div>
+  </footer>
+
+    <!-- Dynamic Loader Script with Instant Initial Render & Actionable Links -->
+  <script>
+    const INITIAL_CATEGORIES = [{"id":100,"name":"Kurtis & Tops","parent_category":"Women","link":"womens-traditional.html?category=Kurtis+%26+Tops","image":"assets/prod_black_gold_block_kurti_1.jpg","count":3},{"id":101,"name":"Dresses & Gowns","parent_category":"Women","link":"womens-traditional.html?category=Dresses+%26+Gowns","image":"assets/prod_brown_tiered_maxi_dress_1.jpg","count":2},{"id":102,"name":"Two-Piece Suit Sets","parent_category":"Women","link":"womens-traditional.html?category=Two-Piece+Suit+Sets","image":"assets/prod_teal_chanderi_kurta_set_1.jpg","count":1},{"id":103,"name":"Cotton Shirts","parent_category":"Men","link":"mens-ethnic.html?category=Cotton+Shirts","image":"assets/prod_mens_paisley_block_shirt_1.jpg","count":3},{"id":104,"name":"Handloom Kurtas","parent_category":"Men","link":"mens-ethnic.html?category=Kurtas","image":"assets/prod_mens_emerald_green_kurta_1.jpg","count":2},{"id":105,"name":"Kurta & Sharara Sets","parent_category":"Kids","link":"kids.html?category=Kurta+%26+Palazzo+Sets","image":"assets/prod_kids_yellow_sharara_1.jpg","count":1},{"id":106,"name":"Lehenga Choli","parent_category":"Kids","link":"kids.html?category=Lehenga+Choli","image":"assets/prod_kids_pink_elephant_lehenga_1.jpg","count":1}];
+    let rawCategoriesCache = INITIAL_CATEGORIES;
+
+    const API_BASE = (window.getApiBase ? window.getApiBase() : '');
+
+    function isKidsCategory(c) {
+      const name = (c.name || '').toLowerCase();
+      const parent = (c.parent_category || '').toLowerCase();
+      return name.includes('kid') || parent.includes('kid') || name.includes('lehenga') || name.includes('palazzo');
+    }
+
+    function isMenCategory(c) {
+      const name = (c.name || '').toLowerCase();
+      const parent = (c.parent_category || '').toLowerCase();
+      return (name.includes('men') && !name.includes('women')) || 
+             (parent.includes('men') && !parent.includes('women'));
+    }
+
+    function isWomenCategory(c) {
+      const name = (c.name || '').toLowerCase();
+      const parent = (c.parent_category || '').toLowerCase();
+      return name.includes('women') || parent.includes('women');
+    }
+
+    function isHeritageCategory(c) {
+      const name = (c.name || '').toLowerCase();
+      const parent = (c.parent_category || '').toLowerCase();
+      return name.includes('artisan') || 
+             name.includes('heritage') || 
+             name.includes('traditional') || 
+             name.includes('saree') || 
+             name.includes('pure cotton') ||
+             name.includes('angrakha') ||
+             name.includes('anarkali') ||
+             parent.includes('pure cotton') ||
+             parent.includes('traditional');
+    }
+
+    function updatePillCounts() {
+      const all = rawCategoriesCache.length;
+      const main = rawCategoriesCache.filter(c => !c.parent_category).length;
+      const men = rawCategoriesCache.filter(isMenCategory).length;
+      const women = rawCategoriesCache.filter(isWomenCategory).length;
+      const heritage = rawCategoriesCache.filter(isHeritageCategory).length;
+
+      const kids = rawCategoriesCache.filter(isKidsCategory).length;
+      const setEl = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+      setEl('pill-count-kids', kids);
+      setEl('pill-count-all', all);
+      setEl('pill-count-main', main);
+      setEl('pill-count-men', men);
+      setEl('pill-count-women', women);
+      setEl('pill-count-heritage', heritage);
+    }
+
+    async function loadStoreCategories() {
+      try {
+        const res = await fetch(`${API_BASE}/api/categories`);
+        if (res.ok) {
+          const categories = await res.json();
+          if (Array.isArray(categories) && categories.length > 0) {
+            rawCategoriesCache = categories;
+            updatePillCounts();
+            renderCollectionsGrid(rawCategoriesCache);
+          }
+        }
+      } catch(err) {
+        console.warn('API refresh notice:', err);
+      }
+    }
+
+    
+    function renderCollectionsGrid(categories) {
+      const container = document.getElementById('categories-grid-container');
+      if (!container) return;
+      if (!categories || categories.length === 0) {
+        container.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: #64748b;">
+            <div style="font-size: 36px; margin-bottom: 12px;">📁</div>
+            <h3 style="font-size: 18px; color: #1e293b; margin: 0 0 6px;">No collections in this category</h3>
+            <p style="font-size: 13px; margin: 0 0 16px;">Browse our entire catalog of in-stock artisanal cotton pieces.</p>
+            <a href="shop.html" class="btn-primary" style="padding: 10px 20px; text-decoration:none; display:inline-block; border-radius:6px;">View All Products</a>
+          </div>
+        `;
+        return;
+      }
+
+      const descriptions = {
+        "Kurtis & Tops": "Artisanal hand-block printed short kurtas, flared tunics, and tie-dye bandhani pieces woven from lightweight pure cotton.",
+        "Dresses & Gowns": "Tiered flared maxi dresses, empire sundresses, and evening celebration silhouettes in breathable 100% organic cotton.",
+        "Two-Piece Suit Sets": "Hand-embroidered Chanderi silk-cotton kurta sets with matching straight trousers and fine gota tilla work.",
+        "Cotton Shirts": "Breezy resort Cuban camp collars, Jaipur paisley prints, and Royal Bengal animal hand-block shirts in combed cotton.",
+        "Handloom Kurtas": "Refined short kurtas tailored with authentic Kalamkari botanical art and geometric khari-gold block motifs.",
+        "Kurta & Sharara Sets": "Joyful festive outfits for little princesses with mirror-embroidered peplums, flared shararas, and soft mulmul lining.",
+        "Lehenga Choli": "Feather-soft cotton twirl lehengas with gold elephant motifs, colorful Kalamkari patch borders, and draped dupattas."
+      };
+
+      container.innerHTML = categories.map(cat => {
+        const badgeLabel = cat.parent_category ? `${cat.parent_category} Department` : 'Signature Collection';
+        const desc = descriptions[cat.name] || '100% pure organic cotton handcrafted by master Indian artisans.';
+
+        return `
+          <div class="collection-card">
+            <div class="collection-card-img-wrap" onclick="window.location.href='${cat.link}'" style="cursor: pointer;">
+              <span class="collection-card-badge">${badgeLabel}</span>
+              <img src="${cat.image || 'assets/womens_traditional.jpg'}" alt="${cat.name}" loading="lazy" onerror="this.src='assets/womens_traditional.jpg'">
+            </div>
+            <div class="collection-card-body">
+              <h3 class="collection-card-title"><a href="${cat.link}" style="color: inherit; text-decoration: none;">${cat.name}</a></h3>
+              <p class="collection-card-desc">${desc}</p>
+              <div class="collection-card-foot">
+                <span style="font-size: 12px; font-weight: 600; color: #16a34a; background: #dcfce7; padding: 3px 8px; border-radius: 12px;">In Stock &bull; Handloom</span>
+                <a href="${cat.link}" class="collection-explore-btn">
+                  <span>Shop Collection</span>
+                  <span>&rarr;</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function filterLiveCategoryGroup(group, btn) {
+      document.querySelectorAll('.cat-pill-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+
+      if (group === 'all') {
+        renderCollectionsGrid(rawCategoriesCache);
+      } else if (group === 'main') {
+        renderCollectionsGrid(rawCategoriesCache.filter(c => !c.parent_category));
+      } else if (group === 'men') {
+        renderCollectionsGrid(rawCategoriesCache.filter(isMenCategory));
+      } else if (group === 'women') {
+        renderCollectionsGrid(rawCategoriesCache.filter(isWomenCategory));
+      } else if (group === 'kids') {
+        renderCollectionsGrid(rawCategoriesCache.filter(isKidsCategory));
+      } else if (group === 'heritage') {
+        renderCollectionsGrid(rawCategoriesCache.filter(isHeritageCategory));
+      }
+    }
+
+    function initCategoriesPage() {
+      updatePillCounts();
+      renderCollectionsGrid(rawCategoriesCache);
+      loadStoreCategories();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initCategoriesPage);
+    } else {
+      initCategoriesPage();
+    }
+  </script>
+
+  <script src="app.js?v=6.0"></script>
+</body>
+</html>
